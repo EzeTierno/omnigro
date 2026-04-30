@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canopy Master PRO — Omnigro</title>
+
+  <!--
+    FUENTE: La marca usa Gilroy (self-hosted).
+    Usando Plus Jakarta Sans como proxy hasta integrar Gilroy.
+    Reemplazar con @font-face de Gilroy en producción.
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* =============================================
+       VARIABLES DE MARCA
+    ============================================= */
+    :root {
+      --lime:        #AFE342;
+      --dark:        #252617;
+      --near-black:  #272828;
+      --olive:       #74764A;
+      --beige:       #D4D3BD;
+      --gray-mid:    #B6B8AA;
+      --white:       #ffffff;
+      --font:        'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar__logo {
+      height: 17px;
+      width: auto;
+      display: block;
+    }
+
+    .navbar__logo--black { display: none; }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 20px 24px; }
+      .navbar__logo { height: 22px; }
+    }
+
+    /* =============================================
+       RESET
+    ============================================= */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: #000;
+      color: var(--near-black);
+      overflow-x: hidden;
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* --- Video background --- */
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    /* --- Overlay de contenido --- */
+    .hero__content {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 48px 40px 64px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      pointer-events: none;
+    }
+
+    .hero__content.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* --- Badge superior --- */
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--lime);
+      border: 1px solid rgba(175, 227, 66, 0.45);
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 9px 22px;
+      border-radius: 100px;
+    }
+
+    .hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* --- Bloque superior: solo badge --- */
+    .hero__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* --- Nombre del producto: posición absoluta central-alta --- */
+    .hero__product-name {
+      position: absolute;
+      top: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      white-space: nowrap;
+    }
+
+    /* --- Bloque inferior — pegado al fondo con menos padding --- */
+    .hero__bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+      padding-bottom: 20px;
+    }
+
+    /* Headline principal — contraste de pesos + shimmer */
+    .hero__title {
+      font-size: clamp(42px, 6.5vw, 88px);
+      font-weight: 600;
+      color: var(--near-black);
+      letter-spacing: -2.5px;
+      line-height: 1.0;
+      margin-bottom: 40px;
+    }
+
+    /* Parte ligera del headline */
+    .hero__title .light {
+      font-weight: 200;
+      letter-spacing: -1px;
+    }
+
+    /* Parte bold del headline */
+    .hero__title .shimmer {
+      display: inline;
+    }
+
+    /* Caja combinada: preventa + métrica — estética refinada */
+    .hero__info-box {
+      display: inline-flex;
+      align-items: stretch;
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 60px;
+      border: 1px solid rgba(37, 38, 23, 0.12);
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hero__info-preventa {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 28px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--near-black);
+    }
+
+    .hero__info-divider {
+      width: 1px;
+      background: rgba(37, 38, 23, 0.12);
+      margin: 10px 0;
+    }
+
+    .hero__info-metric {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 28px;
+    }
+
+    .hero__metric-value {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--near-black);
+      text-transform: uppercase;
+    }
+
+    .hero__metric-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      color: #666;
+      background: transparent;
+      border: 1px solid rgba(37,38,23,0.2);
+      padding: 13px 32px;
+      border-radius: 100px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+      letter-spacing: 0.5px;
+    }
+
+    .hero__cta:hover {
+      color: var(--near-black);
+      border-color: var(--near-black);
+      transform: translateY(-2px);
+    }
+
+    .hero__cta svg {
+      transition: transform 0.3s ease;
+    }
+
+    .hero__cta:hover svg {
+      transform: translateY(3px);
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 768px) {
+      .hero__content { padding: 32px 24px 48px; }
+      .hero__title   { font-size: 34px; letter-spacing: -1px; }
+      .hero__product-name { top: 220px; font-size: 18px; letter-spacing: 4px; }
+      .hero__info-box { flex-direction: column; border-radius: 20px; }
+      .hero__info-divider { width: 100%; height: 1px; }
+      .hero__info-preventa,
+      .hero__info-metric { border-radius: 0; justify-content: center; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR FIJA
+  ============================================= -->
+  <header class="navbar" id="navbar">
+    <img src="assets/logo-blanco-transparente.png" alt="Omnigro" class="navbar__logo navbar__logo--white">
+    <img src="assets/logo-negro-transparente.png"  alt="Omnigro" class="navbar__logo navbar__logo--black">
+  </header>
+
+  <!-- =============================================
+       SECCIÓN 1: HERO
+  ============================================= -->
+  <section class="hero" id="hero">
+
+    <video
+      class="hero__video"
+      id="heroVideo"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+    >
+      <source src="assets/canopy-master-bg-video-1.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero__content" id="heroContent">
+
+      <!-- Espaciador superior -->
+      <div class="hero__top"></div>
+
+      <!-- Nombre del producto: posición central -->
+      <p class="hero__product-name">Nuevo Canopy Master PRO</p>
+
+      <!-- Bloque inferior: claim + caja combinada + CTA -->
+      <div class="hero__bottom">
+        <h1 class="hero__title"><span class="light">El LED más </span><span class="shimmer">eficiente del país</span></h1>
+        <div class="hero__info-box">
+          <div class="hero__info-metric">
+            <span class="hero__metric-value">Hasta 3.2 µmol/J</span>
+            <span class="hero__metric-label">de eficiencia real</span>
+          </div>
+          <div class="hero__info-divider"></div>
+          <div class="hero__info-preventa">
+            <span class="hero__badge-dot"></span>
+            25% OFF · Pre-venta hasta Junio 2026
+          </div>
+        </div>
+        <a class="hero__cta" href="#linea">
+          Conocé la línea
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 3v10M3 8.5l5 4.5 5-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =============================================
+       PRÓXIMAS SECCIONES (se agregarán aquí)
+  ============================================= -->
+
+
+  <!-- =============================================
+       SCRIPTS
+  ============================================= -->
+  <script>
+    const video   = document.getElementById('heroVideo');
+    const content = document.getElementById('heroContent');
+    const navbar  = document.getElementById('navbar');
+
+    // Arrancar desde el segundo 2
+    video.addEventListener('loadedmetadata', () => {
+      video.currentTime = 3;
+    });
+
+    // Pausar en el último frame
+    video.addEventListener('ended', () => {
+      video.pause();
+    });
+
+    // Mostrar contenido cuando la escena se ilumina (72%)
+    video.addEventListener('timeupdate', () => {
+      if (video.duration && video.currentTime >= video.duration * 0.72) {
+        content.classList.add('visible');
+      }
+    });
+
+    // Fallback: mostrar contenido después de 3.5 seg
+    setTimeout(() => {
+      content.classList.add('visible');
+    }, 3500);
+
+  </script>
+
+</body>
+</html>
