@@ -500,6 +500,761 @@
     }
 
     /* =============================================
+       SECCIÓN 2 — Presentación de la línea
+    ============================================= */
+    .s2 {
+      position: relative;
+      width: 100%;
+      padding: 128px 56px;
+      background: #080a04;
+      border-top: 1px solid rgba(212,211,189,0.06);
+    }
+
+    .s2__inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Eyebrow centrado con líneas a los lados */
+    .s2__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .s2__eyebrow-line {
+      width: 24px;
+      height: 1px;
+      background: rgba(212,211,189,0.3);
+    }
+
+    .s2__eyebrow-text {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.45);
+    }
+
+    /* Headline: contraste de pesos, igual que el hero */
+    .s2__title {
+      font-size: clamp(36px, 4vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 32px;
+    }
+
+    .s2__title .light {
+      font-weight: 200;
+      color: rgba(255,255,255,0.38);
+      display: block;
+    }
+
+    .s2__title .bold {
+      font-weight: 800;
+      color: var(--white);
+      display: block;
+    }
+
+    /* Párrafo */
+    .s2__desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.8;
+      max-width: 580px;
+      margin-bottom: 64px;
+    }
+
+    /* Fila de stats */
+    .s2__stats {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      border: 1px solid rgba(212,211,189,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .s2__stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 32px;
+      position: relative;
+      transition: background 0.25s ease;
+    }
+
+    .s2__stat:hover { background: rgba(212,211,189,0.025); }
+
+    /* Separador vertical entre stats */
+    .s2__stat + .s2__stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18%;
+      height: 64%;
+      width: 1px;
+      background: rgba(212,211,189,0.1);
+    }
+
+    .s2__stat-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.8px;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .s2__stat-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    /* =============================================
+       SECCIÓN 3 — Las dos series
+    ============================================= */
+    .s3 {
+      position: relative;
+      width: 100%;
+      padding: 120px 56px;
+      background: #080a04;
+      border-top: 1px solid rgba(212,211,189,0.06);
+    }
+
+    .s3__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Header centrado */
+    .s3__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .s3__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .s3__eyebrow-line {
+      width: 24px;
+      height: 1px;
+      background: rgba(212,211,189,0.3);
+    }
+
+    .s3__eyebrow-text {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.45);
+    }
+
+    .s3__title {
+      font-size: clamp(34px, 3.8vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+    }
+
+    .s3__title .light {
+      font-weight: 200;
+      color: rgba(255,255,255,0.38);
+    }
+
+    .s3__title .bold {
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    /* Grid de cards */
+    .s3__cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* Card base */
+    .s3__card {
+      position: relative;
+      border-radius: 24px;
+      border: 1px solid rgba(212,211,189,0.1);
+      overflow: hidden;
+      padding: 44px 40px 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 500px;
+      transition: border-color 0.3s ease, transform 0.35s ease;
+    }
+
+    .s3__card:hover {
+      border-color: rgba(212,211,189,0.22);
+      transform: translateY(-5px);
+    }
+
+    /* Emerson Series — glow cálido (rojo/far-red) */
+    .s3__card--emerson {
+      background:
+        radial-gradient(ellipse at 50% 115%, rgba(185,55,20,0.22) 0%, transparent 60%),
+        rgba(255,255,255,0.018);
+    }
+
+    /* Green Series — glow frío (verde espectral) */
+    .s3__card--green {
+      background:
+        radial-gradient(ellipse at 50% 115%, rgba(70,185,50,0.18) 0%, transparent 60%),
+        rgba(255,255,255,0.018);
+    }
+
+    /* Contenido de la card */
+    .s3__card-body {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Row superior: label + badge PREMIUM */
+    .s3__card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .s3__series-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.5);
+    }
+
+    .s3__badge-premium {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #080a04;
+      background: #d4d3bd;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    /* Nombre de la serie */
+    .s3__card-name {
+      font-size: clamp(28px, 2.8vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    /* Descripción */
+    .s3__card-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      max-width: 380px;
+    }
+
+    /* "Para:" chip */
+    .s3__card-para {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.6);
+      margin-bottom: 40px;
+    }
+
+    .s3__card-para span {
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+    }
+
+    /* Barra de espectro — placeholder hasta tener SVG con datos reales */
+    .s3__spectrum-bar {
+      position: relative;
+      height: 3px;
+      border-radius: 2px;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+
+    .s3__card--emerson .s3__spectrum-bar {
+      /* Emerson: énfasis en rojo/far-red — extremo derecho del espectro */
+      background: linear-gradient(90deg,
+        rgba(70,30,200,0.25)  0%,
+        rgba(40,100,255,0.3)  15%,
+        rgba(40,200,80,0.25)  30%,
+        rgba(220,200,20,0.3)  48%,
+        rgba(230,60,20,0.7)   62%,
+        rgba(200,10,30,0.9)   78%,
+        rgba(140,0,60,0.8)    100%
+      );
+    }
+
+    .s3__card--green .s3__spectrum-bar {
+      /* Green Series: espectro completo con pico verde prominente */
+      background: linear-gradient(90deg,
+        rgba(70,30,200,0.3)   0%,
+        rgba(40,100,255,0.45) 15%,
+        rgba(40,200,80,0.85)  32%,
+        rgba(180,220,20,0.55) 48%,
+        rgba(230,60,20,0.55)  65%,
+        rgba(200,10,30,0.7)   80%,
+        rgba(140,0,60,0.6)    100%
+      );
+    }
+
+    /* Render del producto — decorativo en la parte inferior de la card */
+    .s3__card-img-wrap {
+      position: relative;
+      margin-top: auto;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .s3__card-img {
+      position: absolute;
+      bottom: -10px;
+      right: -20px;
+      width: 88%;
+      opacity: 0.2;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .s3__card:hover .s3__card-img {
+      opacity: 0.3;
+      transform: translateY(-6px);
+    }
+
+    /* ── Animaciones on-scroll ── */
+    .s3__header,
+    .s3__card {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .s3.visible .s3__header               { opacity: 1; transform: translateY(0); transition-delay: 0s;    }
+    .s3.visible .s3__card--emerson        { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
+    .s3.visible .s3__card--green          { opacity: 1; transform: translateY(0); transition-delay: 0.24s; }
+
+    /* =============================================
+       SECCIÓN 4 — Selector + Wizard
+    ============================================= */
+    .s4 {
+      position: relative;
+      width: 100%;
+      padding: 120px 56px;
+      background: #080a04;
+      border-top: 1px solid rgba(212,211,189,0.06);
+    }
+
+    .s4__inner { max-width: 1100px; margin: 0 auto; }
+
+    /* Header */
+    .s4__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .s4__eyebrow {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 36px;
+    }
+    .s4__eyebrow-line { width: 24px; height: 1px; background: rgba(212,211,189,0.3); }
+    .s4__eyebrow-text {
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(212,211,189,0.45);
+    }
+
+    .s4__title {
+      font-size: clamp(32px, 3.5vw, 56px);
+      letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 36px;
+    }
+    .s4__title .light { font-weight: 200; color: rgba(255,255,255,0.38); }
+    .s4__title .bold  { font-weight: 800; color: var(--white); }
+
+    /* Tabs */
+    .s4__tabs {
+      display: inline-flex;
+      border: 1px solid rgba(212,211,189,0.12);
+      border-radius: 100px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .s4__tab {
+      font-family: var(--font);
+      font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      background: transparent;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .s4__tab--active {
+      background: rgba(212,211,189,0.12);
+      color: var(--white);
+    }
+
+    /* Views */
+    .s4__view { display: block; }
+    .s4__view--hidden { display: none; }
+
+    /* ── SELECTOR LAYOUT ── */
+    .s4__layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Steps */
+    .s4__steps { display: flex; flex-direction: column; gap: 36px; }
+
+    .s4__step-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 12px;
+    }
+    .s4__step-label span { color: rgba(212,211,189,0.5); margin-right: 8px; }
+
+    .s4__step-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .s4__step-options--4 { grid-template-columns: repeat(4, 1fr); }
+
+    .s4__opt {
+      font-family: var(--font);
+      display: flex; flex-direction: column; align-items: flex-start;
+      padding: 14px 18px;
+      border: 1px solid rgba(212,211,189,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      text-align: left;
+    }
+
+    .s4__opt:hover { border-color: rgba(212,211,189,0.25); background: rgba(255,255,255,0.04); }
+
+    .s4__opt--active {
+      border-color: rgba(212,211,189,0.5);
+      background: rgba(212,211,189,0.07);
+    }
+
+    .s4__opt-title { font-size: 13px; font-weight: 600; color: var(--white); }
+    .s4__opt-sub   { font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.35);
+                     letter-spacing: 0.3px; margin-top: 3px; }
+
+    /* Preview */
+    .s4__preview { position: sticky; top: 100px; }
+
+    .s4__preview-img-wrap {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .s4__preview-glow {
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 80%; height: 140px;
+      background: radial-gradient(ellipse, rgba(212,211,189,0.2) 0%, transparent 70%);
+      filter: blur(28px);
+      pointer-events: none;
+    }
+
+    .s4__preview-img {
+      width: 100%; max-width: 480px; height: auto;
+      display: block; position: relative; z-index: 1;
+      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.7));
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .s4__preview-img.updating { opacity: 0; transform: scale(0.97); }
+
+    /* Price card */
+    .s4__price-card {
+      border: 1px solid rgba(212,211,189,0.1);
+      border-radius: 20px;
+      padding: 28px 32px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .s4__price-model {
+      font-size: 12px; font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.5px; margin-bottom: 12px;
+    }
+
+    .s4__price-row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+
+    .s4__price-list {
+      font-size: 16px; font-weight: 400;
+      color: rgba(255,255,255,0.25);
+      text-decoration: line-through;
+    }
+
+    .s4__price-preventa {
+      font-size: 32px; font-weight: 800;
+      color: var(--white); letter-spacing: -1px;
+    }
+
+    .s4__price-badge {
+      display: inline-block;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: #080a04; background: #d4d3bd;
+      padding: 4px 10px; border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .s4__price-ctas { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+
+    .s4__cta-primary {
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font); font-size: 13px; font-weight: 600;
+      color: #080a04; background: #AFE342;
+      border: none; padding: 13px 24px; border-radius: 100px;
+      text-decoration: none; cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    .s4__cta-primary:hover { opacity: 0.88; }
+
+    .s4__cta-secondary {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--font); font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(212,211,189,0.2);
+      padding: 12px 24px; border-radius: 100px;
+      text-decoration: none; cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .s4__cta-secondary:hover { border-color: rgba(212,211,189,0.45); color: var(--white); }
+
+    .s4__price-note {
+      font-size: 11px; color: rgba(255,255,255,0.25);
+      letter-spacing: 0.3px; line-height: 1.6;
+    }
+
+    /* ── WIZARD ── */
+    .s4__wizard { max-width: 620px; margin: 0 auto; }
+
+    .s4__wiz-progress {
+      width: 100%; height: 2px;
+      background: rgba(212,211,189,0.1);
+      border-radius: 2px; margin-bottom: 56px; overflow: hidden;
+    }
+
+    .s4__wiz-progress-bar {
+      height: 100%; width: 0%;
+      background: rgba(212,211,189,0.6);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .s4__wiz-step { display: none; }
+    .s4__wiz-step--active { display: block; animation: fadeIn 0.4s ease; }
+
+    .s4__wiz-q {
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 300; color: var(--white);
+      letter-spacing: -0.5px; line-height: 1.3;
+      margin-bottom: 36px;
+    }
+    .s4__wiz-q--sub {
+      font-size: 16px; font-weight: 300;
+      color: rgba(255,255,255,0.5); margin-bottom: 20px;
+    }
+
+    .s4__wiz-opts {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;
+    }
+
+    .s4__wiz-opt {
+      font-family: var(--font); font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(212,211,189,0.15);
+      padding: 14px 24px; border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .s4__wiz-opt:hover { border-color: rgba(212,211,189,0.4); color: var(--white); background: rgba(212,211,189,0.07); }
+    .s4__wiz-opt--wide { width: 100%; text-align: left; }
+    .s4__wiz-opt--wide span { color: rgba(255,255,255,0.4); margin-left: 8px; font-weight: 400; font-size: 12px; }
+    .s4__wiz-opt--selected { border-color: rgba(212,211,189,0.6); background: rgba(212,211,189,0.1); color: var(--white); }
+
+    .s4__wiz-sub { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(212,211,189,0.08); }
+    .s4__wiz-sub--visible { display: block; animation: fadeIn 0.3s ease; }
+
+    /* Lead */
+    .s4__lead-form {
+      display: flex; gap: 10px; margin-bottom: 14px;
+    }
+
+    .s4__lead-input {
+      font-family: var(--font); font-size: 14px;
+      color: var(--white); background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,211,189,0.2);
+      padding: 13px 20px; border-radius: 12px;
+      flex: 1; outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .s4__lead-input:focus { border-color: rgba(212,211,189,0.5); }
+    .s4__lead-input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .s4__lead-submit {
+      font-family: var(--font); font-size: 13px; font-weight: 600;
+      color: #080a04; background: #AFE342;
+      border: none; padding: 13px 24px; border-radius: 12px;
+      cursor: pointer; white-space: nowrap;
+      transition: opacity 0.2s ease;
+    }
+    .s4__lead-submit:hover { opacity: 0.88; }
+
+    .s4__lead-skip {
+      font-family: var(--font); font-size: 12px;
+      color: rgba(255,255,255,0.3); background: transparent;
+      border: none; cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .s4__lead-skip:hover { color: rgba(255,255,255,0.6); }
+
+    /* Resultado */
+    .s4__wiz-result-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(212,211,189,0.5); margin-bottom: 20px;
+    }
+
+    .s4__result-card {
+      border: 1px solid rgba(212,211,189,0.2);
+      border-radius: 20px; padding: 28px 32px;
+      background: rgba(212,211,189,0.04);
+      margin-bottom: 16px;
+    }
+
+    .s4__result-card .r-name { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .s4__result-card .r-series { font-size: 12px; color: rgba(212,211,189,0.6); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+    .s4__result-card .r-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+    .s4__result-card .r-list { font-size: 15px; color: rgba(255,255,255,0.25); text-decoration: line-through; }
+    .s4__result-card .r-sale { font-size: 28px; font-weight: 800; color: var(--white); letter-spacing: -1px; }
+    .s4__result-card .r-badge { font-size: 10px; color: #080a04; background: #d4d3bd; padding: 3px 10px; border-radius: 100px; margin-bottom: 24px; display: inline-block; }
+    .s4__result-card .r-ctas { display: flex; flex-direction: column; gap: 8px; }
+
+    .s4__result-alt {
+      border: 1px solid rgba(212,211,189,0.08);
+      border-radius: 16px; padding: 20px 28px;
+      background: rgba(255,255,255,0.02); margin-bottom: 28px;
+    }
+    .s4__result-alt .alt-label { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+    .s4__result-alt .alt-name  { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.6); }
+
+    .s4__wiz-restart {
+      font-family: var(--font); font-size: 12px;
+      color: rgba(255,255,255,0.3); background: transparent;
+      border: none; cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .s4__wiz-restart:hover { color: rgba(255,255,255,0.6); }
+
+    /* Estilos del resultado dinámico */
+    .s4__result-inner {
+      display: flex; align-items: center; gap: 28px;
+    }
+    .s4__result-img {
+      width: 130px; flex-shrink: 0;
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.6));
+    }
+    .s4__result-info { flex: 1; }
+    .s4__result-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .s4__result-alt-title {
+      font-size: 10px; color: rgba(255,255,255,0.3);
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .s4__result-alt-card {
+      display: flex; align-items: center; gap: 20px;
+    }
+    .s4__result-alt-img { width: 80px; opacity: 0.6; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)); }
+    .s4__result-alt-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+    .s4__result-alt-price { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .s4__result-alt-price span { font-size: 11px; color: rgba(255,255,255,0.25); }
+    .s4__result-sala { text-align: center; padding: 12px 0; }
+    .s4__result-sala-msg { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    .s4__result-sala-msg strong { color: var(--white); font-weight: 600; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .s4 { padding: 80px 24px; }
+      .s4__layout { grid-template-columns: 1fr; gap: 40px; }
+      .s4__preview { position: static; }
+      .s4__step-options--4 { grid-template-columns: repeat(2, 1fr); }
+      .s4__lead-form { flex-direction: column; }
+    }
+
+    /* ── Scroll reveal ── */
+    .s4__header, .s4__view {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .s4.visible .s4__header { opacity: 1; transform: translateY(0); }
+    .s4.visible .s4__view   { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
+
+    /* ── Animaciones on-scroll (clase .visible añadida por JS) ── */
+    .s2__eyebrow,
+    .s2__title,
+    .s2__desc,
+    .s2__stats {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .s2.visible .s2__eyebrow { opacity: 1; transform: translateY(0); transition-delay: 0s;    }
+    .s2.visible .s2__title   { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+    .s2.visible .s2__desc    { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .s2.visible .s2__stats   { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+
+    /* =============================================
        RESPONSIVE
     ============================================= */
     @media (max-width: 960px) {
@@ -518,6 +1273,14 @@
       .hero__title { font-size: clamp(36px, 8vw, 54px); letter-spacing: -1.5px; }
       .ann-layer { display: none; }
       .hero__trust { flex-wrap: wrap; gap: 12px; }
+
+      .s2 { padding: 80px 24px; }
+      .s2__stats { flex-direction: column; border-radius: 16px; }
+      .s2__stat + .s2__stat::before { top: 0; left: 10%; width: 80%; height: 1px; }
+
+      .s3 { padding: 80px 24px; }
+      .s3__cards { grid-template-columns: 1fr; gap: 16px; }
+      .s3__card { min-height: 400px; }
     }
 
   </style>
@@ -526,14 +1289,14 @@
 
   <!-- NAVBAR -->
   <header class="navbar">
-    <img src="assets/logo-blanco-transparente.png" alt="Omnigro" class="navbar__logo">
+    <img src="../assets/logo-blanco-transparente.png" alt="Omnigro" class="navbar__logo">
   </header>
 
   <!-- HERO V2 -->
   <section class="hero" id="hero">
 
     <canvas id="particleCanvas"></canvas>
-    <img src="assets/logo-o-blanco.svg" class="hero__bg-o" alt="">
+    <img src="../assets/logo-o-blanco.svg" class="hero__bg-o" alt="">
     <div class="hero__divider"></div>
 
     <div class="hero__layout">
@@ -631,7 +1394,7 @@
 
         <div class="hero__product">
           <img
-            src="producto/CM-800 - 2026/CM-800-GS-png.png"
+            src="../producto/CM-800 - 2026/CM-800-GS-png.png"
             alt="Canopy Master PRO 800W Green Series"
             class="hero__product-img"
           >
@@ -703,6 +1466,345 @@
 
   </section>
 
+  <!-- =============================================
+       SECCIÓN 2 — Presentación de la línea
+  ============================================= -->
+  <section class="s2" id="linea">
+    <div class="s2__inner">
+
+      <div class="s2__eyebrow">
+        <div class="s2__eyebrow-line"></div>
+        <span class="s2__eyebrow-text">Canopy Master PRO</span>
+        <div class="s2__eyebrow-line"></div>
+      </div>
+
+      <h2 class="s2__title">
+        <span class="light">Diseñado por cultivadores.</span>
+        <span class="bold">Para cultivadores.</span>
+      </h2>
+
+      <p class="s2__desc">
+        El Canopy Master PRO es la nueva generación de iluminación profesional de Omnigro.
+        Más de 10 años desarrollando equipos para las salas más exigentes del país
+        derivaron en el LED más eficiente que fabricamos.
+      </p>
+
+      <div class="s2__stats">
+        <div class="s2__stat">
+          <div class="s2__stat-value">+15</div>
+          <div class="s2__stat-label">Salas activas<br>en Argentina</div>
+        </div>
+        <div class="s2__stat">
+          <div class="s2__stat-value">Argentina</div>
+          <div class="s2__stat-label">Marca con<br>soporte local</div>
+        </div>
+        <div class="s2__stat">
+          <div class="s2__stat-value">3.2 µmol/J</div>
+          <div class="s2__stat-label">Eficiencia real<br>medida</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECCIÓN 3 — Las dos series
+  ============================================= -->
+  <section class="s3" id="series">
+    <div class="s3__inner">
+
+      <div class="s3__header">
+        <div class="s3__eyebrow">
+          <div class="s3__eyebrow-line"></div>
+          <span class="s3__eyebrow-text">Elegí tu espectro</span>
+          <div class="s3__eyebrow-line"></div>
+        </div>
+        <h2 class="s3__title">
+          <span class="light">Dos series. </span><span class="bold">Una decisión.</span>
+        </h2>
+      </div>
+
+      <div class="s3__cards">
+
+        <!-- EMERSON SERIES -->
+        <div class="s3__card s3__card--emerson">
+          <div class="s3__card-body">
+
+            <div class="s3__card-top">
+              <span class="s3__series-tag">Emerson Series</span>
+            </div>
+
+            <h3 class="s3__card-name">Máximo<br>rendimiento.</h3>
+
+            <p class="s3__card-desc">
+              Chips con refuerzo en rojos y far-reds que activan el Efecto Emerson,
+              potenciando la fotosíntesis y el desarrollo del cultivo en cada ciclo.
+            </p>
+
+            <div class="s3__card-para">
+              Para: <span>máxima producción</span>
+            </div>
+
+            <!-- Barra de espectro — placeholder, reemplazar con SVG real -->
+            <div class="s3__spectrum-bar"></div>
+
+          </div>
+
+          <div class="s3__card-img-wrap">
+            <img
+              src="../producto/CM-800 - 2026/CM-800-ES-png.png"
+              alt="Canopy Master Emerson Series"
+              class="s3__card-img"
+            >
+          </div>
+        </div>
+
+        <!-- GREEN SERIES -->
+        <div class="s3__card s3__card--green">
+          <div class="s3__card-body">
+
+            <div class="s3__card-top">
+              <span class="s3__series-tag">Green Series</span>
+              <span class="s3__badge-premium">Premium</span>
+            </div>
+
+            <h3 class="s3__card-name">Máxima expresión<br>genética.</h3>
+
+            <p class="s3__card-desc">
+              Incorpora verdes en el espectro afectando directamente terpenos,
+              pigmentos y penetración lumínica del canopy para la máxima expresión
+              de cada genotipo.
+            </p>
+
+            <div class="s3__card-para">
+              Para: <span>pheno-hunters y competidores</span>
+            </div>
+
+            <!-- Barra de espectro — placeholder, reemplazar con SVG real -->
+            <div class="s3__spectrum-bar"></div>
+
+          </div>
+
+          <div class="s3__card-img-wrap">
+            <img
+              src="../producto/CM-800 - 2026/CM-800-GS-png.png"
+              alt="Canopy Master Green Series"
+              class="s3__card-img"
+            >
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECCIÓN 4 — Selector de modelos + Wizard
+  ============================================= -->
+  <section class="s4" id="modelos">
+    <div class="s4__inner">
+
+      <!-- Header -->
+      <div class="s4__header">
+        <div class="s4__eyebrow">
+          <div class="s4__eyebrow-line"></div>
+          <span class="s4__eyebrow-text">Modelos y potencias</span>
+          <div class="s4__eyebrow-line"></div>
+        </div>
+        <h2 class="s4__title">
+          <span class="light">Encontrá tu </span><span class="bold">equipo ideal.</span>
+        </h2>
+        <!-- Toggle selector / wizard -->
+        <div class="s4__tabs">
+          <button class="s4__tab s4__tab--active" id="tabSelector">Ya sé lo que quiero</button>
+          <button class="s4__tab" id="tabWizard">¿No sé cuál elegir?</button>
+        </div>
+      </div>
+
+      <!-- ── VISTA SELECTOR ── -->
+      <div class="s4__view" id="viewSelector">
+        <div class="s4__layout">
+
+          <!-- Pasos de selección -->
+          <div class="s4__steps">
+
+            <div class="s4__step">
+              <p class="s4__step-label"><span>01</span> Versión</p>
+              <div class="s4__step-options">
+                <button class="s4__opt s4__opt--active" data-group="version" data-val="pro">
+                  <span class="s4__opt-title">Canopy Master PRO</span>
+                  <span class="s4__opt-sub">Máxima eficiencia · 3.2 µmol/J</span>
+                </button>
+                <button class="s4__opt" data-group="version" data-val="std">
+                  <span class="s4__opt-title">Canopy Master Std</span>
+                  <span class="s4__opt-sub">Mejor precio · 2.9 µmol/J</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="s4__step">
+              <p class="s4__step-label"><span>02</span> Serie</p>
+              <div class="s4__step-options">
+                <button class="s4__opt s4__opt--active" data-group="serie" data-val="emerson">
+                  <span class="s4__opt-title">Emerson Series</span>
+                  <span class="s4__opt-sub">Máxima producción</span>
+                </button>
+                <button class="s4__opt" data-group="serie" data-val="green">
+                  <span class="s4__opt-title">Green Series</span>
+                  <span class="s4__opt-sub">Expresión genética · Premium</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="s4__step">
+              <p class="s4__step-label"><span>03</span> Potencia</p>
+              <div class="s4__step-options s4__step-options--4">
+                <button class="s4__opt" data-group="potencia" data-val="200">
+                  <span class="s4__opt-title">200W</span>
+                  <span class="s4__opt-sub">1×1 m</span>
+                </button>
+                <button class="s4__opt" data-group="potencia" data-val="400">
+                  <span class="s4__opt-title">400W</span>
+                  <span class="s4__opt-sub">1×2 m</span>
+                </button>
+                <button class="s4__opt s4__opt--active" data-group="potencia" data-val="600">
+                  <span class="s4__opt-title">600W</span>
+                  <span class="s4__opt-sub">2×2 m</span>
+                </button>
+                <button class="s4__opt" data-group="potencia" data-val="800">
+                  <span class="s4__opt-title">800W</span>
+                  <span class="s4__opt-sub">2×4 m</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Preview producto + precio -->
+          <div class="s4__preview">
+            <div class="s4__preview-img-wrap">
+              <div class="s4__preview-glow"></div>
+              <img id="previewImg" class="s4__preview-img"
+                src="../producto/CM-600 - 2026/CM-600-ES-png.png"
+                alt="Canopy Master">
+            </div>
+            <div class="s4__price-card">
+              <div class="s4__price-model" id="previewModel">Canopy Master PRO 600W · Emerson</div>
+              <div class="s4__price-row">
+                <span class="s4__price-list" id="previewPriceList">$ 590.000</span>
+                <span class="s4__price-preventa" id="previewPriceSale">$ 442.500</span>
+              </div>
+              <span class="s4__price-badge">25% OFF · Pre-venta hasta Junio 2026</span>
+              <div class="s4__price-ctas">
+                <a id="ctaMP" href="#" class="s4__cta-primary">
+                  Comprar con MercadoPago
+                </a>
+                <a id="ctaWA" href="#" target="_blank" class="s4__cta-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.859L.057 23.428a.5.5 0 00.611.637l5.763-1.511A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.003-1.371l-.36-.213-3.716.975.992-3.617-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+                  </svg>
+                  Consultar por WhatsApp
+                </a>
+              </div>
+              <p class="s4__price-note">✓ Pago al contado · Transferencia, MercadoPago débito o efectivo en Beccar</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── VISTA WIZARD ── -->
+      <div class="s4__view s4__view--hidden" id="viewWizard">
+        <div class="s4__wizard">
+
+          <!-- Barra de progreso -->
+          <div class="s4__wiz-progress">
+            <div class="s4__wiz-progress-bar" id="wizProgress"></div>
+          </div>
+
+          <!-- Pasos del wizard -->
+          <div class="s4__wiz-steps">
+
+            <!-- Paso 1: Espacio -->
+            <div class="s4__wiz-step s4__wiz-step--active" data-wstep="1">
+              <p class="s4__wiz-q">¿Dónde vas a instalar el equipo?</p>
+              <div class="s4__wiz-opts">
+                <button class="s4__wiz-opt" data-wkey="space" data-wval="1x1">1×1 m</button>
+                <button class="s4__wiz-opt" data-wkey="space" data-wval="1x2">1×2 m</button>
+                <button class="s4__wiz-opt" data-wkey="space" data-wval="2x2">2×2 m</button>
+                <button class="s4__wiz-opt" data-wkey="space" data-wval="2x4">2×4 m</button>
+                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="space" data-wval="sala">Sala profesional</button>
+              </div>
+              <!-- Subpregunta sala -->
+              <div class="s4__wiz-sub" id="wizSubSala">
+                <p class="s4__wiz-q s4__wiz-q--sub">¿Cuántos equipos necesitás?</p>
+                <div class="s4__wiz-opts">
+                  <button class="s4__wiz-opt" data-wkey="cantidad" data-wval="6-12">6 a 12</button>
+                  <button class="s4__wiz-opt" data-wkey="cantidad" data-wval="12-24">12 a 24</button>
+                  <button class="s4__wiz-opt" data-wkey="cantidad" data-wval="+24">+24 equipos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Paso 2: Objetivo -->
+            <div class="s4__wiz-step" data-wstep="2">
+              <p class="s4__wiz-q">¿Qué buscás principalmente?</p>
+              <div class="s4__wiz-opts">
+                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="objetivo" data-wval="produccion">
+                  Máximo rendimiento por ciclo
+                </button>
+                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="objetivo" data-wval="genetica">
+                  Expresión genética / competencia
+                </button>
+              </div>
+            </div>
+
+            <!-- Paso 3: Presupuesto -->
+            <div class="s4__wiz-step" data-wstep="3">
+              <p class="s4__wiz-q">¿Qué versión preferís?</p>
+              <div class="s4__wiz-opts">
+                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="presupuesto" data-wval="precio">
+                  Mejor precio <span>(Canopy Master Std)</span>
+                </button>
+                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="presupuesto" data-wval="eficiencia">
+                  Máxima eficiencia <span>(Canopy Master PRO)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Lead capture -->
+            <div class="s4__wiz-step" data-wstep="lead">
+              <p class="s4__wiz-q">Guardá tu recomendación y recibí un cupón adicional</p>
+              <p class="s4__wiz-q--sub" style="font-size:13px;color:rgba(255,255,255,0.38);margin-bottom:28px;">Opcional — podés saltearlo</p>
+              <form class="s4__lead-form" id="wizLeadForm">
+                <input type="email" class="s4__lead-input" placeholder="tu@email.com" id="wizEmail">
+                <button type="submit" class="s4__lead-submit">Ver mi recomendación →</button>
+              </form>
+              <button class="s4__lead-skip" id="wizSkip">Saltar este paso</button>
+              <!-- Google Form oculto — reemplazar action con URL real -->
+              <iframe name="hiddenFrame" style="display:none;"></iframe>
+            </div>
+
+            <!-- Resultado -->
+            <div class="s4__wiz-step" data-wstep="result">
+              <p class="s4__wiz-result-label">Tu recomendación</p>
+              <div class="s4__result-card" id="wizResult">
+                <!-- Se llena dinámicamente -->
+              </div>
+              <div class="s4__result-alt" id="wizResultAlt">
+                <!-- Alternativa complementaria -->
+              </div>
+              <button class="s4__wiz-restart" id="wizRestart">← Volver a empezar</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- PRÓXIMAS SECCIONES -->
 
   <script>
@@ -755,6 +1857,318 @@
     createParticles();
     drawParticles();
     window.addEventListener('resize', () => { resize(); createParticles(); });
+
+    // =============================================
+    // INTERSECTION OBSERVER — animaciones on-scroll
+    // =============================================
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          scrollObserver.unobserve(entry.target); // una sola vez
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.s2, .s3, .s4').forEach(el => scrollObserver.observe(el));
+
+    // =============================================
+    // SECCIÓN 4 — CONFIG
+    // =============================================
+    const WA_NUMBER  = '5491100000000'; // ← reemplazar con número real
+    const MP_URL     = '#';             // ← reemplazar con link de pago MP
+
+    const PRICES = {
+      pro: {
+        emerson: { 200:250000, 400:420000, 600:590000, 800:760000 },
+        green:   { 200:288000, 400:483000, 600:679000, 800:874000 }
+      },
+      std: {
+        emerson: { 200:160000, 400:280000, 600:400000, 800:520000 },
+        green:   { 200:184000, 400:322000, 600:460000, 800:598000 }
+      }
+    };
+
+    // Nombres legibles
+    const LABEL_VERSION  = { pro: 'Canopy Master PRO', std: 'Canopy Master Std' };
+    const LABEL_SERIE    = { emerson: 'Emerson Series',   green: 'Green Series' };
+    const LABEL_SERIE_SFX = { emerson: 'ES', green: 'GS' };
+
+    function fmt(n) {
+      return '$ ' + n.toLocaleString('es-AR');
+    }
+
+    function imgSrc(version, serie, potencia) {
+      const sfx = LABEL_SERIE_SFX[serie];
+      return `../producto/CM-${potencia} - 2026/CM-${potencia}-${sfx}-png.png`;
+    }
+
+    // =============================================
+    // SELECTOR
+    // =============================================
+    const sel = { version:'pro', serie:'emerson', potencia:'600' };
+
+    function updatePreview() {
+      const { version, serie, potencia } = sel;
+      const listPrice = PRICES[version][serie][+potencia];
+      const salePrice = Math.round(listPrice * 0.75);
+
+      document.getElementById('previewImg').src = imgSrc(version, serie, potencia);
+      document.getElementById('previewModel').textContent =
+        `${LABEL_VERSION[version]} ${potencia}W · ${LABEL_SERIE[serie]}`;
+      document.getElementById('previewPriceList').textContent = fmt(listPrice);
+      document.getElementById('previewPriceSale').textContent = fmt(salePrice);
+
+      const msg = encodeURIComponent(
+        `Hola, quiero información sobre el ${LABEL_VERSION[version]} ${potencia}W ${LABEL_SERIE[serie]} (pre-venta)`
+      );
+      document.getElementById('ctaWA').href =
+        `https://wa.me/${WA_NUMBER}?text=${msg}`;
+      document.getElementById('ctaMP').href = MP_URL;
+    }
+
+    // Manejo de opciones del selector
+    document.querySelectorAll('.s4__opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.dataset.group;
+        const val   = btn.dataset.val;
+        // deactivate siblings
+        document.querySelectorAll(`.s4__opt[data-group="${group}"]`)
+          .forEach(b => b.classList.remove('s4__opt--active'));
+        btn.classList.add('s4__opt--active');
+        sel[group] = val;
+        updatePreview();
+      });
+    });
+
+    updatePreview(); // estado inicial
+
+    // =============================================
+    // TAB TOGGLE
+    // =============================================
+    document.getElementById('tabSelector').addEventListener('click', () => {
+      document.getElementById('tabSelector').classList.add('s4__tab--active');
+      document.getElementById('tabWizard').classList.remove('s4__tab--active');
+      document.getElementById('viewSelector').classList.remove('s4__view--hidden');
+      document.getElementById('viewWizard').classList.add('s4__view--hidden');
+    });
+
+    document.getElementById('tabWizard').addEventListener('click', () => {
+      document.getElementById('tabWizard').classList.add('s4__tab--active');
+      document.getElementById('tabSelector').classList.remove('s4__tab--active');
+      document.getElementById('viewWizard').classList.remove('s4__view--hidden');
+      document.getElementById('viewSelector').classList.add('s4__view--hidden');
+    });
+
+    // =============================================
+    // WIZARD
+    // =============================================
+    const wiz = { space:'', cantidad:'', objetivo:'', presupuesto:'' };
+    let wizCurrentStep = 1;
+    const TOTAL_STEPS  = 3; // pasos reales (sin lead/result)
+
+    function wizShowStep(stepId) {
+      document.querySelectorAll('.s4__wiz-step').forEach(s => {
+        s.classList.remove('s4__wiz-step--active');
+      });
+      const target = document.querySelector(`.s4__wiz-step[data-wstep="${stepId}"]`);
+      if (target) target.classList.add('s4__wiz-step--active');
+
+      // Barra de progreso
+      const pct = typeof stepId === 'number'
+        ? Math.round((stepId / TOTAL_STEPS) * 100) + '%'
+        : stepId === 'lead'   ? '90%'
+        : stepId === 'result' ? '100%'
+        : '0%';
+      document.getElementById('wizProgress').style.width = pct;
+    }
+
+    // Subpregunta sala
+    document.querySelectorAll('.s4__wiz-opt[data-wkey="space"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // highlight selected
+        document.querySelectorAll('.s4__wiz-opt[data-wkey="space"]')
+          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
+        btn.classList.add('s4__wiz-opt--selected');
+
+        wiz.space = btn.dataset.wval;
+        if (wiz.space === 'sala') {
+          document.getElementById('wizSubSala').style.display = 'block';
+        } else {
+          document.getElementById('wizSubSala').style.display = 'none';
+          // auto-advance to step 2
+          setTimeout(() => wizShowStep(2), 280);
+        }
+      });
+    });
+
+    document.querySelectorAll('.s4__wiz-opt[data-wkey="cantidad"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.s4__wiz-opt[data-wkey="cantidad"]')
+          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
+        btn.classList.add('s4__wiz-opt--selected');
+        wiz.cantidad = btn.dataset.wval;
+
+        // +24 → CTA directo WhatsApp para cotizar sala
+        if (wiz.cantidad === '+24') {
+          wizShowStep('result');
+          renderWizResult(true);
+          return;
+        }
+        setTimeout(() => wizShowStep(2), 280);
+      });
+    });
+
+    document.querySelectorAll('.s4__wiz-opt[data-wkey="objetivo"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.s4__wiz-opt[data-wkey="objetivo"]')
+          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
+        btn.classList.add('s4__wiz-opt--selected');
+        wiz.objetivo = btn.dataset.wval;
+        setTimeout(() => wizShowStep(3), 280);
+      });
+    });
+
+    document.querySelectorAll('.s4__wiz-opt[data-wkey="presupuesto"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.s4__wiz-opt[data-wkey="presupuesto"]')
+          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
+        btn.classList.add('s4__wiz-opt--selected');
+        wiz.presupuesto = btn.dataset.wval;
+        setTimeout(() => wizShowStep('lead'), 280);
+      });
+    });
+
+    // Lead capture
+    document.getElementById('wizLeadForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('wizEmail').value.trim();
+      if (email) submitLead(email);
+      wizShowStep('result');
+      renderWizResult(false);
+    });
+
+    document.getElementById('wizSkip').addEventListener('click', () => {
+      wizShowStep('result');
+      renderWizResult(false);
+    });
+
+    function submitLead(email) {
+      // Google Form oculto — reemplazar formId y fieldId con datos reales
+      const FORM_ID  = 'YOUR_GOOGLE_FORM_ID';
+      const FIELD_ID = 'entry.000000000';
+      const iframe   = document.querySelector('[name="hiddenFrame"]');
+      const form     = document.createElement('form');
+      form.action = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
+      form.method = 'POST';
+      form.target = 'hiddenFrame';
+      const input = document.createElement('input');
+      input.type  = 'hidden';
+      input.name  = FIELD_ID;
+      input.value = `${email} | space:${wiz.space} | objetivo:${wiz.objetivo} | presupuesto:${wiz.presupuesto}`;
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+    }
+
+    function calcRecommendation() {
+      // Potencia desde espacio
+      const spaceToPotencia = { '1x1':200, '1x2':400, '2x2':600, '2x4':800, 'sala':800 };
+      const potencia = spaceToPotencia[wiz.space] || 600;
+
+      // Serie desde objetivo
+      const serie = wiz.objetivo === 'genetica' ? 'green' : 'emerson';
+
+      // Versión desde presupuesto
+      const version = wiz.presupuesto === 'eficiencia' ? 'pro' : 'std';
+
+      return { version, serie, potencia };
+    }
+
+    function renderWizResult(isSala24) {
+      const resultEl = document.getElementById('wizResult');
+      const altEl    = document.getElementById('wizResultAlt');
+
+      if (isSala24) {
+        resultEl.innerHTML = `
+          <div class="s4__result-sala">
+            <p class="s4__result-sala-msg">Estás armando una sala de <strong>+24 equipos</strong>.<br>
+            Te asignamos un asesor especializado para cotizar tu proyecto completo.</p>
+            <a class="s4__cta-primary" style="margin-top:24px;display:inline-block;"
+               href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola, quiero cotizar una sala de +24 equipos Canopy Master')}"
+               target="_blank">
+              Quiero cotizar mi sala →
+            </a>
+          </div>`;
+        altEl.innerHTML = '';
+        return;
+      }
+
+      const rec = calcRecommendation();
+      const listPrice = PRICES[rec.version][rec.serie][rec.potencia];
+      const salePrice = Math.round(listPrice * 0.75);
+      const imgUrl    = imgSrc(rec.version, rec.serie, rec.potencia);
+      const label     = `${LABEL_VERSION[rec.version]} ${rec.potencia}W · ${LABEL_SERIE[rec.serie]}`;
+
+      const msg = encodeURIComponent(
+        `Hola, el wizard me recomendó el ${label} (pre-venta). Quiero más información.`
+      );
+
+      resultEl.innerHTML = `
+        <div class="s4__result-inner">
+          <img src="${imgUrl}" alt="${label}" class="s4__result-img">
+          <div class="s4__result-info">
+            <p class="s4__result-name">${label}</p>
+            <div class="s4__price-row" style="margin:10px 0;">
+              <span class="s4__price-list">${fmt(listPrice)}</span>
+              <span class="s4__price-preventa">${fmt(salePrice)}</span>
+            </div>
+            <span class="s4__price-badge">25% OFF · Pre-venta</span>
+            <div class="s4__price-ctas" style="margin-top:20px;">
+              <a href="${MP_URL}" class="s4__cta-primary">Comprar con MercadoPago</a>
+              <a href="https://wa.me/${WA_NUMBER}?text=${msg}" target="_blank" class="s4__cta-secondary">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>`;
+
+      // Alternativa complementaria
+      const altVersion = rec.version === 'pro' ? 'std' : 'pro';
+      const altSerie   = rec.serie   === 'emerson' ? 'green' : 'emerson';
+      const altList    = PRICES[rec.version][altSerie][rec.potencia];
+      const altSale    = Math.round(altList * 0.75);
+      const altLabel   = `${LABEL_VERSION[rec.version]} ${rec.potencia}W · ${LABEL_SERIE[altSerie]}`;
+      const altImgUrl  = imgSrc(rec.version, altSerie, rec.potencia);
+      const altMsg     = encodeURIComponent(`Hola, me interesa el ${altLabel} (pre-venta).`);
+
+      altEl.innerHTML = `
+        <p class="s4__result-alt-title">También podrías considerar</p>
+        <div class="s4__result-alt-card">
+          <img src="${altImgUrl}" alt="${altLabel}" class="s4__result-alt-img">
+          <div>
+            <p class="s4__result-alt-name">${altLabel}</p>
+            <p class="s4__result-alt-price">${fmt(altSale)} <span>(con 25% OFF)</span></p>
+            <a href="https://wa.me/${WA_NUMBER}?text=${altMsg}" target="_blank"
+               class="s4__cta-secondary" style="margin-top:12px;display:inline-flex;font-size:12px;">
+              Consultar
+            </a>
+          </div>
+        </div>`;
+    }
+
+    // Reiniciar wizard
+    document.getElementById('wizRestart').addEventListener('click', () => {
+      Object.keys(wiz).forEach(k => wiz[k] = '');
+      document.querySelectorAll('.s4__wiz-opt').forEach(b => b.classList.remove('s4__wiz-opt--selected'));
+      document.getElementById('wizSubSala').style.display = 'none';
+      document.getElementById('wizEmail').value = '';
+      wizShowStep(1);
+    });
+
+    // Inicializar subpregunta sala oculta
+    document.getElementById('wizSubSala').style.display = 'none';
   </script>
 
 </body>
