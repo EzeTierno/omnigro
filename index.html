@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canopy Master PRO — Omnigro</title>
+  <title>Canopy Master — Omnigro</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-family: 'Material Symbols Outlined'; }</style>
   <style>
 
     :root {
@@ -425,7 +427,281 @@
     }
 
     /* =============================================
-       SECCIÓN 3 — Las dos series
+       SECCIÓN 3 — Cómo se mide la eficiencia real
+    ============================================= */
+    .sEdu {
+      position: relative;
+      width: 100%;
+      padding: 128px 56px;
+      background: var(--dark-mid);
+      border-top: 1px solid rgba(212,211,189,0.06);
+    }
+
+    .sEdu__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .sEdu__header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .sEdu__eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .sEdu__eyebrow-line {
+      width: 24px;
+      height: 1px;
+      background: rgba(175,227,66,0.35);
+    }
+
+    .sEdu__eyebrow-text {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--lime-bright);
+    }
+
+    .sEdu__title {
+      font-size: clamp(34px, 4vw, 60px);
+      line-height: 1.06;
+      letter-spacing: -1.8px;
+      font-weight: 200;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .sEdu__title strong {
+      font-weight: 800;
+    }
+
+    .sEdu__subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+    }
+
+    /* Bloques A y B — layout 2 columnas */
+    .sEdu__blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+
+    .sEdu__block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .sEdu__block--reverse { direction: rtl; }
+    .sEdu__block--reverse > * { direction: ltr; }
+
+    .sEdu__block-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--lime-bright);
+      margin-bottom: 20px;
+      opacity: 0.75;
+    }
+
+    .sEdu__block-title {
+      font-size: clamp(22px, 2.2vw, 32px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .sEdu__block-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.85;
+    }
+
+    .sEdu__block-text strong {
+      color: rgba(255,255,255,0.88);
+      font-weight: 500;
+    }
+
+    /* Contenedor de visuals SVG */
+    .sEdu__visual {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(212,211,189,0.08);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+    }
+
+    .sEdu__visual svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Bloque C — tabla comparativa */
+    .sEdu__block--table {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .sEdu__table-header {
+      text-align: center;
+    }
+
+    .sEdu__table-wrap {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(212,211,189,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .sEdu__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .sEdu__table th {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.45);
+      padding: 20px 24px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(212,211,189,0.07);
+    }
+
+    .sEdu__table th:not(:first-child) { text-align: right; }
+
+    .sEdu__table td {
+      padding: 18px 24px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      border-bottom: 1px solid rgba(212,211,189,0.05);
+      vertical-align: middle;
+    }
+
+    .sEdu__table tr:last-child td { border-bottom: none; }
+
+    .sEdu__table td:not(:first-child) {
+      text-align: right;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .sEdu__table td.sEdu__td-name {
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .sEdu__table tr.sEdu__row--highlight td {
+      color: var(--white);
+    }
+
+    .sEdu__table tr.sEdu__row--highlight .sEdu__td-name {
+      color: var(--lime-bright);
+    }
+
+    /* Barra de luz útil */
+    .sEdu__bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .sEdu__bar-track {
+      width: 80px;
+      height: 4px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .sEdu__bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--lime-bright);
+    }
+
+    .sEdu__badge-diff {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--lime-bright);
+      background: rgba(175,227,66,0.1);
+      border: 1px solid rgba(175,227,66,0.2);
+      padding: 3px 8px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* Línea de cierre */
+    .sEdu__closing {
+      margin-top: 72px;
+      padding: 44px 56px;
+      border: 1px solid rgba(175,227,66,0.15);
+      border-radius: 20px;
+      background: rgba(175,227,66,0.04);
+      text-align: center;
+    }
+
+    .sEdu__closing-text {
+      font-size: clamp(17px, 1.8vw, 22px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .sEdu__closing-text strong {
+      font-weight: 700;
+      font-style: normal;
+      color: var(--white);
+    }
+
+    /* Scroll reveal */
+    .sEdu__header,
+    .sEdu__block,
+    .sEdu__block--table,
+    .sEdu__closing {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .sEdu.visible .sEdu__header          { opacity:1; transform:translateY(0); transition-delay:0s; }
+    .sEdu.visible .sEdu__block:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0.1s; }
+    .sEdu.visible .sEdu__block:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.2s; }
+    .sEdu.visible .sEdu__block--table    { opacity:1; transform:translateY(0); transition-delay:0.3s; }
+    .sEdu.visible .sEdu__closing         { opacity:1; transform:translateY(0); transition-delay:0.4s; }
+
+    @media (max-width: 860px) {
+      .sEdu { padding: 80px 24px; }
+      .sEdu__block { grid-template-columns: 1fr; gap: 32px; }
+      .sEdu__block--reverse { direction: ltr; }
+      .sEdu__closing { padding: 32px 24px; }
+    }
+
+    /* =============================================
+       SECCIÓN 4 — Las dos series (antes s3)
     ============================================= */
     .s3 {
       position: relative;
@@ -569,7 +845,7 @@
       color: rgba(255,255,255,0.45);
       line-height: 1.75;
       margin-bottom: 28px;
-      max-width: 380px;
+      max-width: 400px;
     }
 
     .s3__card-para {
@@ -589,17 +865,45 @@
       font-weight: 600;
     }
 
+    .s3__card-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .s3__card-bullets li {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .s3__card-bullets li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: var(--lime-bright);
+      font-weight: 700;
+    }
+
     .s3__spectrum-wrap {
       width: 100%;
-      height: 92px;
       margin-top: 12px;
       flex-shrink: 0;
     }
 
-    .s3__spectrum-svg {
+    .s3__spectrum-img {
       width: 100%;
-      height: 100%;
-      overflow: visible;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      opacity: 0.9;
+      margin-bottom: 2em;
+      max-width: 380px;
     }
 
     .s3__card-img-wrap {
@@ -636,349 +940,295 @@
     .s3.visible .s3__card--green          { opacity: 1; transform: translateY(0); transition-delay: 0.24s; }
 
     /* =============================================
-       SECCIÓN 4 — Selector + Wizard
+       SECCIÓN 4 — Configurador Profesional
     ============================================= */
     .s4 {
       position: relative;
       width: 100%;
       padding: 120px 56px;
-      background: #080a04;
+      background: #f1f1ed;
       border-top: 1px solid rgba(212,211,189,0.06);
     }
 
-    .s4__inner { max-width: 1100px; margin: 0 auto; }
+    .s4__inner { max-width: 1200px; margin: 0 auto; }
 
-    .s4__header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .s4__eyebrow {
-      display: flex; align-items: center; gap: 16px; margin-bottom: 36px;
-    }
-    .s4__eyebrow-line { width: 24px; height: 1px; background: rgba(212,211,189,0.3); }
-    .s4__eyebrow-text {
-      font-size: 11px; font-weight: 500; letter-spacing: 3px;
-      text-transform: uppercase; color: rgba(212,211,189,0.45);
-    }
+    .s4__header { margin-bottom: 56px; }
 
     .s4__title {
-      font-size: clamp(32px, 3.5vw, 56px);
-      letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 36px;
-    }
-    .s4__title .light { font-weight: 200; color: rgba(255,255,255,0.38); }
-    .s4__title .bold  { font-weight: 800; color: var(--white); }
-
-    .s4__tabs {
-      display: inline-flex;
-      border: 1px solid rgba(212,211,189,0.12);
-      border-radius: 100px;
-      padding: 4px;
-      gap: 4px;
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 600;
+      letter-spacing: -1px;
+      color: var(--dark);
+      margin-bottom: 14px;
+      line-height: 1.1;
     }
 
-    .s4__tab {
-      font-family: var(--font);
-      font-size: 13px; font-weight: 500;
-      color: rgba(255,255,255,0.4);
-      background: transparent;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: background 0.25s ease, color 0.25s ease;
+    .s4__subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--dark-mid);
+      max-width: 640px;
+      line-height: 1.7;
     }
 
-    .s4__tab--active {
-      background: rgba(212,211,189,0.12);
-      color: var(--white);
-    }
-
-    .s4__view { display: block; }
-    .s4__view--hidden { display: none; }
-
-    .s4__layout {
+    .s4__grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      grid-template-columns: 1fr 360px;
+      gap: 32px;
       align-items: start;
     }
 
-    .s4__steps { display: flex; flex-direction: column; gap: 36px; }
-
-    .s4__step-label {
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(255,255,255,0.3); margin-bottom: 12px;
-    }
-    .s4__step-label span { color: rgba(212,211,189,0.5); margin-right: 8px; }
-
-    .s4__step-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .s4__step-options--4 { grid-template-columns: repeat(4, 1fr); }
-
-    .s4__opt {
-      font-family: var(--font);
-      display: flex; flex-direction: column; align-items: flex-start;
-      padding: 14px 18px;
-      border: 1px solid rgba(212,211,189,0.1);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.02);
-      cursor: pointer;
-      transition: border-color 0.2s ease, background 0.2s ease;
-      text-align: left;
-    }
-
-    .s4__opt:hover { border-color: rgba(212,211,189,0.25); background: rgba(255,255,255,0.04); }
-
-    .s4__opt--active {
-      border-color: rgba(212,211,189,0.5);
-      background: rgba(212,211,189,0.07);
-    }
-
-    .s4__opt-title { font-size: 13px; font-weight: 600; color: var(--white); }
-    .s4__opt-sub   { font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.35);
-                     letter-spacing: 0.3px; margin-top: 3px; }
-
-    .s4__preview { position: sticky; top: 100px; }
-
-    .s4__preview-img-wrap {
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 28px;
-    }
-
-    .s4__preview-glow {
-      position: absolute; bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 80%; height: 140px;
-      background: radial-gradient(ellipse, rgba(212,211,189,0.2) 0%, transparent 70%);
-      filter: blur(28px);
-      pointer-events: none;
-    }
-
-    .s4__preview-img {
-      width: 100%; max-width: 480px; height: auto;
-      display: block; position: relative; z-index: 1;
-      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.7));
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-
-    .s4__preview-img.updating { opacity: 0; transform: scale(0.97); }
-
-    .s4__price-card {
+    /* ----- Filters panel ----- */
+    .s4__filters {
+      background: #252617;
       border: 1px solid rgba(212,211,189,0.1);
       border-radius: 20px;
-      padding: 28px 32px;
-      background: rgba(255,255,255,0.025);
+      padding: 36px;
     }
 
-    .s4__price-model {
-      font-size: 12px; font-weight: 500;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.5px; margin-bottom: 12px;
+    .s4__filters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 48px;
     }
 
-    .s4__price-row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+    .s4__filter-group--full { grid-column: 1 / -1; }
 
-    .s4__price-list {
-      font-size: 16px; font-weight: 400;
-      color: rgba(255,255,255,0.25);
-      text-decoration: line-through;
+    .s4__filter-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.45);
+      display: block;
+      margin-bottom: 14px;
     }
 
-    .s4__price-preventa {
-      font-size: 32px; font-weight: 800;
-      color: var(--white); letter-spacing: -1px;
-    }
+    .s4__btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
 
-    .s4__price-badge {
-      display: inline-block;
-      font-size: 10px; font-weight: 500;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: #080a04; background: #d4d3bd;
-      padding: 4px 10px; border-radius: 100px;
-      margin-bottom: 24px;
-    }
-
-    .s4__price-ctas { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-
-    .s4__cta-primary {
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font); font-size: 13px; font-weight: 600;
-      color: #080a04; background: #AFE342;
-      border: none; padding: 13px 24px; border-radius: 100px;
-      text-decoration: none; cursor: pointer;
-      transition: opacity 0.2s ease;
-    }
-    .s4__cta-primary:hover { opacity: 0.88; }
-
-    .s4__cta-secondary {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      font-family: var(--font); font-size: 13px; font-weight: 500;
-      color: rgba(255,255,255,0.6);
-      border: 1px solid rgba(212,211,189,0.2);
-      padding: 12px 24px; border-radius: 100px;
-      text-decoration: none; cursor: pointer;
-      transition: border-color 0.2s ease, color 0.2s ease;
-    }
-    .s4__cta-secondary:hover { border-color: rgba(212,211,189,0.45); color: var(--white); }
-
-    .s4__price-note {
-      font-size: 11px; color: rgba(255,255,255,0.25);
-      letter-spacing: 0.3px; line-height: 1.6;
-    }
-
-    .s4__wizard { max-width: 620px; margin: 0 auto; }
-
-    .s4__wiz-progress {
-      width: 100%; height: 2px;
-      background: rgba(212,211,189,0.1);
-      border-radius: 2px; margin-bottom: 56px; overflow: hidden;
-    }
-
-    .s4__wiz-progress-bar {
-      height: 100%; width: 0%;
-      background: rgba(212,211,189,0.6);
-      border-radius: 2px;
-      transition: width 0.4s ease;
-    }
-
-    .s4__wiz-step { display: none; }
-    .s4__wiz-step--active { display: block; animation: fadeIn 0.4s ease; }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .s4__wiz-q {
-      font-size: clamp(20px, 2.2vw, 28px);
-      font-weight: 300; color: var(--white);
-      letter-spacing: -0.5px; line-height: 1.3;
-      margin-bottom: 36px;
-    }
-    .s4__wiz-q--sub {
-      font-size: 16px; font-weight: 300;
-      color: rgba(255,255,255,0.5); margin-bottom: 20px;
-    }
-
-    .s4__wiz-opts {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;
-    }
-
-    .s4__wiz-opt {
-      font-family: var(--font); font-size: 14px; font-weight: 500;
-      color: rgba(255,255,255,0.7);
-      background: rgba(255,255,255,0.03);
+    .s4__btn {
+      font-family: var(--font);
+      font-size: 13px; font-weight: 500;
+      padding: 8px 20px;
+      border-radius: 8px;
       border: 1px solid rgba(212,211,189,0.15);
-      padding: 14px 24px; border-radius: 12px;
+      background: transparent;
+      color: rgba(255,255,255,0.45);
       cursor: pointer;
-      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
-    .s4__wiz-opt:hover { border-color: rgba(212,211,189,0.4); color: var(--white); background: rgba(212,211,189,0.07); }
-    .s4__wiz-opt--wide { width: 100%; text-align: left; }
-    .s4__wiz-opt--wide span { color: rgba(255,255,255,0.4); margin-left: 8px; font-weight: 400; font-size: 12px; }
-    .s4__wiz-opt--selected { border-color: rgba(212,211,189,0.6); background: rgba(212,211,189,0.1); color: var(--white); }
-
-    .s4__wiz-sub { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(212,211,189,0.08); }
-    .s4__wiz-sub--visible { display: block; animation: fadeIn 0.3s ease; }
-
-    .s4__lead-form {
-      display: flex; gap: 10px; margin-bottom: 14px;
+    .s4__btn:hover { border-color: rgba(212,211,189,0.35); color: var(--white); }
+    .s4__btn--active {
+      background: var(--lime-bright);
+      border-color: var(--lime-bright);
+      color: #080a04;
+      font-weight: 700;
     }
 
-    .s4__lead-input {
-      font-family: var(--font); font-size: 14px;
-      color: var(--white); background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(212,211,189,0.2);
-      padding: 13px 20px; border-radius: 12px;
-      flex: 1; outline: none;
-      transition: border-color 0.2s ease;
-    }
-    .s4__lead-input:focus { border-color: rgba(212,211,189,0.5); }
-    .s4__lead-input::placeholder { color: rgba(255,255,255,0.25); }
+    .s4__spectrum-opts { display: flex; flex-direction: column; gap: 8px; }
 
-    .s4__lead-submit {
-      font-family: var(--font); font-size: 13px; font-weight: 600;
-      color: #080a04; background: #AFE342;
-      border: none; padding: 13px 24px; border-radius: 12px;
-      cursor: pointer; white-space: nowrap;
-      transition: opacity 0.2s ease;
+    .s4__spectrum-opt {
+      font-family: var(--font);
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(212,211,189,0.1);
+      background: transparent;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      font-size: 14px; font-weight: 400;
+      text-align: left;
+      transition: all 0.2s;
     }
-    .s4__lead-submit:hover { opacity: 0.88; }
-
-    .s4__lead-skip {
-      font-family: var(--font); font-size: 12px;
-      color: rgba(255,255,255,0.3); background: transparent;
-      border: none; cursor: pointer;
-      transition: color 0.2s ease;
+    .s4__spectrum-opt:hover { border-color: rgba(212,211,189,0.3); color: var(--white); }
+    .s4__spectrum-opt--active {
+      border-color: rgba(175,227,66,0.4);
+      background: rgba(175,227,66,0.06);
+      color: var(--white);
+      font-weight: 500;
     }
-    .s4__lead-skip:hover { color: rgba(255,255,255,0.6); }
 
-    .s4__wiz-result-label {
+    .s4__select-wrap { position: relative; }
+    .s4__select {
+      font-family: var(--font);
+      width: 100%; height: 44px;
+      padding: 0 40px 0 16px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,211,189,0.15);
+      color: var(--white);
+      font-size: 14px;
+      appearance: none; cursor: pointer; outline: none;
+      transition: border-color 0.2s;
+    }
+    .s4__select:focus { border-color: rgba(212,211,189,0.4); }
+    .s4__select option { background: #1a1c0f; }
+    .s4__select-arrow {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: rgba(212,211,189,0.4);
+      pointer-events: none;
+      font-size: 18px;
+    }
+
+    .s4__coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .s4__coverage-btn {
+      font-family: var(--font);
+      padding: 8px 4px;
       font-size: 11px; font-weight: 500;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      color: rgba(212,211,189,0.5); margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(212,211,189,0.12);
+      background: transparent;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .s4__coverage-btn:hover { border-color: rgba(212,211,189,0.3); color: var(--white); }
+    .s4__coverage-btn--active {
+      border-color: rgba(175,227,66,0.4);
+      background: rgba(175,227,66,0.05);
+      color: var(--white);
+      font-weight: 700;
     }
 
-    .s4__result-card {
-      border: 1px solid rgba(212,211,189,0.2);
-      border-radius: 20px; padding: 28px 32px;
-      background: rgba(212,211,189,0.04);
+    .s4__slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .s4__slider-value { font-size: 12px; font-weight: 700; color: var(--lime-bright); }
+
+    .s4__slider {
+      width: 100%; height: 4px;
+      background: rgba(212,211,189,0.15);
+      border-radius: 4px;
+      appearance: none; cursor: pointer; outline: none;
+    }
+    .s4__slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px; height: 20px;
+      background: var(--lime-bright);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid #080a04;
+      box-shadow: 0 0 8px rgba(175,227,66,0.4);
+    }
+
+    .s4__slider-labels { display: flex; justify-content: space-between; margin-top: 10px; }
+    .s4__slider-lbl {
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: rgba(212,211,189,0.35);
+    }
+
+    .s4__budget-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .s4__budget-pill {
+      font-family: var(--font);
+      font-size: 12px; font-weight: 500;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(212,211,189,0.15);
+      background: transparent;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .s4__budget-pill:hover { border-color: rgba(212,211,189,0.35); color: var(--white); }
+    .s4__budget-pill--active {
+      background: var(--lime-bright);
+      border-color: var(--lime-bright);
+      color: #080a04;
+      font-weight: 700;
+    }
+
+    /* ----- Recommendation card ----- */
+    .s4__rec { position: sticky; top: 100px; margin-top: -34px; }
+
+    .s4__rec-label {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 16px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .s4__rec-card {
+      border: 1px solid rgba(212,211,189,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #252617;
+    }
+
+    .s4__rec-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.03);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    .s4__rec-img {
+      width: 85%; height: 85%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+      transition: transform 0.5s ease, opacity 0.25s ease;
+    }
+    .s4__rec-card:hover .s4__rec-img { transform: scale(1.05); }
+    .s4__rec-img.swapping { opacity: 0; transform: scale(0.96); }
+
+    .s4__rec-series-tag {
+      position: absolute; top: 14px; left: 14px;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: #080a04; background: var(--lime-bright);
+      padding: 4px 11px; border-radius: 100px;
+    }
+
+    .s4__rec-body { padding: 22px 24px; }
+
+    .s4__rec-name-row {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 10px;
       margin-bottom: 16px;
     }
+    .s4__rec-name { font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.4; }
+    .s4__rec-price { font-size: 19px; font-weight: 800; color: var(--lime-bright); white-space: nowrap; letter-spacing: -0.5px; }
 
-    .s4__result-card .r-name { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
-    .s4__result-card .r-series { font-size: 12px; color: rgba(212,211,189,0.6); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
-    .s4__result-card .r-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
-    .s4__result-card .r-list { font-size: 15px; color: rgba(255,255,255,0.25); text-decoration: line-through; }
-    .s4__result-card .r-sale { font-size: 28px; font-weight: 800; color: var(--white); letter-spacing: -1px; }
-    .s4__result-card .r-badge { font-size: 10px; color: #080a04; background: #d4d3bd; padding: 3px 10px; border-radius: 100px; margin-bottom: 24px; display: inline-block; }
-    .s4__result-card .r-ctas { display: flex; flex-direction: column; gap: 8px; }
+    .s4__rec-specs { display: flex; gap: 18px; margin-bottom: 20px; }
+    .s4__rec-spec { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(255,255,255,0.4); }
+    .s4__rec-spec .material-symbols-outlined { font-size: 15px; color: var(--lime-bright); }
 
-    .s4__result-alt {
-      border: 1px solid rgba(212,211,189,0.08);
-      border-radius: 16px; padding: 20px 28px;
-      background: rgba(255,255,255,0.02); margin-bottom: 28px;
+    .s4__rec-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%;
+      font-family: var(--font); font-size: 13px; font-weight: 600;
+      color: #080a04; background: var(--lime-bright);
+      border: none; padding: 13px 20px; border-radius: 12px;
+      text-decoration: none; cursor: pointer;
+      transition: opacity 0.2s;
     }
-    .s4__result-alt .alt-label { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
-    .s4__result-alt .alt-name  { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.6); }
+    .s4__rec-cta:hover { opacity: 0.88; }
+    .s4__rec-cta--secondary {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%;
+      font-family: var(--font); font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      background: transparent;
+      border: 1px solid rgba(212,211,189,0.2);
+      padding: 12px 20px; border-radius: 12px;
+      text-decoration: none; cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.2s;
+    }
+    .s4__rec-cta--secondary:hover { border-color: rgba(212,211,189,0.45); color: var(--white); }
 
-    .s4__wiz-restart {
-      font-family: var(--font); font-size: 12px;
-      color: rgba(255,255,255,0.3); background: transparent;
-      border: none; cursor: pointer;
-      transition: color 0.2s ease;
+    .s4__rec-note {
+      font-size: 10px; color: rgba(255,255,255,0.2);
+      text-align: center; margin-top: 14px;
+      font-style: italic; letter-spacing: 0.02em;
     }
-    .s4__wiz-restart:hover { color: rgba(255,255,255,0.6); }
-
-    .s4__result-inner {
-      display: flex; align-items: center; gap: 28px;
-    }
-    .s4__result-img {
-      width: 130px; flex-shrink: 0;
-      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.6));
-    }
-    .s4__result-info { flex: 1; }
-    .s4__result-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-    .s4__result-alt-title {
-      font-size: 10px; color: rgba(255,255,255,0.3);
-      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px;
-    }
-    .s4__result-alt-card {
-      display: flex; align-items: center; gap: 20px;
-    }
-    .s4__result-alt-img { width: 80px; opacity: 0.6; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)); }
-    .s4__result-alt-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
-    .s4__result-alt-price { font-size: 13px; color: rgba(255,255,255,0.45); }
-    .s4__result-alt-price span { font-size: 11px; color: rgba(255,255,255,0.25); }
-    .s4__result-sala { text-align: center; padding: 12px 0; }
-    .s4__result-sala-msg { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.6; }
-    .s4__result-sala-msg strong { color: var(--white); font-weight: 600; }
 
     /* =============================================
        SCROLL REVEAL — animaciones on-scroll
@@ -997,12 +1247,12 @@
     .s2.visible .s2__desc    { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
     .s2.visible .s2__stats   { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
 
-    .s4__header, .s4__view {
+    .s4__header, .s4__grid {
       opacity: 0; transform: translateY(20px);
       transition: opacity 0.75s ease, transform 0.75s ease;
     }
     .s4.visible .s4__header { opacity: 1; transform: translateY(0); }
-    .s4.visible .s4__view   { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
+    .s4.visible .s4__grid   { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
 
     /* =============================================
        RESPONSIVE
@@ -1046,10 +1296,10 @@
       .s3__card { min-height: 400px; }
 
       .s4 { padding: 80px 24px; }
-      .s4__layout { grid-template-columns: 1fr; gap: 40px; }
-      .s4__preview { position: static; }
-      .s4__step-options--4 { grid-template-columns: repeat(2, 1fr); }
-      .s4__lead-form { flex-direction: column; }
+      .s4__grid { grid-template-columns: 1fr; }
+      .s4__rec { position: static; }
+      .s4__filters-grid { grid-template-columns: 1fr; }
+      .s4__coverage-grid { grid-template-columns: repeat(3, 1fr); }
 
       .navbar { padding: 20px 24px; }
     }
@@ -1089,7 +1339,7 @@
 
       <!-- Zona superior: eyebrow + headline -->
       <div class="hero__top">
-        <p class="hero__eyebrow">Nuevo Canopy Master PRO</p>
+        <p class="hero__eyebrow">Nueva línea Canopy Master</p>
         <h1 class="hero__title">El LED más <strong>eficiente</strong> del país</h1>
       </div>
 
@@ -1110,6 +1360,7 @@
             <div>
               <div class="hero__stat-main">Hasta 3.2 µmol/J</div>
               <div class="hero__stat-sub">De eficiencia real<br>Líder en el mercado</div>
+              <div style="font-size:9px;font-weight:400;color:rgba(212,211,189,0.32);letter-spacing:0.2px;margin-top:5px;line-height:1.5;">Medido sobre canopy real,<br>no pico central declarado.</div>
             </div>
           </div>
 
@@ -1174,7 +1425,7 @@
           <div class="hero__preventa-pill">
             <div class="hero__preventa-dot"></div>
             <span class="hero__preventa-label">Pre-venta activa</span>
-            <span class="hero__preventa-off">25% OFF</span>
+            <span class="hero__preventa-off">HASTA 25% OFF</span>
             <span class="hero__preventa-date">Hasta Junio 2026</span>
           </div>
 
@@ -1194,7 +1445,7 @@
 
       <div class="s2__eyebrow">
         <div class="s2__eyebrow-line"></div>
-        <span class="s2__eyebrow-text">Canopy Master PRO</span>
+        <span class="s2__eyebrow-text">Canopy Master</span>
         <div class="s2__eyebrow-line"></div>
       </div>
 
@@ -1204,9 +1455,10 @@
       </h2>
 
       <p class="s2__desc">
-        El Canopy Master PRO es la nueva generación de iluminación profesional de Omnigro.
+        El Canopy Master es la nueva generación de iluminación profesional de Omnigro.
         Más de 10 años desarrollando equipos para las salas más exigentes del país
-        derivaron en el LED más eficiente que fabricamos.
+        derivaron en una línea con tres niveles de eficiencia, dos espectros especializados
+        y la misma promesa: lo que medimos es lo que recibís.
       </p>
 
       <div class="s2__stats">
@@ -1219,8 +1471,8 @@
           <div class="s2__stat-label">Marca con<br>soporte local</div>
         </div>
         <div class="s2__stat">
-          <div class="s2__stat-value">3.2 µmol/J</div>
-          <div class="s2__stat-label">Eficiencia real<br>medida</div>
+          <div class="s2__stat-value">Specs verificadas</div>
+          <div class="s2__stat-label">No prometidas</div>
         </div>
       </div>
 
@@ -1228,7 +1480,236 @@
   </section>
 
   <!-- =============================================
-       SECCIÓN 3 — Las dos series
+       SECCIÓN 3 — Cómo se mide la eficiencia real
+  ============================================= -->
+  <section class="sEdu" id="eficiencia">
+    <div class="sEdu__inner">
+
+      <!-- HEADER -->
+      <div class="sEdu__header">
+        <div class="sEdu__eyebrow">
+          <div class="sEdu__eyebrow-line"></div>
+          <span class="sEdu__eyebrow-text">Cómo se mide la eficiencia real</span>
+          <div class="sEdu__eyebrow-line"></div>
+        </div>
+        <h2 class="sEdu__title">La eficiencia se mide.<br><strong>No se promete.</strong></h2>
+        <p class="sEdu__subtitle">Por qué un número grande no siempre significa más luz.</p>
+      </div>
+
+      <div class="sEdu__blocks">
+
+        <!-- BLOQUE A — Qué es µmol/J -->
+        <div class="sEdu__block">
+          <div>
+            <p class="sEdu__block-label">A · Qué es µmol/J</p>
+            <h3 class="sEdu__block-title">El mismo consumo.<br>Más luz para tus plantas.</h3>
+            <p class="sEdu__block-text">
+              Un equipo de 800W puede entregar 2.000 µmol/s o 2.560 µmol/s según su eficiencia.
+              Misma factura de luz, <strong>un 28% más de luz útil para tus plantas</strong>.
+              Esa diferencia es la que convierte el watt en cogollo.
+            </p>
+          </div>
+          <div class="sEdu__visual">
+            <!-- SVG: dos equipos con cono de fotones — Core vs PRO -->
+            <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg" style="max-height:260px;">
+              <defs>
+                <linearGradient id="coneCore" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#74764A" stop-opacity="0.6"/>
+                  <stop offset="100%" stop-color="#74764A" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="conePRO" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#AFE342" stop-opacity="0.7"/>
+                  <stop offset="100%" stop-color="#AFE342" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+
+              <!-- CORE — izquierda -->
+              <!-- Equipo (rectángulo simplificado) -->
+              <rect x="40" y="20" width="110" height="28" rx="6" fill="rgba(212,211,189,0.08)" stroke="rgba(212,211,189,0.2)" stroke-width="1"/>
+              <rect x="52" y="27" width="6" height="6" rx="1" fill="#74764A" opacity="0.8"/>
+              <rect x="64" y="27" width="6" height="6" rx="1" fill="#74764A" opacity="0.8"/>
+              <rect x="76" y="27" width="6" height="6" rx="1" fill="#74764A" opacity="0.8"/>
+              <rect x="88" y="27" width="6" height="6" rx="1" fill="#74764A" opacity="0.8"/>
+              <rect x="100" y="27" width="6" height="6" rx="1" fill="#74764A" opacity="0.8"/>
+              <rect x="112" y="27" width="6" height="6" rx="1" fill="#74764A" opacity="0.8"/>
+              <rect x="124" y="27" width="6" height="6" rx="1" fill="#74764A" opacity="0.8"/>
+              <!-- Cono Core — angosto -->
+              <polygon points="55,48 135,48 105,200 85,200" fill="url(#coneCore)"/>
+              <!-- Líneas del cono -->
+              <line x1="55" y1="48" x2="85" y2="200" stroke="#74764A" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+              <line x1="135" y1="48" x2="105" y2="200" stroke="#74764A" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+              <!-- Etiqueta Core -->
+              <text x="95" y="10" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5" fill="rgba(212,211,189,0.5)" text-transform="uppercase">CORE</text>
+              <text x="95" y="218" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#74764A">2.5 µmol/J</text>
+              <text x="95" y="232" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="rgba(212,211,189,0.35)">2.000 µmol/s</text>
+
+              <!-- Divisor -->
+              <line x1="210" y1="10" x2="210" y2="245" stroke="rgba(212,211,189,0.07)" stroke-width="1"/>
+
+              <!-- PRO — derecha -->
+              <rect x="270" y="20" width="110" height="28" rx="6" fill="rgba(175,227,66,0.07)" stroke="rgba(175,227,66,0.25)" stroke-width="1"/>
+              <rect x="282" y="27" width="6" height="6" rx="1" fill="#AFE342" opacity="0.9"/>
+              <rect x="294" y="27" width="6" height="6" rx="1" fill="#AFE342" opacity="0.9"/>
+              <rect x="306" y="27" width="6" height="6" rx="1" fill="#AFE342" opacity="0.9"/>
+              <rect x="318" y="27" width="6" height="6" rx="1" fill="#AFE342" opacity="0.9"/>
+              <rect x="330" y="27" width="6" height="6" rx="1" fill="#AFE342" opacity="0.9"/>
+              <rect x="342" y="27" width="6" height="6" rx="1" fill="#AFE342" opacity="0.9"/>
+              <rect x="354" y="27" width="6" height="6" rx="1" fill="#AFE342" opacity="0.9"/>
+              <!-- Cono PRO — ancho -->
+              <polygon points="255,48 395,48 370,200 280,200" fill="url(#conePRO)"/>
+              <line x1="255" y1="48" x2="280" y2="200" stroke="#AFE342" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+              <line x1="395" y1="48" x2="370" y2="200" stroke="#AFE342" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+              <!-- Etiqueta PRO -->
+              <text x="325" y="10" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5" fill="rgba(175,227,66,0.7)">PRO</text>
+              <text x="325" y="218" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#AFE342">3.2 µmol/J</text>
+              <text x="325" y="232" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="rgba(212,211,189,0.35)">2.560 µmol/s</text>
+
+              <!-- "+28% más luz" badge -->
+              <rect x="172" y="118" width="76" height="24" rx="12" fill="rgba(175,227,66,0.12)" stroke="rgba(175,227,66,0.25)" stroke-width="1"/>
+              <text x="210" y="134" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#AFE342">+28% luz útil</text>
+
+              <!-- Canopy floor -->
+              <line x1="30" y1="200" x2="400" y2="200" stroke="rgba(212,211,189,0.08)" stroke-width="1"/>
+              <text x="210" y="248" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="8.5" fill="rgba(212,211,189,0.25)" letter-spacing="1">CANOPY · 800W · MISMO CONSUMO ELÉCTRICO</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- BLOQUE B — El truco del pico central -->
+        <div class="sEdu__block sEdu__block--reverse">
+          <div>
+            <p class="sEdu__block-label">B · El truco del pico central</p>
+            <h3 class="sEdu__block-title">4.0 µmol/J declarados.<br>¿Pero medidos dónde?</h3>
+            <p class="sEdu__block-text">
+              Cualquier LED pierde hasta un <strong>50% de potencia lumínica a partir de 15 cm desde sus bordes</strong>.
+              Una marca puede medir el centro y publicar 4.0 µmol/J —
+              el promedio real sobre el canopy completo es muy inferior.
+              Nosotros medimos el promedio real y lo dejamos por escrito en cada equipo.
+            </p>
+          </div>
+          <div class="sEdu__visual">
+            <!-- SVG: isobaras PPFD — vista en planta -->
+            <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" style="max-height:260px;">
+              <defs>
+                <radialGradient id="ppfdGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stop-color="#AFE342" stop-opacity="0.55"/>
+                  <stop offset="22%"  stop-color="#AFE342" stop-opacity="0.32"/>
+                  <stop offset="45%"  stop-color="#74764A" stop-opacity="0.22"/>
+                  <stop offset="70%"  stop-color="#1a1c0f" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#080a04" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Marco del equipo -->
+              <rect x="90" y="10" width="180" height="22" rx="5" fill="rgba(212,211,189,0.06)" stroke="rgba(212,211,189,0.15)" stroke-width="1"/>
+              <text x="180" y="24" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="8" fill="rgba(212,211,189,0.4)" letter-spacing="1">EQUIPO · 800W</text>
+
+              <!-- Área canopy -->
+              <rect x="40" y="45" width="280" height="175" rx="8" fill="none" stroke="rgba(212,211,189,0.07)" stroke-width="1" stroke-dasharray="5,4"/>
+
+              <!-- Gradiente PPFD fill -->
+              <ellipse cx="180" cy="132" rx="130" ry="80" fill="url(#ppfdGrad)"/>
+
+              <!-- Isobaras — curvas concéntricas -->
+              <ellipse cx="180" cy="132" rx="28"  ry="18"  fill="none" stroke="rgba(175,227,66,0.75)" stroke-width="1.2"/>
+              <ellipse cx="180" cy="132" rx="56"  ry="36"  fill="none" stroke="rgba(175,227,66,0.50)" stroke-width="1"/>
+              <ellipse cx="180" cy="132" rx="84"  ry="54"  fill="none" stroke="rgba(175,227,66,0.28)" stroke-width="0.8"/>
+              <ellipse cx="180" cy="132" rx="112" ry="70"  fill="none" stroke="rgba(116,118,74,0.30)" stroke-width="0.8"/>
+              <ellipse cx="180" cy="132" rx="130" ry="80"  fill="none" stroke="rgba(116,118,74,0.18)" stroke-width="0.6"/>
+
+              <!-- Etiqueta pico central (competencia) -->
+              <line x1="180" y1="120" x2="240" y2="68" stroke="rgba(255,80,60,0.45)" stroke-width="1" stroke-dasharray="3,2"/>
+              <rect x="225" y="48" width="96" height="32" rx="6" fill="rgba(255,60,40,0.08)" stroke="rgba(255,60,40,0.25)" stroke-width="1"/>
+              <text x="273" y="62" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="8" font-weight="600" fill="rgba(255,100,80,0.9)">Competencia declara</text>
+              <text x="273" y="74" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,100,80,0.9)">4.0 µmol/J</text>
+
+              <!-- Etiqueta promedio canopy (Omnigro) -->
+              <line x1="75" y1="155" x2="120" y2="155" stroke="rgba(175,227,66,0.45)" stroke-width="1"/>
+              <rect x="0" y="142" width="118" height="32" rx="6" fill="rgba(175,227,66,0.06)" stroke="rgba(175,227,66,0.22)" stroke-width="1"/>
+              <text x="59" y="156" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="7.5" font-weight="500" fill="rgba(175,227,66,0.8)">Omnigro mide promedio</text>
+              <text x="59" y="168" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="8.5" font-weight="700" fill="#AFE342">3.2 µmol/J canopy</text>
+
+              <!-- Texto canopy real -->
+              <text x="180" y="238" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="8" fill="rgba(212,211,189,0.25)" letter-spacing="1">PROMEDIO REAL SOBRE CANOPY COMPLETO</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- BLOQUE C — Comparador visual -->
+        <div class="sEdu__block--table">
+          <div class="sEdu__table-header">
+            <p class="sEdu__block-label" style="text-align:center;">C · Comparador</p>
+            <h3 class="sEdu__block-title" style="text-align:center;font-size:clamp(20px,2vw,28px);">Mismo consumo eléctrico. Distinta producción.</h3>
+            <p class="sEdu__block-text" style="text-align:center;max-width:540px;margin:12px auto 0;">Esta es la diferencia que justifica elegir mayor eficiencia.</p>
+          </div>
+          <div class="sEdu__table-wrap">
+            <table class="sEdu__table">
+              <thead>
+                <tr>
+                  <th>Equipo</th>
+                  <th>Potencia</th>
+                  <th>Eficiencia</th>
+                  <th>Luz útil entregada</th>
+                  <th>vs Core</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="sEdu__td-name">Canopy Master Core</td>
+                  <td>800 W</td>
+                  <td>2.5 µmol/J</td>
+                  <td>
+                    <div class="sEdu__bar-wrap">
+                      <div class="sEdu__bar-track"><div class="sEdu__bar-fill" style="width:78%;background:rgba(116,118,74,0.7);"></div></div>
+                      <span>2.000 µmol/s</span>
+                    </div>
+                  </td>
+                  <td><span style="color:rgba(212,211,189,0.3);font-size:12px;">—</span></td>
+                </tr>
+                <tr>
+                  <td class="sEdu__td-name">Canopy Master Std</td>
+                  <td>800 W</td>
+                  <td>2.8 µmol/J</td>
+                  <td>
+                    <div class="sEdu__bar-wrap">
+                      <div class="sEdu__bar-track"><div class="sEdu__bar-fill" style="width:87%;opacity:0.75;"></div></div>
+                      <span>2.240 µmol/s</span>
+                    </div>
+                  </td>
+                  <td><span class="sEdu__badge-diff">+12%</span></td>
+                </tr>
+                <tr class="sEdu__row--highlight">
+                  <td class="sEdu__td-name">Canopy Master PRO</td>
+                  <td>800 W</td>
+                  <td>3.2 µmol/J</td>
+                  <td>
+                    <div class="sEdu__bar-wrap">
+                      <div class="sEdu__bar-track"><div class="sEdu__bar-fill" style="width:100%;"></div></div>
+                      <span>2.560 µmol/s</span>
+                    </div>
+                  </td>
+                  <td><span class="sEdu__badge-diff">+28%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /sEdu__blocks -->
+
+      <!-- LÍNEA DE CIERRE -->
+      <div class="sEdu__closing">
+        <p class="sEdu__closing-text">
+          Por eso tenemos <strong>tres versiones</strong>.
+          No para vender más caro, sino para que elijas con la información completa.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECCIÓN 4 — Las dos series (antes s3)
   ============================================= -->
   <section class="s3" id="series">
     <div class="s3__inner">
@@ -1242,6 +1723,7 @@
         <h2 class="s3__title">
           <span class="light">Dos series. </span><span class="bold">Una decisión.</span>
         </h2>
+        <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.7;margin-top:20px;max-width:520px;">Dos formas de optimizar tu cultivo, según lo que busques en cada ciclo.</p>
       </div>
 
       <div class="s3__cards">
@@ -1252,44 +1734,24 @@
             <div class="s3__card-top">
               <span class="s3__series-tag">Emerson Series</span>
             </div>
-            <h3 class="s3__card-name">Máximo<br>rendimiento.</h3>
-            <p class="s3__card-desc">
-              Chips con refuerzo en rojos y far-reds que activan el Efecto Emerson,
-              potenciando la fotosíntesis y el desarrollo del cultivo en cada ciclo.
-            </p>
-            <div class="s3__card-para">
-              Para: <span>máxima producción</span>
-            </div>
-            <!-- Espectrograma Emerson Series — picos reales 440 / 656 / 730nm (far-red Emerson) -->
+            <h3 class="s3__card-name">Máxima eficiencia real<br>para potenciar producción.</h3>
+
             <div class="s3__spectrum-wrap">
-              <svg class="s3__spectrum-svg" viewBox="0 0 450 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="emGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%"   stop-color="#5500CC" stop-opacity="0"/>
-                    <stop offset="5%"   stop-color="#5500CC" stop-opacity="0.22"/>
-                    <stop offset="18%"  stop-color="#3355FF" stop-opacity="0.88"/>
-                    <stop offset="27%"  stop-color="#00AAFF" stop-opacity="0.78"/>
-                    <stop offset="40%"  stop-color="#00DD55" stop-opacity="0.82"/>
-                    <stop offset="51%"  stop-color="#EEDD00" stop-opacity="0.92"/>
-                    <stop offset="60%"  stop-color="#FF6600" stop-opacity="0.95"/>
-                    <stop offset="68%"  stop-color="#FF1100" stop-opacity="1"/>
-                    <stop offset="80%"  stop-color="#880000" stop-opacity="0.62"/>
-                    <stop offset="100%" stop-color="#330000" stop-opacity="0.08"/>
-                  </linearGradient>
-                  <filter id="emGlow" x="-5%" y="-20%" width="110%" height="150%">
-                    <feGaussianBlur stdDeviation="5" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
-                </defs>
-                <polygon points="0,155 50,152 75,130 85,64 90,43 95,55 105,88 115,120 125,137 135,141 145,138 160,133 175,120 190,106 205,91 220,79 230,71 240,74 255,82 270,85 285,78 295,57 301,29 304,21 306,15 309,21 315,40 322,71 330,96 342,120 355,130 380,134 395,141 412,147 450,152 450,155"
-                  fill="url(#emGrad)" opacity="0.40" filter="url(#emGlow)"/>
-                <polygon points="0,155 50,152 75,130 85,64 90,43 95,55 105,88 115,120 125,137 135,141 145,138 160,133 175,120 190,106 205,91 220,79 230,71 240,74 255,82 270,85 285,78 295,57 301,29 304,21 306,15 309,21 315,40 322,71 330,96 342,120 355,130 380,134 395,141 412,147 450,152 450,155"
-                  fill="url(#emGrad)" opacity="0.80"/>
-              </svg>
+              <img src="assets/emerson-series-sp.webp" alt="Espectro Emerson Series" class="s3__spectrum-img">
             </div>
-          </div>
-          <div class="s3__card-img-wrap">
-            <img src="assets/producto/CM-800 - 2026/CM-800-ES-png.png" alt="Canopy Master Emerson Series" class="s3__card-img">
+            
+            <p class="s3__card-desc">
+              Buscamos alcanzar la máxima eficiencia y lo logramos. El promedio de 3.2 µmol/J
+              nos coloca en promedios altísimos inclusive a nivel global. Los equipos más
+              eficientes del mundo solo nos superan por 0.3 µmol/J.
+            </p>
+            
+            <ul class="s3__card-bullets">
+              <li>Refuerzos en rojos y far-red que activan el Efecto Emerson</li>
+              <li>Efecto Emerson: potencia fotosíntesis y acelera el desarrollo</li>
+              <li>Hasta 3.2 µmol/J de eficiencia real, bien distribuida</li>
+            </ul>
+            
           </div>
         </div>
 
@@ -1300,45 +1762,21 @@
               <span class="s3__series-tag">Green Series</span>
               <span class="s3__badge-premium">Premium</span>
             </div>
-            <h3 class="s3__card-name">Máxima expresión<br>genética.</h3>
-            <p class="s3__card-desc">
-              Incorpora verdes en el espectro afectando directamente terpenos,
-              pigmentos y penetración lumínica del canopy para la máxima expresión
-              de cada genotipo.
-            </p>
-            <div class="s3__card-para">
-              Para: <span>pheno-hunters y competidores</span>
-            </div>
-            <!-- Espectrograma Green Series — pico verde prominente 530nm + rojo 656nm -->
+            <h3 class="s3__card-name">Nuevo espectro para<br>más terpenos, color y aroma.</h3>
             <div class="s3__spectrum-wrap">
-              <svg class="s3__spectrum-svg" viewBox="0 0 450 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="gsGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%"   stop-color="#5500CC" stop-opacity="0"/>
-                    <stop offset="5%"   stop-color="#5500CC" stop-opacity="0.22"/>
-                    <stop offset="18%"  stop-color="#3355FF" stop-opacity="0.88"/>
-                    <stop offset="27%"  stop-color="#00AAFF" stop-opacity="0.78"/>
-                    <stop offset="40%"  stop-color="#00DD55" stop-opacity="0.92"/>
-                    <stop offset="51%"  stop-color="#EEDD00" stop-opacity="0.92"/>
-                    <stop offset="60%"  stop-color="#FF6600" stop-opacity="0.95"/>
-                    <stop offset="68%"  stop-color="#FF1100" stop-opacity="1"/>
-                    <stop offset="80%"  stop-color="#880000" stop-opacity="0.50"/>
-                    <stop offset="100%" stop-color="#330000" stop-opacity="0.05"/>
-                  </linearGradient>
-                  <filter id="gsGlow" x="-5%" y="-20%" width="110%" height="150%">
-                    <feGaussianBlur stdDeviation="5" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
-                </defs>
-                <polygon points="0,155 50,152 75,130 85,64 90,43 98,64 110,106 122,130 135,134 145,120 155,88 165,60 173,43 178,37 180,36 185,37 195,43 208,46 222,48 232,49 245,51 258,51 270,51 283,43 293,29 301,19 304,17 306,15 309,21 315,40 322,78 330,110 342,130 355,141 370,147 395,151 450,154 450,155"
-                  fill="url(#gsGrad)" opacity="0.40" filter="url(#gsGlow)"/>
-                <polygon points="0,155 50,152 75,130 85,64 90,43 98,64 110,106 122,130 135,134 145,120 155,88 165,60 173,43 178,37 180,36 185,37 195,43 208,46 222,48 232,49 245,51 258,51 270,51 283,43 293,29 301,19 304,17 306,15 309,21 315,40 322,78 330,110 342,130 355,141 370,147 395,151 450,154 450,155"
-                  fill="url(#gsGrad)" opacity="0.80"/>
-              </svg>
+              <img src="assets/green-series-spd.webp" alt="Espectro Green Series" class="s3__spectrum-img">
             </div>
-          </div>
-          <div class="s3__card-img-wrap">
-            <img src="assets/producto/CM-800 - 2026/CM-800-GS-png.png" alt="Canopy Master Green Series" class="s3__card-img">
+            <p class="s3__card-desc">
+              Aplicamos los últimos avances en fotobiología incorporando verdes al espectro
+              generando uno realmente completo. Afecta directamente la expresión
+              genética de las plantas y la penetración lumínica en las zonas bajas del canopy.
+            </p>
+            <ul class="s3__card-bullets">
+              <li>Incorpora verdes al espectro potenciando fotosíntesis</li>
+              <li>Los fotones verdes impulsan el desarrollo de terpenos, pigmentos y características propias de cada genética</li>
+              <li>Ideal para competidores y pheno-hunters que priorizan la investigación de fenotipos o breeding</li>
+            </ul>
+            
           </div>
         </div>
 
@@ -1347,181 +1785,143 @@
   </section>
 
   <!-- =============================================
-       SECCIÓN 4 — Selector de modelos + Wizard
+       SECCIÓN 4 — Configurador Profesional
   ============================================= -->
   <section class="s4" id="modelos">
     <div class="s4__inner">
 
-      <div class="s4__header">
-        <div class="s4__eyebrow">
-          <div class="s4__eyebrow-line"></div>
-          <span class="s4__eyebrow-text">Modelos y potencias</span>
-          <div class="s4__eyebrow-line"></div>
-        </div>
-        <h2 class="s4__title">
-          <span class="light">Encontrá tu </span><span class="bold">equipo ideal.</span>
-        </h2>
-        <div class="s4__tabs">
-          <button class="s4__tab s4__tab--active" id="tabSelector">Ya sé lo que quiero</button>
-          <button class="s4__tab" id="tabWizard">¿No sé cuál elegir?</button>
-        </div>
-      </div>
+      <header class="s4__header">
+        <h2 class="s4__title">Encontrá tu LED ideal</h2>
+        <p class="s4__subtitle">Ajustá los parámetros de tu instalación para recibir una recomendación optimizada.</p>
+      </header>
 
-      <!-- VISTA SELECTOR -->
-      <div class="s4__view" id="viewSelector">
-        <div class="s4__layout">
+      <div class="s4__grid">
 
-          <div class="s4__steps">
-            <div class="s4__step">
-              <p class="s4__step-label"><span>01</span> Versión</p>
-              <div class="s4__step-options">
-                <button class="s4__opt s4__opt--active" data-group="version" data-val="pro">
-                  <span class="s4__opt-title">Canopy Master PRO</span>
-                  <span class="s4__opt-sub">Máxima eficiencia · 3.2 µmol/J</span>
+        <!-- FILTROS -->
+        <div class="s4__filters">
+          <div class="s4__filters-grid">
+
+            <!-- Potencia -->
+            <div class="s4__filter-group s4__filter-group--full">
+              <span class="s4__filter-label">Potencia (W)</span>
+              <div class="s4__btn-group">
+                <button class="s4__btn" data-fkey="potencia" data-fval="200">200W</button>
+                <button class="s4__btn" data-fkey="potencia" data-fval="300">300W</button>
+                <button class="s4__btn s4__btn--active" data-fkey="potencia" data-fval="400">400W</button>
+                <button class="s4__btn" data-fkey="potencia" data-fval="600">600W</button>
+                <button class="s4__btn" data-fkey="potencia" data-fval="800">800W</button>
+              </div>
+            </div>
+
+            <!-- Espectro -->
+            <div class="s4__filter-group">
+              <span class="s4__filter-label">Espectro deseado</span>
+              <div class="s4__spectrum-opts">
+                <button class="s4__spectrum-opt s4__spectrum-opt--active" data-fkey="espectro" data-fval="veg">
+                  <span class="material-symbols-outlined" style="font-size:18px;color:var(--lime-bright);flex-shrink:0;">eco</span>
+                  Vegetativo
                 </button>
-                <button class="s4__opt" data-group="version" data-val="std">
-                  <span class="s4__opt-title">Canopy Master Std</span>
-                  <span class="s4__opt-sub">Mejor precio · 2.9 µmol/J</span>
+                <button class="s4__spectrum-opt" data-fkey="espectro" data-fval="floracion">
+                  <span class="material-symbols-outlined" style="font-size:18px;color:var(--lime-bright);flex-shrink:0;">filter_vintage</span>
+                  Floración
+                </button>
+                <button class="s4__spectrum-opt" data-fkey="espectro" data-fval="completo">
+                  <span class="material-symbols-outlined" style="font-size:18px;color:var(--lime-bright);flex-shrink:0;">all_inclusive</span>
+                  Ciclo Completo
                 </button>
               </div>
             </div>
 
-            <div class="s4__step">
-              <p class="s4__step-label"><span>02</span> Serie</p>
-              <div class="s4__step-options">
-                <button class="s4__opt s4__opt--active" data-group="serie" data-val="emerson">
-                  <span class="s4__opt-title">Emerson Series</span>
-                  <span class="s4__opt-sub">Máxima producción</span>
-                </button>
-                <button class="s4__opt" data-group="serie" data-val="green">
-                  <span class="s4__opt-title">Green Series</span>
-                  <span class="s4__opt-sub">Expresión genética · Premium</span>
-                </button>
+            <!-- Objetivo + Área -->
+            <div class="s4__filter-group">
+              <span class="s4__filter-label">Objetivo del cultivo</span>
+              <div class="s4__select-wrap">
+                <select class="s4__select" id="cfgObjetivo">
+                  <option value="produccion">Producción Comercial</option>
+                  <option value="genetica">Experimentación / Genética</option>
+                </select>
+                <span class="s4__select-arrow material-symbols-outlined">expand_more</span>
+              </div>
+              <span class="s4__filter-label" style="margin-top:26px;">Área de cobertura</span>
+              <div class="s4__coverage-grid">
+                <button class="s4__coverage-btn" data-fkey="area" data-fval="0.8x0.8" data-suggest="200">0.8×0.8 m</button>
+                <button class="s4__coverage-btn" data-fkey="area" data-fval="1x1" data-suggest="200">1×1 m</button>
+                <button class="s4__coverage-btn s4__coverage-btn--active" data-fkey="area" data-fval="1x2" data-suggest="400">1×2 m</button>
+                <button class="s4__coverage-btn" data-fkey="area" data-fval="2x2" data-suggest="600">2×2 m</button>
+                <button class="s4__coverage-btn" data-fkey="area" data-fval="2x4" data-suggest="800">2×4 m</button>
+                <button class="s4__coverage-btn" data-fkey="area" data-fval="sala" data-suggest="800">Sala prof.</button>
               </div>
             </div>
 
-            <div class="s4__step">
-              <p class="s4__step-label"><span>03</span> Potencia</p>
-              <div class="s4__step-options s4__step-options--4">
-                <button class="s4__opt" data-group="potencia" data-val="200">
-                  <span class="s4__opt-title">200W</span>
-                  <span class="s4__opt-sub">1×1 m</span>
-                </button>
-                <button class="s4__opt" data-group="potencia" data-val="400">
-                  <span class="s4__opt-title">400W</span>
-                  <span class="s4__opt-sub">1×2 m</span>
-                </button>
-                <button class="s4__opt s4__opt--active" data-group="potencia" data-val="600">
-                  <span class="s4__opt-title">600W</span>
-                  <span class="s4__opt-sub">2×2 m</span>
-                </button>
-                <button class="s4__opt" data-group="potencia" data-val="800">
-                  <span class="s4__opt-title">800W</span>
-                  <span class="s4__opt-sub">2×4 m</span>
-                </button>
+            <!-- Eficiencia mínima -->
+            <div class="s4__filter-group s4__filter-group--full">
+              <div class="s4__slider-header">
+                <span class="s4__filter-label" style="margin-bottom:0;">Eficiencia mínima</span>
+                <span class="s4__slider-value" id="cfgEffLabel">&gt;3.2 µmol/J · PRO</span>
+              </div>
+              <input class="s4__slider" type="range" min="0" max="2" step="1" value="2" id="cfgEff">
+              <div class="s4__slider-labels">
+                <span class="s4__slider-lbl">Core · Eficiencia Profesional</span>
+                <span class="s4__slider-lbl">Std · Alta Eficiencia</span>
+                <span class="s4__slider-lbl">PRO · Máxima Eficiencia </span>
               </div>
             </div>
+
+            <!-- Presupuesto -->
+            <div class="s4__filter-group s4__filter-group--full">
+              <span class="s4__filter-label">Presupuesto máximo</span>
+              <div class="s4__budget-pills">
+                <button class="s4__budget-pill" data-fkey="budget" data-fval="530000">Hasta $530k</button>
+                <button class="s4__budget-pill s4__budget-pill--active" data-fkey="budget" data-fval="1000000">Hasta $1M</button>
+                <button class="s4__budget-pill" data-fkey="budget" data-fval="9999999">Sin límite</button>
+              </div>
+            </div>
+
           </div>
-
-          <div class="s4__preview">
-            <div class="s4__preview-img-wrap">
-              <div class="s4__preview-glow"></div>
-              <img id="previewImg" class="s4__preview-img"
-                src="assets/producto/CM-600 - 2026/CM-600-ES-png.png" alt="Canopy Master">
-            </div>
-            <div class="s4__price-card">
-              <div class="s4__price-model" id="previewModel">Canopy Master PRO 600W · Emerson</div>
-              <div class="s4__price-row">
-                <span class="s4__price-list" id="previewPriceList">$ 590.000</span>
-                <span class="s4__price-preventa" id="previewPriceSale">$ 442.500</span>
-              </div>
-              <span class="s4__price-badge">25% OFF · Pre-venta hasta Junio 2026</span>
-              <div class="s4__price-ctas">
-                <a id="ctaMP" href="#" class="s4__cta-primary">Comprar con MercadoPago</a>
-                <a id="ctaWA" href="#" target="_blank" class="s4__cta-secondary">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.859L.057 23.428a.5.5 0 00.611.637l5.763-1.511A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.003-1.371l-.36-.213-3.716.975.992-3.617-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-                  </svg>
-                  Consultar por WhatsApp
-                </a>
-              </div>
-              <p class="s4__price-note">✓ Pago al contado · Transferencia, MercadoPago débito o efectivo en Beccar</p>
-            </div>
-          </div>
-
         </div>
-      </div>
 
-      <!-- VISTA WIZARD -->
-      <div class="s4__view s4__view--hidden" id="viewWizard">
-        <div class="s4__wizard">
-          <div class="s4__wiz-progress">
-            <div class="s4__wiz-progress-bar" id="wizProgress"></div>
+        <!-- RECOMMENDATION CARD -->
+        <aside class="s4__rec">
+          <div class="s4__rec-label">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;font-size:16px;">auto_awesome</span>
+            Recomendación ideal
           </div>
-          <div class="s4__wiz-steps">
-
-            <div class="s4__wiz-step s4__wiz-step--active" data-wstep="1">
-              <p class="s4__wiz-q">¿Dónde vas a instalar el equipo?</p>
-              <div class="s4__wiz-opts">
-                <button class="s4__wiz-opt" data-wkey="space" data-wval="1x1">1×1 m</button>
-                <button class="s4__wiz-opt" data-wkey="space" data-wval="1x2">1×2 m</button>
-                <button class="s4__wiz-opt" data-wkey="space" data-wval="2x2">2×2 m</button>
-                <button class="s4__wiz-opt" data-wkey="space" data-wval="2x4">2×4 m</button>
-                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="space" data-wval="sala">Sala profesional</button>
+          <div class="s4__rec-card">
+            <div class="s4__rec-img-wrap">
+              <img id="cfgImg" class="s4__rec-img"
+                src="assets/producto/CM-400 - 2026/CM-400-ES-png.png" alt="Canopy Master">
+              <span class="s4__rec-series-tag" id="cfgSeriesTag">PRO · Emerson</span>
+            </div>
+            <div class="s4__rec-body">
+              <div class="s4__rec-name-row">
+                <h3 class="s4__rec-name" id="cfgName">Canopy Master PRO 400W<br>Emerson Series</h3>
+                <span class="s4__rec-price" id="cfgPrice">$ —</span>
               </div>
-              <div class="s4__wiz-sub" id="wizSubSala">
-                <p class="s4__wiz-q s4__wiz-q--sub">¿Cuántos equipos necesitás?</p>
-                <div class="s4__wiz-opts">
-                  <button class="s4__wiz-opt" data-wkey="cantidad" data-wval="6-12">6 a 12</button>
-                  <button class="s4__wiz-opt" data-wkey="cantidad" data-wval="12-24">12 a 24</button>
-                  <button class="s4__wiz-opt" data-wkey="cantidad" data-wval="+24">+24 equipos</button>
+              <div class="s4__rec-specs">
+                <div class="s4__rec-spec">
+                  <span class="material-symbols-outlined">bolt</span>
+                  <span id="cfgUmols">1.280 µmol/s</span>
+                </div>
+                <div class="s4__rec-spec">
+                  <span class="material-symbols-outlined">energy_savings_leaf</span>
+                  <span id="cfgEff2">3.2 µmol/J</span>
                 </div>
               </div>
+              <a id="cfgCTAWA" href="#" target="_blank" class="s4__rec-cta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.859L.057 23.428a.5.5 0 00.611.637l5.763-1.511A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.003-1.371l-.36-.213-3.716.975.992-3.617-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+                </svg>
+                Consultar por WhatsApp
+              </a>
+              <a id="cfgCTAMP" href="#" class="s4__rec-cta s4__rec-cta--secondary">
+                Comprar con MercadoPago
+              </a>
             </div>
-
-            <div class="s4__wiz-step" data-wstep="2">
-              <p class="s4__wiz-q">¿Qué buscás principalmente?</p>
-              <div class="s4__wiz-opts">
-                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="objetivo" data-wval="produccion">Máximo rendimiento por ciclo</button>
-                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="objetivo" data-wval="genetica">Expresión genética / competencia</button>
-              </div>
-            </div>
-
-            <div class="s4__wiz-step" data-wstep="3">
-              <p class="s4__wiz-q">¿Qué versión preferís?</p>
-              <div class="s4__wiz-opts">
-                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="presupuesto" data-wval="precio">
-                  Mejor precio <span>(Canopy Master Std)</span>
-                </button>
-                <button class="s4__wiz-opt s4__wiz-opt--wide" data-wkey="presupuesto" data-wval="eficiencia">
-                  Máxima eficiencia <span>(Canopy Master PRO)</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="s4__wiz-step" data-wstep="lead">
-              <p class="s4__wiz-q">Guardá tu recomendación y recibí un cupón adicional</p>
-              <p class="s4__wiz-q--sub" style="font-size:13px;color:rgba(255,255,255,0.38);margin-bottom:28px;">Opcional — podés saltearlo</p>
-              <form class="s4__lead-form" id="wizLeadForm">
-                <input type="email" class="s4__lead-input" placeholder="tu@email.com" id="wizEmail">
-                <button type="submit" class="s4__lead-submit">Ver mi recomendación →</button>
-              </form>
-              <button class="s4__lead-skip" id="wizSkip">Saltar este paso</button>
-              <iframe name="hiddenFrame" style="display:none;"></iframe>
-            </div>
-
-            <div class="s4__wiz-step" data-wstep="result">
-              <p class="s4__wiz-result-label">Tu recomendación</p>
-              <div class="s4__result-card" id="wizResult"></div>
-              <div class="s4__result-alt" id="wizResultAlt"></div>
-              <button class="s4__wiz-restart" id="wizRestart">← Volver a empezar</button>
-            </div>
-
           </div>
-        </div>
-      </div>
+          <p class="s4__rec-note">Pre-venta activa · Precios sujetos a stock y promociones vigentes.</p>
+        </aside>
 
+      </div>
     </div>
   </section>
 
@@ -1542,259 +1942,136 @@
       });
     }, { threshold: 0.15 });
 
-    document.querySelectorAll('.s2, .s3, .s4').forEach(el => scrollObserver.observe(el));
+    document.querySelectorAll('.s2, .sEdu, .s3, .s4').forEach(el => scrollObserver.observe(el));
 
     // =============================================
-    // SECCIÓN 4 — CONFIG
+    // SECCIÓN 4 — CONFIGURADOR
     // =============================================
     const WA_NUMBER = '5491100000000'; // ← reemplazar con número real
     const MP_URL    = '#';             // ← reemplazar con link de pago MP
 
     const PRICES = {
-      pro: {
-        emerson: { 200:250000, 400:420000, 600:590000, 800:760000 },
-        green:   { 200:288000, 400:483000, 600:679000, 800:874000 }
-      },
-      std: {
-        emerson: { 200:160000, 400:280000, 600:400000, 800:520000 },
-        green:   { 200:184000, 400:322000, 600:460000, 800:598000 }
-      }
+      pro:  { emerson: { 200:250000, 300:330000, 400:420000, 600:590000, 800:760000 },
+               green:   { 200:288000, 300:380000, 400:483000, 600:679000, 800:874000 } },
+      std:  { emerson: { 200:160000, 300:210000, 400:280000, 600:400000, 800:520000 },
+               green:   { 200:184000, 300:242000, 400:322000, 600:460000, 800:598000 } },
+      core: { emerson: { 200:120000, 300:155000, 400:210000, 600:300000, 800:390000 },
+               green:   { 200:138000, 300:178000, 400:242000, 600:345000, 800:449000 } }
     };
 
-    const LABEL_VERSION   = { pro: 'Canopy Master PRO', std: 'Canopy Master Std' };
-    const LABEL_SERIE     = { emerson: 'Emerson Series', green: 'Green Series' };
-    const LABEL_SERIE_SFX = { emerson: 'ES', green: 'GS' };
+    const UMOLS = {
+      pro:  { 200:640,  300:960,  400:1280, 600:1920, 800:2560 },
+      std:  { 200:560,  300:840,  400:1120, 600:1680, 800:2240 },
+      core: { 200:500,  300:750,  400:1000, 600:1500, 800:2000 }
+    };
+
+    const DISCOUNT   = { pro:0.75, std:0.80, core:0.85 };
+    const EFF_MAP    = { 0:'core', 1:'std', 2:'pro' };
+    const EFF_LABELS = { core:'>2.5 µmol/J · Core', std:'>2.9 µmol/J · Std', pro:'>3.2 µmol/J · PRO' };
+    const VER_LABEL  = { pro:'PRO', std:'Std', core:'Core' };
+    const SERIE_LBL  = { emerson:'Emerson Series', green:'Green Series' };
+    const SERIE_SFX  = { emerson:'ES', green:'GS' };
 
     function fmt(n) { return '$ ' + n.toLocaleString('es-AR'); }
 
-    function imgSrc(version, serie, potencia) {
-      return `assets/producto/CM-${potencia} - 2026/CM-${potencia}-${LABEL_SERIE_SFX[serie]}-png.png`;
-    }
+    const cfg = { potencia:'400', espectro:'veg', objetivo:'produccion', area:'1x2', eff:2, budget:1000000 };
 
-    // =============================================
-    // SELECTOR
-    // =============================================
-    const sel = { version:'pro', serie:'emerson', potencia:'600' };
-
-    function updatePreview() {
-      const { version, serie, potencia } = sel;
-      const listPrice = PRICES[version][serie][+potencia];
-      const salePrice = Math.round(listPrice * 0.75);
-
-      document.getElementById('previewImg').src = imgSrc(version, serie, potencia);
-      document.getElementById('previewModel').textContent =
-        `${LABEL_VERSION[version]} ${potencia}W · ${LABEL_SERIE[serie]}`;
-      document.getElementById('previewPriceList').textContent = fmt(listPrice);
-      document.getElementById('previewPriceSale').textContent = fmt(salePrice);
-
-      const msg = encodeURIComponent(
-        `Hola, quiero información sobre el ${LABEL_VERSION[version]} ${potencia}W ${LABEL_SERIE[serie]} (pre-venta)`
-      );
-      document.getElementById('ctaWA').href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
-      document.getElementById('ctaMP').href = MP_URL;
-    }
-
-    document.querySelectorAll('.s4__opt').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const group = btn.dataset.group;
-        document.querySelectorAll(`.s4__opt[data-group="${group}"]`)
-          .forEach(b => b.classList.remove('s4__opt--active'));
-        btn.classList.add('s4__opt--active');
-        sel[group] = btn.dataset.val;
-        updatePreview();
-      });
-    });
-
-    updatePreview();
-
-    // =============================================
-    // TAB TOGGLE
-    // =============================================
-    document.getElementById('tabSelector').addEventListener('click', () => {
-      document.getElementById('tabSelector').classList.add('s4__tab--active');
-      document.getElementById('tabWizard').classList.remove('s4__tab--active');
-      document.getElementById('viewSelector').classList.remove('s4__view--hidden');
-      document.getElementById('viewWizard').classList.add('s4__view--hidden');
-    });
-
-    document.getElementById('tabWizard').addEventListener('click', () => {
-      document.getElementById('tabWizard').classList.add('s4__tab--active');
-      document.getElementById('tabSelector').classList.remove('s4__tab--active');
-      document.getElementById('viewWizard').classList.remove('s4__view--hidden');
-      document.getElementById('viewSelector').classList.add('s4__view--hidden');
-    });
-
-    // =============================================
-    // WIZARD
-    // =============================================
-    const wiz = { space:'', cantidad:'', objetivo:'', presupuesto:'' };
-    const TOTAL_STEPS = 3;
-
-    function wizShowStep(stepId) {
-      document.querySelectorAll('.s4__wiz-step').forEach(s => s.classList.remove('s4__wiz-step--active'));
-      const target = document.querySelector(`.s4__wiz-step[data-wstep="${stepId}"]`);
-      if (target) target.classList.add('s4__wiz-step--active');
-      const pct = typeof stepId === 'number'
-        ? Math.round((stepId / TOTAL_STEPS) * 100) + '%'
-        : stepId === 'lead'   ? '90%'
-        : stepId === 'result' ? '100%' : '0%';
-      document.getElementById('wizProgress').style.width = pct;
-    }
-
-    document.querySelectorAll('.s4__wiz-opt[data-wkey="space"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.s4__wiz-opt[data-wkey="space"]')
-          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
-        btn.classList.add('s4__wiz-opt--selected');
-        wiz.space = btn.dataset.wval;
-        if (wiz.space === 'sala') {
-          document.getElementById('wizSubSala').style.display = 'block';
-        } else {
-          document.getElementById('wizSubSala').style.display = 'none';
-          setTimeout(() => wizShowStep(2), 280);
-        }
-      });
-    });
-
-    document.querySelectorAll('.s4__wiz-opt[data-wkey="cantidad"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.s4__wiz-opt[data-wkey="cantidad"]')
-          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
-        btn.classList.add('s4__wiz-opt--selected');
-        wiz.cantidad = btn.dataset.wval;
-        if (wiz.cantidad === '+24') { wizShowStep('result'); renderWizResult(true); return; }
-        setTimeout(() => wizShowStep(2), 280);
-      });
-    });
-
-    document.querySelectorAll('.s4__wiz-opt[data-wkey="objetivo"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.s4__wiz-opt[data-wkey="objetivo"]')
-          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
-        btn.classList.add('s4__wiz-opt--selected');
-        wiz.objetivo = btn.dataset.wval;
-        setTimeout(() => wizShowStep(3), 280);
-      });
-    });
-
-    document.querySelectorAll('.s4__wiz-opt[data-wkey="presupuesto"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.s4__wiz-opt[data-wkey="presupuesto"]')
-          .forEach(b => b.classList.remove('s4__wiz-opt--selected'));
-        btn.classList.add('s4__wiz-opt--selected');
-        wiz.presupuesto = btn.dataset.wval;
-        setTimeout(() => wizShowStep('lead'), 280);
-      });
-    });
-
-    document.getElementById('wizLeadForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const email = document.getElementById('wizEmail').value.trim();
-      if (email) submitLead(email);
-      wizShowStep('result');
-      renderWizResult(false);
-    });
-
-    document.getElementById('wizSkip').addEventListener('click', () => {
-      wizShowStep('result');
-      renderWizResult(false);
-    });
-
-    function submitLead(email) {
-      const FORM_ID  = 'YOUR_GOOGLE_FORM_ID';
-      const FIELD_ID = 'entry.000000000';
-      const form = document.createElement('form');
-      form.action = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
-      form.method = 'POST';
-      form.target = 'hiddenFrame';
-      const input = document.createElement('input');
-      input.type = 'hidden'; input.name = FIELD_ID;
-      input.value = `${email} | space:${wiz.space} | objetivo:${wiz.objetivo} | presupuesto:${wiz.presupuesto}`;
-      form.appendChild(input);
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
-    }
-
-    function calcRecommendation() {
-      const spaceToPotencia = { '1x1':200, '1x2':400, '2x2':600, '2x4':800, 'sala':800 };
-      return {
-        version:  wiz.presupuesto === 'eficiencia' ? 'pro' : 'std',
-        serie:    wiz.objetivo === 'genetica' ? 'green' : 'emerson',
-        potencia: spaceToPotencia[wiz.space] || 600
-      };
-    }
-
-    function renderWizResult(isSala24) {
-      const resultEl = document.getElementById('wizResult');
-      const altEl    = document.getElementById('wizResultAlt');
-
-      if (isSala24) {
-        resultEl.innerHTML = `
-          <div class="s4__result-sala">
-            <p class="s4__result-sala-msg">Estás armando una sala de <strong>+24 equipos</strong>.<br>
-            Te asignamos un asesor especializado para cotizar tu proyecto completo.</p>
-            <a class="s4__cta-primary" style="margin-top:24px;display:inline-block;"
-               href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola, quiero cotizar una sala de +24 equipos Canopy Master')}"
-               target="_blank">Quiero cotizar mi sala →</a>
-          </div>`;
-        altEl.innerHTML = '';
-        return;
+    function getRecommendation() {
+      const version = EFF_MAP[cfg.eff];
+      const serie   = cfg.objetivo === 'genetica' ? 'green' : 'emerson';
+      const potencia = parseInt(cfg.potencia);
+      // Ajustar versión si excede el presupuesto
+      const versions = ['pro','std','core'];
+      let finalVersion = version;
+      for (const v of versions.slice(versions.indexOf(version))) {
+        const lp = PRICES[v]?.[serie]?.[potencia];
+        if (lp && Math.round(lp * DISCOUNT[v]) <= cfg.budget) { finalVersion = v; break; }
       }
-
-      const rec       = calcRecommendation();
-      const listPrice = PRICES[rec.version][rec.serie][rec.potencia];
-      const salePrice = Math.round(listPrice * 0.75);
-      const imgUrl    = imgSrc(rec.version, rec.serie, rec.potencia);
-      const label     = `${LABEL_VERSION[rec.version]} ${rec.potencia}W · ${LABEL_SERIE[rec.serie]}`;
-      const msg       = encodeURIComponent(`Hola, el wizard me recomendó el ${label} (pre-venta). Quiero más información.`);
-
-      resultEl.innerHTML = `
-        <div class="s4__result-inner">
-          <img src="${imgUrl}" alt="${label}" class="s4__result-img">
-          <div class="s4__result-info">
-            <p class="s4__result-name">${label}</p>
-            <div class="s4__price-row" style="margin:10px 0;">
-              <span class="s4__price-list">${fmt(listPrice)}</span>
-              <span class="s4__price-preventa">${fmt(salePrice)}</span>
-            </div>
-            <span class="s4__price-badge">25% OFF · Pre-venta</span>
-            <div class="s4__price-ctas" style="margin-top:20px;">
-              <a href="${MP_URL}" class="s4__cta-primary">Comprar con MercadoPago</a>
-              <a href="https://wa.me/${WA_NUMBER}?text=${msg}" target="_blank" class="s4__cta-secondary">Consultar por WhatsApp</a>
-            </div>
-          </div>
-        </div>`;
-
-      const altSerie   = rec.serie === 'emerson' ? 'green' : 'emerson';
-      const altList    = PRICES[rec.version][altSerie][rec.potencia];
-      const altSale    = Math.round(altList * 0.75);
-      const altLabel   = `${LABEL_VERSION[rec.version]} ${rec.potencia}W · ${LABEL_SERIE[altSerie]}`;
-      const altImgUrl  = imgSrc(rec.version, altSerie, rec.potencia);
-      const altMsg     = encodeURIComponent(`Hola, me interesa el ${altLabel} (pre-venta).`);
-
-      altEl.innerHTML = `
-        <p class="s4__result-alt-title">También podrías considerar</p>
-        <div class="s4__result-alt-card">
-          <img src="${altImgUrl}" alt="${altLabel}" class="s4__result-alt-img">
-          <div>
-            <p class="s4__result-alt-name">${altLabel}</p>
-            <p class="s4__result-alt-price">${fmt(altSale)} <span>(con 25% OFF)</span></p>
-            <a href="https://wa.me/${WA_NUMBER}?text=${altMsg}" target="_blank"
-               class="s4__cta-secondary" style="margin-top:12px;display:inline-flex;font-size:12px;">Consultar</a>
-          </div>
-        </div>`;
+      return { version: finalVersion, serie, potencia };
     }
 
-    document.getElementById('wizRestart').addEventListener('click', () => {
-      Object.keys(wiz).forEach(k => wiz[k] = '');
-      document.querySelectorAll('.s4__wiz-opt').forEach(b => b.classList.remove('s4__wiz-opt--selected'));
-      document.getElementById('wizSubSala').style.display = 'none';
-      document.getElementById('wizEmail').value = '';
-      wizShowStep(1);
+    function updateCfgRec() {
+      const { version, serie, potencia } = getRecommendation();
+      const listPrice = PRICES[version]?.[serie]?.[potencia];
+      if (!listPrice) return;
+      const salePrice = Math.round(listPrice * DISCOUNT[version]);
+      const imgPath   = `assets/producto/CM-${potencia} - 2026/CM-${potencia}-${SERIE_SFX[serie]}-png.png`;
+      const fullLabel = `Canopy Master ${VER_LABEL[version]} ${potencia}W`;
+      const waMsg     = encodeURIComponent(`Hola, el configurador me recomendó el ${fullLabel} ${SERIE_LBL[serie]} (pre-venta). Quiero más información.`);
+
+      const img = document.getElementById('cfgImg');
+      img.classList.add('swapping');
+      setTimeout(() => { img.src = imgPath; img.classList.remove('swapping'); }, 220);
+
+      document.getElementById('cfgSeriesTag').textContent = `${VER_LABEL[version]} · ${serie === 'emerson' ? 'Emerson' : 'Green'}`;
+      document.getElementById('cfgName').innerHTML        = `${fullLabel}<br>${SERIE_LBL[serie]}`;
+      document.getElementById('cfgPrice').textContent     = fmt(salePrice);
+      document.getElementById('cfgUmols').textContent     = `${(UMOLS[version][potencia]||'—').toLocaleString('es-AR')} µmol/s`;
+      document.getElementById('cfgEff2').textContent      = EFF_LABELS[version].split(' · ')[0];
+      document.getElementById('cfgCTAWA').href            = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+      document.getElementById('cfgCTAMP').href            = MP_URL;
+    }
+
+    // Potencia
+    document.querySelectorAll('[data-fkey="potencia"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('s4__btn--active'));
+        btn.classList.add('s4__btn--active');
+        cfg.potencia = btn.dataset.fval;
+        updateCfgRec();
+      });
     });
 
-    document.getElementById('wizSubSala').style.display = 'none';
+    // Espectro
+    document.querySelectorAll('[data-fkey="espectro"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="espectro"]').forEach(b => b.classList.remove('s4__spectrum-opt--active'));
+        btn.classList.add('s4__spectrum-opt--active');
+        cfg.espectro = btn.dataset.fval;
+        updateCfgRec();
+      });
+    });
+
+    // Objetivo
+    document.getElementById('cfgObjetivo').addEventListener('change', e => {
+      cfg.objetivo = e.target.value;
+      updateCfgRec();
+    });
+
+    // Área — sugiere potencia
+    document.querySelectorAll('[data-fkey="area"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="area"]').forEach(b => b.classList.remove('s4__coverage-btn--active'));
+        btn.classList.add('s4__coverage-btn--active');
+        cfg.area = btn.dataset.fval;
+        const suggested = btn.dataset.suggest;
+        if (suggested) {
+          document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('s4__btn--active'));
+          const pw = document.querySelector(`[data-fkey="potencia"][data-fval="${suggested}"]`);
+          if (pw) { pw.classList.add('s4__btn--active'); cfg.potencia = suggested; }
+        }
+        updateCfgRec();
+      });
+    });
+
+    // Slider eficiencia
+    document.getElementById('cfgEff').addEventListener('input', e => {
+      cfg.eff = parseInt(e.target.value);
+      document.getElementById('cfgEffLabel').textContent = EFF_LABELS[EFF_MAP[cfg.eff]];
+      updateCfgRec();
+    });
+
+    // Budget
+    document.querySelectorAll('[data-fkey="budget"]').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="budget"]').forEach(p => p.classList.remove('s4__budget-pill--active'));
+        pill.classList.add('s4__budget-pill--active');
+        cfg.budget = parseInt(pill.dataset.fval);
+        updateCfgRec();
+      });
+    });
+
+    updateCfgRec();
   </script>
 
 </body>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encuentra tu Canopy Master Ideal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F7F7F7;
+      color: #222222;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Tokens ── */
+    :root {
+      --primary:        #FF5A5F;
+      --primary-hover:  #E04E52;
+      --secondary:      #00A699;
+      --neutral:        #767676;
+      --bg:             #FFFFFF;
+      --surface:        #F7F7F7;
+      --text-primary:   #222222;
+      --text-secondary: #717171;
+      --border:         #DDDDDD;
+      --success:        #008A05;
+      --warning:        #E07912;
+      --error:          #C13515;
+      --shadow-1:       0 1px 2px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
+      --shadow-2:       0 2px 4px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.12);
+      --radius-sm:      4px;
+      --radius-md:      8px;
+      --radius-lg:      12px;
+      --radius-xl:      16px;
+      --radius-pill:    9999px;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-header .container {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .logo span { color: var(--text-primary); }
+
+    /* ── Hero ── */
+    .hero {
+      background: #fff;
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    /* ── Main layout ── */
+    .wizard-layout {
+      padding: 40px 0 80px;
+    }
+    .wizard-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    /* ── Hub tiles ── */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tile {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      cursor: pointer;
+      transition: box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+      user-select: none;
+      position: relative;
+    }
+    .tile:hover {
+      box-shadow: var(--shadow-2);
+      border-color: #bbb;
+      transform: translateY(-1px);
+    }
+    .tile.done {
+      border-color: var(--primary);
+      background: #FFF5F5;
+    }
+    .tile.active {
+      border: 2px solid var(--primary);
+      box-shadow: var(--shadow-2);
+    }
+
+    .tile-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .tile-name {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .tile.done .tile-name { color: var(--primary); }
+    .tile.active .tile-name { color: var(--primary); }
+
+    .tile-val {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .tile.done .tile-val { color: #222; }
+
+    .tile-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .tile-edit {
+      font-size: 11px;
+      color: var(--primary);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .tile-check {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .tile.done .tile-check { display: flex; }
+    .tile-check svg { width: 11px; height: 11px; stroke: #fff; stroke-width: 2.5; fill: none; }
+
+    /* ── Panel ── */
+    .panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      margin-bottom: 16px;
+      display: none;
+      box-shadow: var(--shadow-2);
+      animation: slideDown 180ms ease;
+    }
+    .panel.open { display: block; }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-q {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .panel-sub {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* ── Option grids ── */
+    .opts {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .opts.col2 { grid-template-columns: 1fr 1fr; }
+    .opts.col3 { grid-template-columns: repeat(3, 1fr); }
+    .opts.col5 { grid-template-columns: repeat(5, 1fr); }
+
+    .opt {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+      background: #fff;
+    }
+    .opt:hover {
+      border-color: #aaa;
+      box-shadow: var(--shadow-1);
+    }
+    .opt.sel {
+      border: 2px solid var(--primary);
+      background: #FFF5F5;
+    }
+    .opt-icon { font-size: 24px; margin-bottom: 6px; display: block; }
+    .opt-lbl {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .opt.sel .opt-lbl { color: var(--primary); }
+    .opt-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 3px;
+    }
+
+    /* ── Slider ── */
+    .slider-display {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .slider-wrap { margin-bottom: 8px; }
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--border);
+      border-radius: var(--radius-pill);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid #fff;
+      box-shadow: var(--shadow-2);
+      cursor: pointer;
+      transition: transform 150ms ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid #fff;
+      box-shadow: var(--shadow-2);
+      cursor: pointer;
+    }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    /* ── Panel actions ── */
+    .panel-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .btn-clear {
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .btn-clear:hover { color: var(--text-primary); }
+    .btn-apply {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 12px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 150ms ease;
+      min-height: 48px;
+    }
+    .btn-apply:hover { background: var(--primary-hover); }
+
+    /* ── Results panel (sticky sidebar) ── */
+    .results-panel {
+      position: sticky;
+      top: 96px;
+    }
+    .results-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-1);
+    }
+    .results-header {
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .results-count {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .results-hint {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .results-list { padding: 12px; }
+
+    .prod-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      margin-bottom: 10px;
+      transition: box-shadow 180ms ease, transform 180ms ease;
+      cursor: pointer;
+    }
+    .prod-card:last-child { margin-bottom: 0; }
+    .prod-card:hover {
+      box-shadow: var(--shadow-2);
+      transform: translateY(-1px);
+    }
+    .prod-card.top {
+      border-color: var(--primary);
+      background: #FFF5F5;
+    }
+
+    .prod-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: var(--primary);
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .prod-name {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .prod-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .prod-price strong {
+      color: var(--text-primary);
+      font-size: 15px;
+    }
+    .prod-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .prod-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: #F7F7F7;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .prod-tag.teal {
+      background: #E6F9F8;
+      color: #007A70;
+      border-color: #9FE0DA;
+    }
+
+    .results-more {
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    .empty-state {
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .empty-icon { font-size: 36px; margin-bottom: 12px; }
+    .empty-title {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .empty-sub { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+    .no-filters {
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .no-filters-icon { font-size: 40px; margin-bottom: 12px; }
+    .no-filters-title {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .no-filters-sub { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── Active filters summary (mobile) ── */
+    .filters-summary {
+      display: none;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--primary);
+      background: #FFF5F5;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+    }
+    .filter-chip-x {
+      cursor: pointer;
+      opacity: 0.6;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .filter-chip-x:hover { opacity: 1; }
+
+    /* ── Mobile results accordion ── */
+    .mobile-results {
+      display: none;
+      margin-top: 16px;
+    }
+    .mobile-results-toggle {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 150ms;
+      min-height: 48px;
+    }
+    .mobile-results-toggle:hover { background: var(--primary-hover); }
+    .mobile-results-body {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      display: none;
+    }
+    .mobile-results-body.open { display: block; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .hero { padding: 36px 0 32px; }
+      .hero-title { font-size: 28px; }
+      .wizard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .results-panel { position: static; display: none; }
+      .mobile-results { display: block; }
+      .hub-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .opts.col3 { grid-template-columns: 1fr 1fr; }
+      .opts.col5 { grid-template-columns: repeat(3, 1fr); }
+      .panel { padding: 18px; }
+      .panel-q { font-size: 18px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .hero-title { font-size: 24px; }
+      .hero-sub { font-size: 14px; }
+      .hub-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .tile { padding: 12px; }
+      .tile-icon { font-size: 18px; margin-bottom: 6px; }
+      .opts.col2 { grid-template-columns: 1fr; }
+      .opts.col3 { grid-template-columns: 1fr 1fr; }
+      .opts.col5 { grid-template-columns: repeat(2, 1fr); }
+      .panel-q { font-size: 17px; }
+      .slider-display { font-size: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="#">Canopy<span>Master</span></a>
+      <span style="font-size:13px;color:var(--text-secondary);font-weight:500;">Preventa exclusiva — 20% OFF</span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Herramienta de selección</p>
+      <h1 class="hero-title">Encuentra tu Canopy Master Ideal</h1>
+      <p class="hero-sub">Activá los filtros que te importan, en el orden que prefieras. Los resultados se actualizan al instante.</p>
+    </div>
+  </section>
+
+  <!-- Wizard -->
+  <section class="wizard-layout">
+    <div class="container">
+
+      <!-- Mobile: filtros activos -->
+      <div class="filters-summary" id="filters-summary"></div>
+
+      <div class="wizard-grid">
+
+        <!-- Columna izquierda: Hub + Panels -->
+        <div>
+          <p class="section-label">¿Por dónde querés empezar?</p>
+
+          <!-- Hub tiles -->
+          <div class="hub-grid">
+
+            <div class="tile" id="tile-precio" onclick="openPanel('precio')">
+              <span class="tile-icon">💰</span>
+              <div class="tile-name">Precio</div>
+              <div class="tile-val" id="tv-precio" style="display:none"></div>
+              <div class="tile-hint" id="th-precio">Tocá para filtrar</div>
+              <div class="tile-edit" id="te-precio" style="display:none">Editar →</div>
+              <div class="tile-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,9 11,1"/></svg></div>
+            </div>
+
+            <div class="tile" id="tile-potencia" onclick="openPanel('potencia')">
+              <span class="tile-icon">⚡</span>
+              <div class="tile-name">Potencia</div>
+              <div class="tile-val" id="tv-potencia" style="display:none"></div>
+              <div class="tile-hint" id="th-potencia">Tocá para filtrar</div>
+              <div class="tile-edit" id="te-potencia" style="display:none">Editar →</div>
+              <div class="tile-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,9 11,1"/></svg></div>
+            </div>
+
+            <div class="tile" id="tile-espectro" onclick="openPanel('espectro')">
+              <span class="tile-icon">🌈</span>
+              <div class="tile-name">Espectro</div>
+              <div class="tile-val" id="tv-espectro" style="display:none"></div>
+              <div class="tile-hint" id="th-espectro">Tocá para filtrar</div>
+              <div class="tile-edit" id="te-espectro" style="display:none">Editar →</div>
+              <div class="tile-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,9 11,1"/></svg></div>
+            </div>
+
+            <div class="tile" id="tile-objetivo" onclick="openPanel('objetivo')">
+              <span class="tile-icon">🎯</span>
+              <div class="tile-name">Objetivo</div>
+              <div class="tile-val" id="tv-objetivo" style="display:none"></div>
+              <div class="tile-hint" id="th-objetivo">Tocá para filtrar</div>
+              <div class="tile-edit" id="te-objetivo" style="display:none">Editar →</div>
+              <div class="tile-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,9 11,1"/></svg></div>
+            </div>
+
+            <div class="tile" id="tile-area" onclick="openPanel('area')">
+              <span class="tile-icon">📐</span>
+              <div class="tile-name">Área</div>
+              <div class="tile-val" id="tv-area" style="display:none"></div>
+              <div class="tile-hint" id="th-area">Tocá para filtrar</div>
+              <div class="tile-edit" id="te-area" style="display:none">Editar →</div>
+              <div class="tile-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,9 11,1"/></svg></div>
+            </div>
+
+            <div class="tile" id="tile-eficiencia" onclick="openPanel('eficiencia')">
+              <span class="tile-icon">📊</span>
+              <div class="tile-name">Eficiencia</div>
+              <div class="tile-val" id="tv-eficiencia" style="display:none"></div>
+              <div class="tile-hint" id="th-eficiencia">Tocá para filtrar</div>
+              <div class="tile-edit" id="te-eficiencia" style="display:none">Editar →</div>
+              <div class="tile-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,9 11,1"/></svg></div>
+            </div>
+
+          </div><!-- /hub-grid -->
+
+          <!-- ── Panels ── -->
+
+          <!-- Precio -->
+          <div class="panel" id="panel-precio">
+            <p class="panel-q">¿Cuál es tu presupuesto máximo?</p>
+            <p class="panel-sub">El precio preventa ya incluye 20% de descuento sobre lista.</p>
+            <div class="slider-display" id="precio-display">$1.000.000</div>
+            <div class="slider-wrap">
+              <input type="range" id="slider-precio" min="0" max="2" step="1" value="1"
+                     oninput="onPrecioInput(this.value)" />
+              <div class="slider-labels">
+                <span>$530.000</span><span>$1.000.000</span><span>$1.600.000</span>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn-clear" onclick="clearFilter('precio')">Quitar filtro</button>
+              <button class="btn-apply" onclick="applyFilter('precio')">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Potencia -->
+          <div class="panel" id="panel-potencia">
+            <p class="panel-q">¿Cuánta potencia necesitás?</p>
+            <p class="panel-sub">Mayor potencia = mayor cobertura y producción de luz.</p>
+            <div class="opts col5" id="opts-potencia">
+              <div class="opt" data-val="200" onclick="selectOpt('potencia',this)"><div class="opt-lbl">200W</div></div>
+              <div class="opt" data-val="300" onclick="selectOpt('potencia',this)"><div class="opt-lbl">300W</div></div>
+              <div class="opt" data-val="400" onclick="selectOpt('potencia',this)"><div class="opt-lbl">400W</div></div>
+              <div class="opt" data-val="600" onclick="selectOpt('potencia',this)"><div class="opt-lbl">600W</div></div>
+              <div class="opt" data-val="800" onclick="selectOpt('potencia',this)"><div class="opt-lbl">800W</div></div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn-clear" onclick="clearFilter('potencia')">Quitar filtro</button>
+              <button class="btn-apply" onclick="applyFilter('potencia')">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Espectro -->
+          <div class="panel" id="panel-espectro">
+            <p class="panel-q">¿Qué espectro necesitás?</p>
+            <p class="panel-sub">Depende de tu fase de cultivo principal.</p>
+            <div class="opts col3" id="opts-espectro">
+              <div class="opt" data-val="Full Cycle" onclick="selectOpt('espectro',this)">
+                <span class="opt-icon">☀️</span>
+                <div class="opt-lbl">Full Cycle</div>
+                <div class="opt-sub">Germinación a cosecha</div>
+              </div>
+              <div class="opt" data-val="VEGE" onclick="selectOpt('espectro',this)">
+                <span class="opt-icon">🌿</span>
+                <div class="opt-lbl">VEGE</div>
+                <div class="opt-sub">Crecimiento vegetativo</div>
+              </div>
+              <div class="opt" data-val="FLORA" onclick="selectOpt('espectro',this)">
+                <span class="opt-icon">🌸</span>
+                <div class="opt-lbl">FLORA</div>
+                <div class="opt-sub">Floración</div>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn-clear" onclick="clearFilter('espectro')">Quitar filtro</button>
+              <button class="btn-apply" onclick="applyFilter('espectro')">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Objetivo -->
+          <div class="panel" id="panel-objetivo">
+            <p class="panel-q">¿Cuál es tu objetivo principal?</p>
+            <p class="panel-sub">Esto define la línea (Pro / Core) más adecuada para vos.</p>
+            <div class="opts col2" id="opts-objetivo">
+              <div class="opt" data-val="Producción" onclick="selectOpt('objetivo',this)">
+                <span class="opt-icon">🌿</span>
+                <div class="opt-lbl">Producción</div>
+                <div class="opt-sub">Máximo rendimiento por m²</div>
+              </div>
+              <div class="opt" data-val="Genética" onclick="selectOpt('objetivo',this)">
+                <span class="opt-icon">🧬</span>
+                <div class="opt-lbl">Experimentación</div>
+                <div class="opt-sub">Genética / I+D</div>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn-clear" onclick="clearFilter('objetivo')">Quitar filtro</button>
+              <button class="btn-apply" onclick="applyFilter('objetivo')">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Área -->
+          <div class="panel" id="panel-area">
+            <p class="panel-q">¿Qué área vas a cubrir?</p>
+            <p class="panel-sub">Medida del espacio de cultivo en metros cuadrados.</p>
+            <div class="opts col3" id="opts-area">
+              <div class="opt" data-val="1-2m²" onclick="selectOpt('area',this)">
+                <span class="opt-icon">🟦</span>
+                <div class="opt-lbl">1–2 m²</div>
+                <div class="opt-sub">Espacio pequeño</div>
+              </div>
+              <div class="opt" data-val="2-4m²" onclick="selectOpt('area',this)">
+                <span class="opt-icon">🟦</span>
+                <div class="opt-lbl">2–4 m²</div>
+                <div class="opt-sub">Espacio mediano</div>
+              </div>
+              <div class="opt" data-val="4-6m²" onclick="selectOpt('area',this)">
+                <span class="opt-icon">🟦</span>
+                <div class="opt-lbl">4–6 m²</div>
+                <div class="opt-sub">Espacio grande</div>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn-clear" onclick="clearFilter('area')">Quitar filtro</button>
+              <button class="btn-apply" onclick="applyFilter('area')">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Eficiencia -->
+          <div class="panel" id="panel-eficiencia">
+            <p class="panel-q">¿Qué nivel de eficiencia buscás?</p>
+            <p class="panel-sub">Medida en μmol/J. Mayor valor = más luz producida por watt consumido.</p>
+            <div class="opts col3" id="opts-eficiencia">
+              <div class="opt" data-val="2.5" onclick="selectOpt('eficiencia',this)">
+                <div class="opt-lbl">2.5 μmol/J</div>
+                <div class="opt-sub">Estándar — Línea Core</div>
+              </div>
+              <div class="opt" data-val="2.8" onclick="selectOpt('eficiencia',this)">
+                <div class="opt-lbl">2.8 μmol/J</div>
+                <div class="opt-sub">Alta — Pro GS</div>
+              </div>
+              <div class="opt" data-val="3.2" onclick="selectOpt('eficiencia',this)">
+                <div class="opt-lbl">3.2 μmol/J</div>
+                <div class="opt-sub">Premium — Pro ES</div>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn-clear" onclick="clearFilter('eficiencia')">Quitar filtro</button>
+              <button class="btn-apply" onclick="applyFilter('eficiencia')">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Mobile: resultados accordion -->
+          <div class="mobile-results" id="mobile-results">
+            <button class="mobile-results-toggle" onclick="toggleMobileResults()">
+              <span id="mobile-results-label">Ver resultados</span>
+              <span id="mobile-results-arrow">▾</span>
+            </button>
+            <div class="mobile-results-body" id="mobile-results-body">
+              <div id="mobile-results-content"></div>
+            </div>
+          </div>
+
+        </div><!-- /left col -->
+
+        <!-- Columna derecha: Resultados sticky -->
+        <div class="results-panel">
+          <p class="section-label">Resultados</p>
+          <div class="results-box">
+            <div class="results-header">
+              <div class="results-count" id="results-count">20 equipos</div>
+              <div class="results-hint" id="results-hint">Activá filtros para encontrar tu ideal</div>
+            </div>
+            <div id="results-content">
+              <div class="no-filters">
+                <div class="no-filters-icon">🔍</div>
+                <div class="no-filters-title">Sin filtros activos</div>
+                <div class="no-filters-sub">Tocá cualquier tile para empezar. Podés activar los filtros en el orden que prefieras.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /wizard-grid -->
+    </div><!-- /container -->
+  </section>
+
+  <script>
+    /* ── Datos ── */
+    const PRECIOS = [530000, 1000000, 1600000];
+    const PRECIO_LABELS = ['$530.000', '$1.000.000', '$1.600.000'];
+
+    const PRODUCTOS = [
+      {nombre:'Pro GS 200W', linea:'Pro', serie:'GS', w:200, eficiencia:2.8, espectros:['Full Cycle'], objetivos:['Genética'], areas:['1-2m²','2-4m²'], precio:550000},
+      {nombre:'Pro GS 300W', linea:'Pro', serie:'GS', w:300, eficiencia:2.8, espectros:['Full Cycle'], objetivos:['Genética'], areas:['2-4m²'], precio:880000},
+      {nombre:'Pro GS 400W', linea:'Pro', serie:'GS', w:400, eficiencia:2.8, espectros:['Full Cycle'], objetivos:['Genética'], areas:['2-4m²','4-6m²'], precio:1040000},
+      {nombre:'Pro GS 600W', linea:'Pro', serie:'GS', w:600, eficiencia:2.8, espectros:['Full Cycle'], objetivos:['Genética'], areas:['4-6m²'], precio:1360000},
+      {nombre:'Pro GS 800W', linea:'Pro', serie:'GS', w:800, eficiencia:2.8, espectros:['Full Cycle'], objetivos:['Genética'], areas:['4-6m²'], precio:1600000},
+      {nombre:'Pro ES 200W', linea:'Pro', serie:'ES', w:200, eficiencia:3.2, espectros:['VEGE','FLORA','Full Cycle'], objetivos:['Producción'], areas:['1-2m²','2-4m²'], precio:560000},
+      {nombre:'Pro ES 300W', linea:'Pro', serie:'ES', w:300, eficiencia:3.2, espectros:['VEGE','FLORA','Full Cycle'], objetivos:['Producción'], areas:['2-4m²'], precio:900000},
+      {nombre:'Pro ES 400W', linea:'Pro', serie:'ES', w:400, eficiencia:3.2, espectros:['VEGE','FLORA','Full Cycle'], objetivos:['Producción'], areas:['2-4m²','4-6m²'], precio:1100000},
+      {nombre:'Pro ES 600W', linea:'Pro', serie:'ES', w:600, eficiencia:3.2, espectros:['VEGE','FLORA'], objetivos:['Producción'], areas:['4-6m²'], precio:1400000},
+      {nombre:'Pro ES 800W', linea:'Pro', serie:'ES', w:800, eficiencia:3.2, espectros:['VEGE','FLORA'], objetivos:['Producción'], areas:['4-6m²'], precio:1600000},
+      {nombre:'Core GS 200W', linea:'Core', serie:'GS', w:200, eficiencia:2.5, espectros:['Full Cycle'], objetivos:['Genética'], areas:['1-2m²','2-4m²'], precio:385000},
+      {nombre:'Core GS 300W', linea:'Core', serie:'GS', w:300, eficiencia:2.5, espectros:['Full Cycle'], objetivos:['Genética'], areas:['2-4m²'], precio:616000},
+      {nombre:'Core GS 400W', linea:'Core', serie:'GS', w:400, eficiencia:2.5, espectros:['Full Cycle'], objetivos:['Genética'], areas:['2-4m²','4-6m²'], precio:728000},
+      {nombre:'Core GS 600W', linea:'Core', serie:'GS', w:600, eficiencia:2.5, espectros:['Full Cycle'], objetivos:['Genética'], areas:['4-6m²'], precio:952000},
+      {nombre:'Core GS 800W', linea:'Core', serie:'GS', w:800, eficiencia:2.5, espectros:['Full Cycle'], objetivos:['Genética'], areas:['4-6m²'], precio:1120000},
+      {nombre:'Core ES 200W', linea:'Core', serie:'ES', w:200, eficiencia:2.5, espectros:['VEGE','FLORA','Full Cycle'], objetivos:['Producción'], areas:['1-2m²','2-4m²'], precio:392000},
+      {nombre:'Core ES 300W', linea:'Core', serie:'ES', w:300, eficiencia:2.5, espectros:['VEGE','FLORA','Full Cycle'], objetivos:['Producción'], areas:['2-4m²'], precio:630000},
+      {nombre:'Core ES 400W', linea:'Core', serie:'ES', w:400, eficiencia:2.5, espectros:['VEGE','FLORA','Full Cycle'], objetivos:['Producción'], areas:['2-4m²','4-6m²'], precio:770000},
+      {nombre:'Core ES 600W', linea:'Core', serie:'ES', w:600, eficiencia:2.5, espectros:['VEGE','FLORA'], objetivos:['Producción'], areas:['4-6m²'], precio:980000},
+      {nombre:'Core ES 800W', linea:'Core', serie:'ES', w:800, eficiencia:2.5, espectros:['VEGE','FLORA'], objetivos:['Producción'], areas:['4-6m²'], precio:1120000},
+    ];
+
+    /* ── State ── */
+    const state = { precio: null, potencia: null, espectro: null, objetivo: null, area: null, eficiencia: null };
+    const tempState = {};
+    let activePanel = null;
+    let mobileResultsOpen = false;
+
+    /* ── Precio slider ── */
+    function onPrecioInput(v) {
+      const idx = parseInt(v);
+      document.getElementById('precio-display').textContent = PRECIO_LABELS[idx];
+      tempState.precio = idx;
+    }
+
+    /* ── Opción seleccionable ── */
+    function selectOpt(filter, el) {
+      document.querySelectorAll('#opts-' + filter + ' .opt').forEach(o => o.classList.remove('sel'));
+      el.classList.add('sel');
+      tempState[filter] = el.dataset.val;
+    }
+
+    /* ── Abrir / cerrar panel ── */
+    function openPanel(filter) {
+      if (activePanel && activePanel !== filter) {
+        closePanel(activePanel, false);
+      }
+      if (activePanel === filter) {
+        closePanel(filter, true);
+        return;
+      }
+
+      document.getElementById('panel-' + filter).classList.add('open');
+      const tile = document.getElementById('tile-' + filter);
+      tile.classList.remove('done');
+      tile.classList.add('active');
+      activePanel = filter;
+
+      // Restaurar valor actual en el panel
+      if (filter === 'precio') {
+        const cur = state.precio !== null ? state.precio : 1;
+        document.getElementById('slider-precio').value = cur;
+        tempState.precio = cur;
+        document.getElementById('precio-display').textContent = PRECIO_LABELS[cur];
+      } else {
+        const cur = state[filter];
+        document.querySelectorAll('#opts-' + filter + ' .opt').forEach(o => {
+          o.classList.toggle('sel', o.dataset.val === cur);
+        });
+        tempState[filter] = cur;
+      }
+
+      // Scroll suave al panel
+      setTimeout(() => {
+        document.getElementById('panel-' + filter).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    }
+
+    function closePanel(filter, restoreTile = true) {
+      document.getElementById('panel-' + filter).classList.remove('open');
+      const tile = document.getElementById('tile-' + filter);
+      tile.classList.remove('active');
+      if (restoreTile && state[filter] !== null) tile.classList.add('done');
+      if (activePanel === filter) activePanel = null;
+    }
+
+    /* ── Aplicar filtro ── */
+    function applyFilter(filter) {
+      if (filter === 'precio') {
+        const idx = parseInt(document.getElementById('slider-precio').value);
+        state.precio = idx;
+        setTileDone('precio', PRECIO_LABELS[idx]);
+      } else {
+        const val = tempState[filter];
+        if (!val) { closePanel(filter, true); return; }
+        state[filter] = val;
+        setTileDone(filter, val);
+      }
+      closePanel(filter, true);
+      renderResults();
+      renderFiltersSummary();
+    }
+
+    /* ── Limpiar filtro ── */
+    function clearFilter(filter) {
+      state[filter] = null;
+      tempState[filter] = null;
+      const tile = document.getElementById('tile-' + filter);
+      tile.classList.remove('done', 'active');
+      document.getElementById('tv-' + filter).style.display = 'none';
+      document.getElementById('th-' + filter).style.display = '';
+      document.getElementById('te-' + filter).style.display = 'none';
+      closePanel(filter, false);
+      renderResults();
+      renderFiltersSummary();
+    }
+
+    /* ── Tile → estado "done" ── */
+    function setTileDone(filter, label) {
+      const tile = document.getElementById('tile-' + filter);
+      tile.classList.add('done');
+      tile.classList.remove('active');
+      const tv = document.getElementById('tv-' + filter);
+      tv.textContent = label;
+      tv.style.display = '';
+      document.getElementById('th-' + filter).style.display = 'none';
+      document.getElementById('te-' + filter).style.display = '';
+    }
+
+    /* ── Formato precio ── */
+    function fmt(n) {
+      return '$' + n.toLocaleString('es-AR');
+    }
+
+    /* ── Renderizar resultados ── */
+    function renderResults() {
+      const activeCount = Object.values(state).filter(v => v !== null).length;
+      const maxPrecio = state.precio !== null ? PRECIOS[state.precio] : null;
+
+      const results = PRODUCTOS.filter(p => {
+        if (maxPrecio !== null && p.precio > maxPrecio) return false;
+        if (state.potencia !== null && p.w !== parseInt(state.potencia)) return false;
+        if (state.espectro !== null && !p.espectros.includes(state.espectro)) return false;
+        if (state.objetivo !== null && !p.objetivos.includes(state.objetivo)) return false;
+        if (state.area !== null && !p.areas.includes(state.area)) return false;
+        if (state.eficiencia !== null && p.eficiencia !== parseFloat(state.eficiencia)) return false;
+        return true;
+      });
+
+      const countEl = document.getElementById('results-count');
+      const hintEl  = document.getElementById('results-hint');
+
+      if (activeCount === 0) {
+        countEl.textContent = '20 equipos';
+        hintEl.textContent  = 'Activá filtros para encontrar tu ideal';
+        const html = `
+          <div class="no-filters">
+            <div class="no-filters-icon">🔍</div>
+            <div class="no-filters-title">Sin filtros activos</div>
+            <div class="no-filters-sub">Tocá cualquier tile para empezar.</div>
+          </div>`;
+        document.getElementById('results-content').innerHTML = html;
+        updateMobileResults(html, '20 equipos');
+        return;
+      }
+
+      const n = results.length;
+      countEl.textContent = n + ' equipo' + (n !== 1 ? 's' : '');
+      hintEl.textContent  = n > 0 ? 'según tus filtros activos' : '';
+
+      if (n === 0) {
+        const html = `
+          <div class="empty-state">
+            <div class="empty-icon">😕</div>
+            <div class="empty-title">Sin coincidencias</div>
+            <div class="empty-sub">Ningún equipo cumple esa combinación. Intentá ampliar o quitar algún filtro.</div>
+          </div>`;
+        document.getElementById('results-content').innerHTML = html;
+        updateMobileResults(html, '0 equipos');
+        return;
+      }
+
+      const shown = results.slice(0, 5);
+      const cardsHtml = `
+        <div class="results-list">
+          ${shown.map((p, i) => `
+            <div class="prod-card ${i === 0 ? 'top' : ''}">
+              ${i === 0 ? '<div class="prod-badge">Mejor match</div>' : ''}
+              <div class="prod-name">${p.nombre}</div>
+              <div class="prod-price">Preventa: <strong>${fmt(p.precio)}</strong></div>
+              <div class="prod-tags">
+                <span class="prod-tag">${p.w}W</span>
+                <span class="prod-tag teal">${p.eficiencia} μmol/J</span>
+                <span class="prod-tag">${p.linea} ${p.serie}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        ${n > 5 ? `<div class="results-more">+ ${n - 5} equipos más coinciden</div>` : ''}
+      `;
+
+      document.getElementById('results-content').innerHTML = cardsHtml;
+      updateMobileResults(cardsHtml, n + ' equipo' + (n !== 1 ? 's' : ''));
+    }
+
+    /* ── Mobile results ── */
+    function updateMobileResults(html, label) {
+      document.getElementById('mobile-results-content').innerHTML = html;
+      document.getElementById('mobile-results-label').textContent = 'Ver resultados — ' + label;
+      document.getElementById('mobile-results').style.display = 'block';
+    }
+
+    function toggleMobileResults() {
+      mobileResultsOpen = !mobileResultsOpen;
+      document.getElementById('mobile-results-body').classList.toggle('open', mobileResultsOpen);
+      document.getElementById('mobile-results-arrow').textContent = mobileResultsOpen ? '▴' : '▾';
+    }
+
+    /* ── Chips resumen (mobile) ── */
+    const FILTER_LABELS = {
+      precio: 'Precio', potencia: 'Potencia', espectro: 'Espectro',
+      objetivo: 'Objetivo', area: 'Área', eficiencia: 'Eficiencia'
+    };
+
+    function renderFiltersSummary() {
+      const wrap = document.getElementById('filters-summary');
+      const active = Object.entries(state).filter(([,v]) => v !== null);
+      if (active.length === 0) {
+        wrap.style.display = 'none';
+        wrap.innerHTML = '';
+        return;
+      }
+      wrap.style.display = 'flex';
+      wrap.innerHTML = active.map(([k, v]) => {
+        const label = k === 'precio' ? PRECIO_LABELS[v] : v;
+        return `<span class="filter-chip">
+          ${FILTER_LABELS[k]}: <strong>${label}</strong>
+          <span class="filter-chip-x" onclick="clearFilter('${k}')">✕</span>
+        </span>`;
+      }).join('');
+    }
+  </script>
+
+</body>
+</html>

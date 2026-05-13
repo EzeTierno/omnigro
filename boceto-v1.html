@@ -1,0 +1,4483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canopy Master — Pre-Venta 2026 | Omnigro</title>
+
+  <!-- Google Fonts: Figtree (títulos) + Inter (cuerpo) -->
+  <!-- Nota: "Intel" no existe en Google Fonts — se usa Inter, que es la tipografía sans-serif de referencia más cercana -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --white:  #FFFFFF;
+      --cream:  #f1f1ed;
+      --beige:  #d4d3bd;
+      --olive:  #74764a;
+      --dark:   #252617;
+
+      --font-title: 'Figtree', sans-serif;
+      --font-body:  'Inter', sans-serif;
+
+      --ticker-h: 36px;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--dark);
+      padding-top: var(--ticker-h); /* compensar el ticker fixed */
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── 1. TICKER FIJO ─────────────────────────────────────── */
+    .ticker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--ticker-h);
+      background: #f6f7f9;
+      overflow: hidden;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Fade lateral izquierdo */
+    .ticker::before,
+    .ticker::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 120px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ticker::before {
+      left: 0;
+      background: linear-gradient(to right, #f6f7f9 0%, transparent 100%);
+    }
+
+    .ticker::after {
+      right: 0;
+      background: linear-gradient(to left, #f6f7f9 0%, transparent 100%);
+    }
+
+    .ticker__track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker-slide 28s linear infinite;
+      will-change: transform;
+    }
+
+    /* Duplicamos el contenido para lograr el loop perfecto */
+    .ticker__item {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dark);
+      padding: 0 40px;
+    }
+
+    .ticker__item strong {
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .ticker__item .dot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--olive);
+      border-radius: 50%;
+      vertical-align: middle;
+      margin: 0 20px;
+    }
+
+    @keyframes ticker-slide {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── 2. HERO ────────────────────────────────────────────── */
+    .hero {
+      background: #f6f7f9;
+      padding: 40px 24px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Logo */
+    .hero__logo {
+      width: 130px;
+      margin-bottom: 32px;
+    }
+
+    /* Pre-label */
+    .hero__pre-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 16px;
+    }
+
+    /* Headline */
+    .hero__headline {
+      font-family: var(--font-title);
+      font-size: clamp(38px, 10vw, 72px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      text-align: center;
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+
+    .hero__headline em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--olive);
+    }
+
+    /* Slideshow */
+    .slideshow {
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--beige);
+    }
+
+    .slideshow__slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    .slideshow__slide.is-active {
+      opacity: 1;
+    }
+
+    /* Slide 1: imagen de sala / producto en contexto */
+    .slide-1 { background-image: url('assets/sala-1.webp'); }
+    .slide-2 { background-image: url('assets/sala-2.webp'); }
+    .slide-3 { background-image: url('assets/sala-3.webp'); }
+
+    /* Dots indicadores */
+    .slideshow__dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .slideshow__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .slideshow__dot.is-active {
+      background: var(--white);
+    }
+
+    /* Párrafo descriptivo hero */
+    .hero__body {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(37,38,23,0.6);
+      text-align: center;
+      max-width: 480px;
+      margin-bottom: 8px;
+    }
+
+    /* CTA hero */
+    .hero__cta-wrap {
+      padding: 20px 0 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero__cta {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero__cta:hover {
+      background: var(--olive);
+      transform: translateY(-1px);
+    }
+
+    .hero__cta strong {
+      font-weight: 800;
+    }
+
+    .hero__cta-arrow {
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    /* Línea divisoria */
+    .hero__divider {
+      width: 100%;
+      height: 1px;
+      background: var(--beige);
+    }
+
+    /* Hero columnas desktop */
+    .hero__col-left,
+    .hero__col-right {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Wrapper del slideshow con border-radius */
+    .hero__slideshow-wrap {
+      width: 100%;
+      max-width: 680px;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .hero__slideshow-wrap .slideshow {
+      border-radius: 0;
+      width: 100%;
+      max-width: none;
+    }
+
+    /* ─── 3. ANCLA DE MARCA ──────────────────────────────────── */
+    .brand-anchor {
+      background: var(--dark);
+      padding: 64px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .brand-anchor__eyebrow {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 28px;
+    }
+
+    .brand-anchor__text {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 4vw, 18px);
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--beige);
+      text-align: center;
+      max-width: 520px;
+    }
+
+    .brand-anchor__text strong {
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    /* Pills de credibilidad */
+    .brand-anchor__pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .pill {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--beige);
+      border: 1px solid var(--olive);
+      border-radius: 100px;
+      padding: 8px 18px;
+    }
+
+    /* Separador decorativo */
+    .brand-anchor__line {
+      width: 40px;
+      height: 1px;
+      background: var(--olive);
+      margin: 48px auto 0;
+    }
+
+    /* ─── 4. EFICIENCIA ─────────────────────────────────────── */
+    .efficiency {
+      background: var(--white);
+      padding: 72px 24px 80px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(28px, 7vw, 52px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--olive);
+    }
+
+    /* Cards de eficiencia */
+    .ecard-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto 56px;
+    }
+
+    .ecard {
+      padding: 36px 32px 40px;
+      border: 1px solid var(--beige);
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .ecard:hover {
+      border-color: var(--olive);
+    }
+
+    .ecard__tag {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .ecard__name {
+      font-family: var(--font-title);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+
+    .ecard__number {
+      font-family: var(--font-title);
+      font-size: clamp(48px, 12vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+    }
+
+    .ecard__unit {
+      font-size: 0.3em;
+      font-weight: 400;
+      color: var(--olive);
+      vertical-align: middle;
+      margin-left: 5px;
+    }
+
+    .ecard__divider {
+      width: 32px;
+      height: 1px;
+      background: var(--beige);
+      margin: 4px 0;
+    }
+
+    .ecard__benefit {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #5a5a4a;
+    }
+
+    .ecard__micro {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--beige);
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--cream);
+    }
+
+    /* Variante PRO — invertida */
+    .ecard--pro {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .ecard--pro .ecard__tag {
+      color: var(--olive);
+    }
+
+    .ecard--pro .ecard__name,
+    .ecard--pro .ecard__benefit {
+      color: var(--beige);
+    }
+
+    .ecard--pro .ecard__number {
+      color: var(--white);
+    }
+
+    .ecard--pro .ecard__divider {
+      background: #3a3c1e;
+    }
+
+    .ecard--pro .ecard__micro {
+      color: #5a5c3a;
+      border-top-color: #3a3c1e;
+    }
+
+    .ecard--pro:hover {
+      border-color: var(--olive);
+    }
+
+    /* Badge PRO */
+    .ecard__badge {
+      position: absolute;
+      top: -1px;
+      right: 24px;
+      background: var(--olive);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+    }
+
+    /* Inserto educativo */
+    .edu-insert {
+      max-width: 960px;
+      margin: 0 auto;
+      border: 1px solid var(--cream);
+      background: var(--cream);
+      padding: 36px 32px;
+      border-radius: 20px;
+    }
+
+    .edu-insert__title {
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .edu-insert__text {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #5a5a4a;
+      max-width: 560px;
+    }
+
+    .edu-insert__text strong {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .edu-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--beige);
+      margin-top: 24px;
+    }
+
+    .edu-col {
+      background: var(--white);
+      padding: 20px 24px;
+    }
+
+    .edu-col__label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 8px;
+    }
+
+    .edu-col__num {
+      font-family: var(--font-title);
+      font-size: clamp(24px, 7vw, 36px);
+      font-weight: 900;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .edu-col__desc {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      color: #7a7a6a;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .edu-col--pro .edu-col__num {
+      color: var(--dark);
+    }
+
+    .edu-col--pro .edu-col__label {
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .edu-insert__note {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--beige);
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+
+    /* ─── 5. ESPECTRO ────────────────────────────────────────── */
+    .spectrum {
+      background: var(--dark);
+      padding: 72px 24px 80px;
+    }
+
+    .spectrum .section-title {
+      color: var(--white);
+    }
+
+    .spectrum .section-subtitle {
+      color: var(--beige);
+    }
+
+    .spectrum .section-eyebrow {
+      color: var(--olive);
+    }
+
+    .scard-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .scard {
+      background: #1d1e12;
+      padding: 40px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border: 1px solid #333424;
+      border-radius: 20px;
+      transition: border-color 0.25s;
+    }
+
+    .scard:hover {
+      border-color: var(--olive);
+    }
+
+    .scard__tag {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .scard__headline {
+      font-family: var(--font-title);
+      font-size: clamp(22px, 6vw, 32px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .scard__body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--beige);
+      max-width: 400px;
+    }
+
+    .scard__spectrum {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      margin-top: 8px;
+      opacity: 0.9;
+      filter: brightness(0.95);
+    }
+
+    .scard__for {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5a5c3a;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #2a2b18;
+    }
+
+    /* Badge Green Series Premium */
+    .scard__premium {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--olive);
+      color: var(--olive);
+      padding: 3px 10px;
+      margin-left: 10px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+      border-radius: 100px;
+    }
+
+
+    /* ─── 6. CONFIGURADOR ───────────────────────────────────── */
+    .configurador {
+      background: var(--cream);
+      padding: 72px 24px 80px;
+    }
+
+    .cfg__inner { max-width: 960px; margin: 0 auto; }
+
+    .cfg__header { margin-bottom: 52px; }
+
+    .cfg__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* Panel de filtros */
+    .cfg__filters {
+      background: var(--dark);
+      padding: 36px;
+      border-radius: 20px;
+    }
+
+    .cfg__filters-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .cfg__filter-group--full { grid-column: 1 / -1; }
+
+    .cfg__filter-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.4);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    /* Botones de potencia */
+    .cfg__btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .cfg__btn {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+      padding: 10px 18px;
+      border: 1px solid rgba(212,211,189,0.12);
+      background: transparent;
+      color: rgba(255,255,255,0.35);
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      border-radius: 10px;
+    }
+
+    .cfg__btn small {
+      display: block;
+      font-size: 10px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.25);
+      margin-top: 2px;
+    }
+
+    .cfg__btn:hover { border-color: rgba(212,211,189,0.3); color: var(--beige); }
+
+    .cfg__btn--active {
+      background: var(--olive);
+      border-color: var(--olive);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .cfg__btn--active small { color: rgba(255,255,255,0.6); }
+
+    /* Espectro */
+    .cfg__spectrum-opts { display: flex; flex-direction: column; gap: 8px; }
+
+    .cfg__spectrum-opt {
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid rgba(212,211,189,0.1);
+      background: transparent;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 400;
+      text-align: left;
+      transition: all 0.2s;
+      border-radius: 10px;
+    }
+
+    .cfg__spectrum-opt strong { display: block; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); }
+    .cfg__spectrum-opt small  { font-size: 11px; font-weight: 300; color: rgba(212,211,189,0.3); }
+    .cfg__spectrum-opt:hover  { border-color: rgba(212,211,189,0.25); }
+
+    .cfg__spectrum-opt--active {
+      border-color: rgba(116,118,74,0.5);
+      background: rgba(116,118,74,0.08);
+    }
+
+    .cfg__spectrum-opt--active strong { color: var(--white); }
+    .cfg__spectrum-opt--active small  { color: var(--beige); }
+
+    .cfg__spec-icon       { font-size: 8px; color: var(--olive); flex-shrink: 0; }
+    .cfg__spec-icon--green { color: #6aab5e; }
+
+    /* Coverage grid */
+    .cfg__coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .cfg__coverage-btn {
+      font-family: var(--font-body);
+      padding: 9px 4px;
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid rgba(212,211,189,0.1);
+      background: transparent;
+      color: rgba(255,255,255,0.35);
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 100px;
+    }
+
+    .cfg__coverage-btn:hover { border-color: rgba(212,211,189,0.3); color: var(--beige); }
+
+    .cfg__coverage-btn--active {
+      border-color: rgba(116,118,74,0.5);
+      background: rgba(116,118,74,0.08);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    /* Slider */
+    .cfg__slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .cfg__slider-value  { font-size: 11px; font-weight: 700; color: var(--olive); letter-spacing: 0.05em; }
+
+    .cfg__slider {
+      width: 100%;
+      height: 3px;
+      background: rgba(212,211,189,0.12);
+      border-radius: 2px;
+      appearance: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .cfg__slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      background: var(--olive);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid var(--dark);
+    }
+
+    .cfg__slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.28);
+    }
+
+    /* Budget pills */
+    .cfg__budget-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .cfg__budget-pill {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 18px;
+      border: 1px solid rgba(212,211,189,0.12);
+      background: transparent;
+      color: rgba(255,255,255,0.35);
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 100px;
+    }
+
+    .cfg__budget-pill:hover { border-color: rgba(212,211,189,0.3); color: var(--beige); }
+
+    .cfg__budget-pill--active {
+      background: var(--olive);
+      border-color: var(--olive);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    /* Rec card */
+    .cfg__rec { position: sticky; top: 52px; }
+
+    .cfg__rec-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 14px;
+    }
+
+    .cfg__rec-card {
+      border: 1px solid var(--beige);
+      overflow: hidden;
+      background: var(--dark);
+      border-radius: 20px;
+    }
+
+    .cfg__rec-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      background: #1d1e12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .cfg__rec-img {
+      width: 80%; height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
+      transition: transform 0.5s ease, opacity 0.25s ease;
+    }
+
+    .cfg__rec-card:hover .cfg__rec-img { transform: scale(1.04); }
+    .cfg__rec-img.swapping { opacity: 0; transform: scale(0.96); }
+
+    .cfg__rec-series-tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--olive);
+      padding: 4px 10px;
+      border-radius: 10px;
+    }
+
+    .cfg__rec-body { padding: 20px 22px; }
+
+    .cfg__rec-name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .cfg__rec-name  { font-family: var(--font-title); font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.4; }
+    .cfg__rec-price { font-family: var(--font-title); font-size: 18px; font-weight: 900; color: var(--olive); white-space: nowrap; letter-spacing: -0.5px; }
+
+    .cfg__rec-specs { display: flex; gap: 16px; margin-bottom: 18px; }
+    .cfg__rec-spec  { display: flex; align-items: center; gap: 6px; font-family: var(--font-body); font-size: 11px; color: rgba(255,255,255,0.35); }
+    .cfg__spec-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--olive); flex-shrink: 0; }
+
+    .cfg__rec-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--olive);
+      border: none;
+      padding: 13px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      border-radius: 100px;
+    }
+
+    .cfg__rec-cta:hover { opacity: 0.85; }
+
+    .cfg__rec-cta--secondary {
+      color: rgba(255,255,255,0.45);
+      background: transparent;
+      border: 1px solid rgba(212,211,189,0.18);
+      margin-top: 8px;
+      transition: all 0.2s;
+      border-radius: 100px;
+    }
+
+    .cfg__rec-cta--secondary:hover { border-color: rgba(212,211,189,0.4); color: var(--beige); }
+
+    .cfg__rec-note {
+      font-family: var(--font-body);
+      font-size: 10px;
+      color: rgba(116,118,74,0.6);
+      text-align: center;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* ─── 8. COMPARATIVA ────────────────────────────────────── */
+    .compare {
+      background: var(--dark);
+      padding: 72px 0 80px;
+    }
+
+    .compare__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Scroll horizontal en mobile */
+    .cmp-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid rgba(212,211,189,0.08);
+    }
+
+    .cmp-table {
+      width: 100%;
+      min-width: 600px;
+      border-collapse: collapse;
+    }
+
+    /* Cabeceras */
+    .cmp-th {
+      padding: 20px 20px 16px;
+      text-align: left;
+      vertical-align: bottom;
+      border-bottom: 1px solid rgba(212,211,189,0.08);
+    }
+
+    .cmp-th--attr {
+      width: 24%;
+    }
+
+    .cmp-th--omnigro {
+      background: rgba(116,118,74,0.08);
+      border-left: 2px solid var(--olive);
+      width: 28%;
+    }
+
+    .cmp-th--other {
+      width: 24%;
+    }
+
+    .cmp-th__brand {
+      display: block;
+      font-family: var(--font-title);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .cmp-th--omnigro .cmp-th__brand {
+      color: var(--olive);
+    }
+
+    .cmp-th__sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: rgba(212,211,189,0.35);
+    }
+
+    /* Filas */
+    .cmp-row {
+      border-bottom: 1px solid rgba(212,211,189,0.06);
+      transition: background 0.15s;
+    }
+
+    .cmp-row:hover { background: rgba(255,255,255,0.02); }
+    .cmp-row:last-child { border-bottom: none; }
+
+    /* Fila destacada — método de medición */
+    .cmp-row--key { background: rgba(116,118,74,0.04); }
+    .cmp-row--key:hover { background: rgba(116,118,74,0.07); }
+
+    /* Celda atributo */
+    .cmp-attr {
+      padding: 20px 20px;
+      vertical-align: middle;
+    }
+
+    .cmp-attr__name {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.55);
+      line-height: 1.4;
+    }
+
+    .cmp-attr__note {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 400;
+      color: var(--olive);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Celdas de datos */
+    .cmp-cell {
+      padding: 20px 20px;
+      vertical-align: middle;
+    }
+
+    .cmp-cell--omnigro {
+      background: rgba(116,118,74,0.06);
+      border-left: 2px solid var(--olive);
+    }
+
+    .cmp-val {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.45);
+      line-height: 1.5;
+    }
+
+    .cmp-val--strong {
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .cmp-note {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.25);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .cmp-note--warn { color: rgba(200,120,80,0.6); }
+
+    /* Iconos check / cross */
+    .cmp-check, .cmp-cross, .cmp-dash {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .cmp-check {
+      color: var(--olive);
+      font-style: normal;
+    }
+
+    .cmp-cross {
+      color: rgba(200,80,60,0.6);
+    }
+
+    .cmp-dash {
+      color: rgba(212,211,189,0.2);
+    }
+
+    /* Cierre */
+    .compare__close {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .compare__close-text {
+      font-family: var(--font-title);
+      font-size: clamp(14px, 3vw, 18px);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(212,211,189,0.45);
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .compare__close-line {
+      width: 48px;
+      height: 1px;
+      background: var(--olive);
+      flex-shrink: 0;
+    }
+
+    /* ─── 9. GARANTÍA PROFESIONAL ──────────────────────────── */
+    .warranty {
+      background: var(--cream);
+      padding: 80px 0 88px;
+    }
+
+    .warranty__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .warranty__eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 40px;
+    }
+
+    .warranty__header {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    @media (min-width: 860px) {
+      .warranty__header {
+        grid-template-columns: 1fr 1.6fr;
+        gap: 64px;
+        align-items: start;
+      }
+    }
+
+    /* Lado izquierdo: número decorativo */
+    .warranty__header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .warranty__years {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      line-height: 1;
+    }
+
+    .warranty__years-num {
+      font-family: var(--font-title);
+      font-size: clamp(96px, 18vw, 160px);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.05em;
+      line-height: 0.85;
+    }
+
+    .warranty__years-label {
+      font-family: var(--font-title);
+      font-size: clamp(18px, 3.5vw, 28px);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .warranty__title {
+      font-family: var(--font-title);
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .warranty__header-note {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(37,38,23,0.5);
+      line-height: 1.6;
+    }
+
+    /* Lado derecho: pilares */
+    .warranty__pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .wpillar {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 22px 20px;
+      border-radius: 6px;
+      background: transparent;
+      border: 1px solid rgba(37,38,23,0.07);
+      transition: border-color 0.2s;
+      position: relative;
+    }
+
+    .wpillar:hover { border-color: rgba(116,118,74,0.25); }
+
+    .wpillar__icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(116,118,74,0.08);
+      border-radius: 50%;
+    }
+
+    .wpillar__content { flex: 1; }
+
+    .wpillar__title {
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .wpillar__body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(37,38,23,0.55);
+      line-height: 1.55;
+    }
+
+    /* Pillar destacado */
+    .wpillar--highlight {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .wpillar--highlight:hover { border-color: var(--olive); }
+
+    .wpillar--highlight .wpillar__icon {
+      background: rgba(116,118,74,0.18);
+    }
+
+    .wpillar--highlight .wpillar__title {
+      color: var(--white);
+    }
+
+    .wpillar--highlight .wpillar__body {
+      color: rgba(212,211,189,0.6);
+    }
+
+    .wpillar__badge {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--olive);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    /* ─── 10. CASOS DE ÉXITO ────────────────────────────────── */
+    .cases {
+      background: var(--white);
+      padding: 80px 0 88px;
+    }
+
+    .cases__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .cases__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    @media (min-width: 640px) {
+      .cases__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .tcard {
+      background: var(--cream);
+      border: 1px solid rgba(37,38,23,0.07);
+      border-radius: 10px;
+      padding: 28px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tcard--dark {
+      background: var(--dark);
+      border-color: transparent;
+    }
+
+    .tcard__stars {
+      font-size: 14px;
+      color: var(--olive);
+      letter-spacing: 2px;
+    }
+
+    .tcard__quote {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(37,38,23,0.7);
+      line-height: 1.7;
+      font-style: normal;
+      flex: 1;
+    }
+
+    .tcard--dark .tcard__quote {
+      color: rgba(212,211,189,0.65);
+    }
+
+    .tcard__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(37,38,23,0.07);
+    }
+
+    .tcard--dark .tcard__author { border-color: rgba(212,211,189,0.08); }
+
+    .tcard__avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--dark);
+      flex-shrink: 0;
+      letter-spacing: 0;
+    }
+
+    .tcard__avatar--olive {
+      background: rgba(116,118,74,0.2);
+      color: var(--olive);
+    }
+
+    .tcard__name {
+      display: block;
+      font-family: var(--font-title);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .tcard__meta {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(37,38,23,0.4);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* ─── 11. URGENCIA ───────────────────────────────────────── */
+    .urgency {
+      background: var(--dark);
+      padding: 80px 0 88px;
+    }
+
+    .urgency__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .urgency__head {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 860px) {
+      .urgency__head {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .urgency__title {
+      font-family: var(--font-title);
+      font-size: clamp(28px, 6vw, 46px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .urgency__title em {
+      font-style: italic;
+      color: var(--olive);
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .countdown__block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,211,189,0.08);
+      border-radius: 8px;
+      padding: 12px 16px 10px;
+      min-width: 68px;
+    }
+
+    .countdown__n {
+      font-family: var(--font-title);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdown__l {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.35);
+      margin-top: 4px;
+    }
+
+    .countdown__sep {
+      font-family: var(--font-title);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--olive);
+      line-height: 1;
+      padding-bottom: 18px;
+    }
+
+    /* Tabla descuentos */
+    .disc-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 24px;
+    }
+
+    .disc-table {
+      width: 100%;
+      min-width: 480px;
+      border-collapse: collapse;
+    }
+
+    .disc-th {
+      padding: 14px 20px 12px;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.35);
+      border-bottom: 1px solid rgba(212,211,189,0.06);
+    }
+
+    .disc-th--highlight {
+      color: var(--olive);
+    }
+
+    .disc-row {
+      border-bottom: 1px solid rgba(212,211,189,0.05);
+      transition: background 0.15s;
+    }
+
+    .disc-row:hover { background: rgba(255,255,255,0.02); }
+    .disc-row--pro { background: rgba(116,118,74,0.04); }
+    .disc-row--pro:hover { background: rgba(116,118,74,0.08); }
+
+    .disc-td {
+      padding: 18px 20px;
+      vertical-align: middle;
+    }
+
+    .disc-badge {
+      display: inline-block;
+      font-family: var(--font-title);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: rgba(212,211,189,0.5);
+      background: rgba(212,211,189,0.06);
+      border: 1px solid rgba(212,211,189,0.1);
+      border-radius: 4px;
+      padding: 3px 10px;
+    }
+
+    .disc-badge--std { color: rgba(212,211,189,0.75); background: rgba(212,211,189,0.09); }
+    .disc-badge--pro { color: var(--olive); background: rgba(116,118,74,0.12); border-color: rgba(116,118,74,0.3); }
+
+    .disc-td--list {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.3);
+      text-decoration: line-through;
+    }
+
+    .disc-td--pct {
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .disc-td--pct--15 { color: rgba(116,118,74,0.7); }
+    .disc-td--pct--20 { color: rgba(116,118,74,0.85); }
+    .disc-td--pct--25 { color: var(--olive); }
+
+    .disc-td--final {
+      font-family: var(--font-title);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .disc-td--final--pro {
+      color: var(--olive);
+      font-size: 20px;
+    }
+
+    .disc-note {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.25);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* Medios de pago */
+    .pay-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pay-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.3);
+    }
+
+    .pay-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pay-chip {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(212,211,189,0.6);
+      background: rgba(212,211,189,0.05);
+      border: 1px solid rgba(212,211,189,0.1);
+      border-radius: 20px;
+      padding: 5px 14px;
+    }
+
+    .pay-chip--alt {
+      border-color: rgba(116,118,74,0.3);
+      color: var(--olive);
+    }
+
+    /* ─── 12. CTA FINAL ──────────────────────────────────────── */
+    .cta-final {
+      background: var(--cream);
+      padding: 80px 0 88px;
+      text-align: center;
+    }
+
+    .cta-final__inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .cta-final__title {
+      font-family: var(--font-title);
+      font-size: clamp(30px, 7vw, 52px);
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin: 12px 0 20px;
+    }
+
+    .cta-final__sub {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(37,38,23,0.55);
+      line-height: 1.7;
+      max-width: 440px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-final__buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 640px) {
+      .cta-final__buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .btn-wa-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: var(--white);
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.25);
+    }
+
+    .btn-wa-primary svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .btn-wa-primary:hover { background: #1fba59; transform: translateY(-1px); }
+
+    .btn-mp-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--dark);
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 15px 28px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(37,38,23,0.2);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-mp-secondary:hover { border-color: var(--olive); background: rgba(116,118,74,0.05); }
+
+    /* Micro-trust */
+    .cta-final__trust {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 4px;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(37,38,23,0.4);
+    }
+
+    .trust-item svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--olive); }
+
+    .trust-sep {
+      color: rgba(37,38,23,0.2);
+      font-size: 12px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--dark);
+      padding: 56px 0 0;
+    }
+
+    .footer__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 640px) {
+      .footer__inner { grid-template-columns: 1.6fr 1fr 1fr; gap: 32px; }
+    }
+
+    .footer__logo {
+      width: 120px;
+      margin-bottom: 16px;
+    }
+
+    .footer__tagline {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.4);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer__social-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,211,189,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(212,211,189,0.4);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .footer__social-link svg { width: 16px; height: 16px; }
+    .footer__social-link:hover { border-color: var(--olive); color: var(--olive); }
+
+    .footer__heading {
+      font-family: var(--font-title);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.3);
+      margin-bottom: 18px;
+    }
+
+    .footer__nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__link {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer__link:hover { color: var(--white); }
+
+    .footer__address {
+      font-style: normal;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.4);
+      line-height: 1.8;
+    }
+
+    .footer__bar {
+      border-top: 1px solid rgba(212,211,189,0.06);
+      padding: 18px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.2);
+    }
+
+    /* ─── 7. BENEFICIOS TÉCNICOS ────────────────────────────── */
+    .benefits {
+      background: var(--white);
+    }
+
+    /* Franja fotográfica */
+    .benefits__photo {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      background-image: url('assets/tira-imagen.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .benefits__photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(37,38,23,0.1) 0%,
+        rgba(37,38,23,0.65) 100%
+      );
+    }
+
+    .benefits__photo-caption {
+      position: relative;
+      z-index: 1;
+      padding: 24px 32px;
+    }
+
+    .benefits__photo-tag {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 6px;
+    }
+
+    .benefits__photo-quote {
+      font-family: var(--font-title);
+      font-size: clamp(14px, 3.5vw, 20px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    /* Grid */
+    .benefits__inner {
+      padding: 64px 24px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .benefits__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--cream);
+      border: 1px solid var(--cream);
+    }
+
+    /* Card */
+    .bcard {
+      background: var(--white);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .bcard:hover { background: var(--cream); }
+
+    .bcard__icon {
+      width: 40px;
+      height: 40px;
+      color: var(--olive);
+      flex-shrink: 0;
+    }
+
+    .bcard__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .bcard__title {
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .bcard__body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #5a5a4a;
+    }
+
+    /* Card highlight — soporte local */
+    .bcard--highlight {
+      background: var(--dark);
+    }
+
+    .bcard--highlight:hover { background: #1d1e12; }
+
+    .bcard--highlight .bcard__icon { color: var(--olive); }
+    .bcard--highlight .bcard__title { color: var(--white); }
+    .bcard--highlight .bcard__body  { color: var(--beige); }
+
+    .bcard__tag {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid #3a3c1e;
+      align-self: flex-start;
+    }
+
+    /* ─── WIZARD SALA — ESTILOS ADICIONALES ─────────────────── */
+    .sl-contact-block {
+      margin-bottom: 4px;
+    }
+
+    .sl-contact-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .sl-input-wrap {
+      display: flex;
+      gap: 0;
+      margin-bottom: 8px;
+    }
+
+    .sl-input {
+      flex: 1;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      padding: 12px 16px;
+      border: 1px solid var(--beige);
+      border-right: none;
+      background: var(--white);
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .sl-input:focus { border-color: var(--olive); }
+    .sl-input::placeholder { color: var(--beige); }
+
+    .sl-input-btn {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--dark);
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .sl-input-btn:disabled { opacity: 0.3; cursor: default; }
+    .sl-input-btn:not(:disabled):hover { opacity: 0.8; }
+
+    .sl-input-note {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--olive);
+      line-height: 1.5;
+    }
+
+    .sl-or {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .sl-or__line {
+      flex: 1;
+      height: 1px;
+      background: var(--beige);
+    }
+
+    .sl-or__text {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--beige);
+    }
+
+    .sl-wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: #25a244;
+      border: none;
+      padding: 14px 24px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-bottom: 8px;
+    }
+
+    .sl-wa-btn:hover { opacity: 0.88; }
+
+    /* ─── BOTÓN WIZARD TRIGGER ──────────────────────────────── */
+    .cfg__header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .cfg__wizard-trigger {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--olive);
+      background: transparent;
+      border: 1px solid var(--olive);
+      padding: 10px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+      border-radius: 100px;
+    }
+
+    .cfg__trigger-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .cfg__wizard-trigger:hover {
+      background: var(--olive);
+      color: var(--white);
+    }
+
+    .cfg__wizard-trigger--sala {
+      border-color: var(--dark);
+      color: var(--dark);
+    }
+
+    .cfg__wizard-trigger--sala:hover {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .cfg__wizard-arrow { margin-left: 4px; }
+
+    /* ─── WIZARD MODAL ───────────────────────────────────────── */
+    .wz-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(37, 38, 23, 0.92);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .wz-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .wz-modal {
+      background: var(--cream);
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(16px);
+      transition: transform 0.25s ease;
+    }
+
+    .wz-overlay.is-open .wz-modal {
+      transform: translateY(0);
+    }
+
+    .wz-modal__header {
+      background: var(--dark);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wz-modal__title {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .wz-modal__close {
+      background: none;
+      border: none;
+      color: rgba(212,211,189,0.4);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 0;
+      transition: color 0.2s;
+    }
+
+    .wz-modal__close:hover { color: var(--beige); }
+
+    /* Progress dots */
+    .wz-progress {
+      display: flex;
+      gap: 8px;
+      padding: 20px 28px 0;
+    }
+
+    .wz-dot {
+      flex: 1;
+      height: 2px;
+      background: var(--beige);
+      transition: background 0.3s;
+    }
+
+    .wz-dot.is-done { background: var(--olive); }
+    .wz-dot.is-active { background: var(--dark); }
+
+    /* Steps */
+    .wz-step {
+      display: none;
+      padding: 28px 28px 32px;
+    }
+
+    .wz-step.is-active { display: block; }
+
+    .wz-step__num {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 10px;
+    }
+
+    .wz-step__q {
+      font-family: var(--font-title);
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .wz-opts {
+      display: grid;
+      gap: 10px;
+    }
+
+    .wz-opts--2col { grid-template-columns: 1fr 1fr; }
+    .wz-opts--3col { grid-template-columns: 1fr 1fr 1fr; }
+
+    .wz-opt {
+      border: 1px solid var(--beige);
+      background: var(--white);
+      padding: 16px 14px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.18s, background 0.18s;
+      font-family: var(--font-body);
+    }
+
+    .wz-opt:hover { border-color: var(--olive); }
+
+    .wz-opt.is-sel {
+      border-color: var(--dark);
+      background: var(--dark);
+    }
+
+    .wz-opt.is-sel .wz-opt__label,
+    .wz-opt.is-sel .wz-opt__desc { color: var(--white); }
+    .wz-opt.is-sel .wz-opt__sub   { color: var(--beige); }
+
+    .wz-opt__label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .wz-opt__sub {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--olive);
+      display: block;
+    }
+
+    .wz-opt__desc {
+      font-size: 11px;
+      font-weight: 300;
+      color: #7a7a6a;
+      display: block;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* Sala profesional — opción especial CTA directo */
+    .wz-opt--sala {
+      grid-column: 1 / -1;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .wz-opt--sala:hover { border-color: var(--olive); background: var(--cream); }
+    .wz-opt--sala .wz-opt__label { margin-bottom: 0; }
+
+    /* Botones navegación */
+    .wz-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px 28px;
+      border-top: 1px solid var(--beige);
+      margin-top: 4px;
+    }
+
+    .wz-btn-back {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--olive);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: color 0.2s, opacity 0.2s;
+    }
+
+    .wz-btn-back.visible { opacity: 1; pointer-events: all; }
+    .wz-btn-back:hover { color: var(--dark); }
+
+    .wz-btn-next {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--olive);
+      border: none;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .wz-btn-next.ready { opacity: 1; pointer-events: all; }
+    .wz-btn-next:hover { opacity: 0.85; }
+
+    /* Resultado del wizard */
+    .wz-result {
+      display: none;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .wz-result.is-active { display: block; }
+
+    .wz-result__label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 12px;
+    }
+
+    .wz-result__rec {
+      font-family: var(--font-title);
+      font-size: clamp(18px, 5vw, 24px);
+      font-weight: 900;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .wz-result__sub {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: #7a7a6a;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .wz-result__apply {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--olive);
+      border: none;
+      padding: 14px 32px;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+
+    .wz-result__apply:hover { opacity: 0.85; }
+
+    .wz-result__wa {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--olive);
+      text-decoration: none;
+      margin-top: 16px;
+      border-bottom: 1px solid var(--beige);
+      padding-bottom: 4px;
+      display: inline-block;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (min-width: 640px) {
+      .hero { padding: 56px 40px 0; }
+      .slideshow { border-radius: 2px; }
+      .ecard-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .scard-grid { grid-template-columns: 1fr 1fr; }
+      .cfg__filters-grid { grid-template-columns: 1fr 1fr; }
+      .benefits__grid { grid-template-columns: 1fr 1fr; }
+      .benefits__photo { height: 320px; }
+    }
+
+    @media (min-width: 860px) {
+      .cfg__grid { grid-template-columns: 1fr 340px; }
+    }
+
+    @media (min-width: 860px) {
+      /* Hero 2 columnas desktop — texto izq, imagen der */
+      .hero {
+        flex-direction: row;
+        align-items: stretch;
+        padding: 56px 48px;
+        gap: 48px;
+        min-height: 620px;
+      }
+
+      /* Columna izquierda = texto (orden 1) */
+      .hero__col-left {
+        order: 1;
+        flex: 0 0 42%;
+        max-width: 560px;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      /* Columna derecha = imagen (orden 2) */
+      .hero__col-right {
+        order: 2;
+        flex: 1 1 0;
+        min-width: 0;
+        align-self: stretch;
+        display: flex;
+        align-items: stretch;
+        padding: 0;
+      }
+
+      .hero__col-right .hero__slideshow-wrap {
+        width: 100%;
+        max-width: none;
+        height: 100%;
+        min-height: 520px;
+        border-radius: 24px;
+      }
+
+      .hero__col-right .hero__slideshow-wrap .slideshow {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: unset;
+        max-width: none;
+      }
+
+      /* Texto col izquierda */
+      .hero__col-left .hero__pre-label,
+      .hero__col-left .hero__headline,
+      .hero__col-left .hero__body {
+        text-align: left;
+      }
+
+      .hero__col-left .hero__headline {
+        max-width: 480px;
+      }
+
+      .hero__col-left .hero__body {
+        text-align: left;
+        max-width: 400px;
+      }
+
+      .hero__col-left .hero__cta-wrap {
+        align-items: flex-start;
+        padding-bottom: 0;
+      }
+
+      .hero__divider { display: none; }
+
+      .benefits__grid { grid-template-columns: 1fr 1fr 1fr; }
+      .benefits__photo { height: 380px; }
+      .compare { padding: 96px 0 108px; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero {
+        padding: 64px 56px;
+        gap: 56px;
+        min-height: 730px;
+      }
+
+      /* Columna izquierda: mínimo 760px */
+      .hero__col-left {
+        flex: 0 0 760px;
+        max-width: 760px;
+      }
+
+      /* Contenidos de la col izquierda: máximo 690px */
+      .hero__col-left,
+      .hero__col-left .hero__pre-label,
+      .hero__col-left .hero__headline,
+      .hero__col-left .hero__body,
+      .hero__col-left .hero__cta-wrap {
+        max-width: 700px;
+        width: 100%;
+      }
+
+      /* Slider al 85% del ancho de la col derecha, alineado a la derecha */
+      .hero__col-right .hero__slideshow-wrap {
+        width: 85%;
+        margin-left: auto;
+        margin-right: 0;
+      }
+
+      /* Eliminar saltos de línea del título en este breakpoint */
+      .hero__headline br {
+        display: none;
+      }
+      .brand-anchor { padding: 96px 48px 108px; }
+      .efficiency { padding: 96px 48px 108px; }
+      .spectrum { padding: 96px 48px 108px; }
+      .configurador { padding: 96px 48px 108px; }
+      .benefits__inner { padding: 80px 48px 96px; }
+
+      /* Llevar a dos lineas el texto del sector 2 */
+      .brand-anchor__text {max-width: 910px; }
+
+      /* Limite de ancho para parrafo de título "Encontra tu led ideal" */
+      .cfg__header-row .section-subtitle {max-width: 640px }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       1. TICKER FIJO
+  ══════════════════════════════════════════════════════════ -->
+  <div class="ticker" role="marquee" aria-label="Pre-venta">
+    <div class="ticker__track">
+      <!-- Bloque 1 — se duplica exactamente para loop seamless -->
+      <span class="ticker__item">
+        Pre-venta <strong>hasta 25% OFF</strong> del 1 al 30 de Junio
+        <span class="dot"></span>
+        Canopy Master · Nueva línea 2026
+        <span class="dot"></span>
+        Entrega estimada Julio 2026
+        <span class="dot"></span>
+        Specs verificadas sobre canopy real
+        <span class="dot"></span>
+        Pre-venta <strong>hasta 25% OFF</strong> del 1 al 30 de Junio
+        <span class="dot"></span>
+        Canopy Master · Nueva línea 2026
+        <span class="dot"></span>
+        Entrega estimada Julio 2026
+        <span class="dot"></span>
+        Specs verificadas sobre canopy real
+        <span class="dot"></span>
+      </span>
+      <!-- Bloque 2 — copia idéntica para el loop -->
+      <span class="ticker__item">
+        Pre-venta <strong>hasta 25% OFF</strong> del 1 al 30 de Junio
+        <span class="dot"></span>
+        Canopy Master · Nueva línea 2026
+        <span class="dot"></span>
+        Entrega estimada Julio 2026
+        <span class="dot"></span>
+        Specs verificadas sobre canopy real
+        <span class="dot"></span>
+        Pre-venta <strong>hasta 25% OFF</strong> del 1 al 30 de Junio
+        <span class="dot"></span>
+        Canopy Master · Nueva línea 2026
+        <span class="dot"></span>
+        Entrega estimada Julio 2026
+        <span class="dot"></span>
+        Specs verificadas sobre canopy real
+        <span class="dot"></span>
+      </span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       2. HERO
+  ══════════════════════════════════════════════════════════ -->
+  <section class="hero">
+
+    <!-- Columna izquierda: títulos y CTA -->
+    <div class="hero__col-left">
+      <img
+        class="hero__logo"
+        src="assets/logo-negro-transparente.png"
+        alt="Omnigro"
+      >
+
+      <p class="hero__pre-label">Nuevo Canopy Master</p>
+
+      <h1 class="hero__headline">
+        La línea LED<br>
+        que se adapta<br>
+        a <em>tus objetivos</em>
+      </h1>
+
+      <p class="hero__body">
+        Más de una década iluminando la industria argentina. Diseñada para cada etapa de cultivo, la nueva línea Canopy Master entrega el espectro exacto que tus plantas necesitan.
+      </p>
+
+      <!-- CTA -->
+      <div class="hero__cta-wrap">
+        <a href="#configurador" class="hero__cta">
+          Encontrá tu LED ideal <strong>ahora</strong>
+          <span class="hero__cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna derecha: slideshow -->
+    <div class="hero__col-right">
+      <div class="hero__slideshow-wrap">
+        <div class="slideshow" id="slideshow">
+          <div class="slideshow__slide slide-1 is-active"></div>
+          <div class="slideshow__slide slide-2"></div>
+          <div class="slideshow__slide slide-3"></div>
+
+          <div class="slideshow__dots" id="dots">
+            <div class="slideshow__dot is-active" data-index="0"></div>
+            <div class="slideshow__dot" data-index="1"></div>
+            <div class="slideshow__dot" data-index="2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__divider"></div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       3. ANCLA DE MARCA
+  ══════════════════════════════════════════════════════════ -->
+  <section class="brand-anchor">
+
+    <p class="brand-anchor__eyebrow">Omnigro · Desde 2015</p>
+
+    <p class="brand-anchor__text">
+      Después de casi una década iluminando la industria argentina,
+      logramos una línea capaz de adaptarse a cada necesidad
+      —desde el hogareño hasta el club profesional—
+      <strong>tenemos el LED indicado para tu objetivo.</strong>
+    </p>
+
+    <div class="brand-anchor__pills">
+      <span class="pill">+15 salas activas</span>
+      <span class="pill">Marca argentina</span>
+      <span class="pill">Specs verificadas</span>
+    </div>
+
+    <div class="brand-anchor__line"></div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       4. EFICIENCIA — ¿Cuán lejos querés llegar?
+  ══════════════════════════════════════════════════════════ -->
+  <section class="efficiency" id="eficiencia">
+
+    <div class="section-header">
+      <p class="section-eyebrow">Eficiencia REAL</p>
+      <h2 class="section-title">¿Cuán lejos querés llegar?</h2>
+      <p class="section-subtitle">Elegí entre tres niveles de eficiencia para complementar tus necesidades de producción y costos.</p>
+    </div>
+
+    <div class="ecard-grid">
+
+      <!-- CORE -->
+      <div class="ecard">
+        <p class="ecard__tag">Entrada profesional</p>
+        <p class="ecard__name">Canopy Master Core</p>
+        <div class="ecard__number">2.5<span class="ecard__unit">µmol/J</span></div>
+        <div class="ecard__divider"></div>
+        <p class="ecard__benefit">
+          Alta eficiencia a precio de acceso. Compite con los mejores importados de bajo costo, con garantía y soporte local.
+        </p>
+        <p class="ecard__micro">Para espacios 1×1 a 1×2, o quienes priorizan precio absoluto sin ceder en calidad verificada.</p>
+      </div>
+
+      <!-- STD -->
+      <div class="ecard">
+        <p class="ecard__tag">Equilibrio precio-eficiencia</p>
+        <p class="ecard__name">Canopy Master Std</p>
+        <div class="ecard__number">2.8<span class="ecard__unit">µmol/J</span></div>
+        <div class="ecard__divider"></div>
+        <p class="ecard__benefit">
+          Un 12% más de luz útil que el Core al mismo consumo eléctrico. La mejor relación precio-rendimiento de la línea.
+        </p>
+        <p class="ecard__micro">Para cultivadores hogareños intermedios y salas medianas que buscan maximizar producción.</p>
+      </div>
+
+      <!-- PRO -->
+      <div class="ecard ecard--pro">
+        <div class="ecard__badge">Mayor eficiencia del país</div>
+        <p class="ecard__tag">Máxima eficiencia</p>
+        <p class="ecard__name">Canopy Master PRO</p>
+        <div class="ecard__number">3.2<span class="ecard__unit">µmol/J</span></div>
+        <div class="ecard__divider"></div>
+        <p class="ecard__benefit">
+          Un 28% más de luz útil que el Core. La mayor eficiencia disponible en Argentina.
+        </p>
+        <p class="ecard__micro">Para salas profesionales y cultivadores avanzados que entienden el ROI de pagar por más fotones por watt.</p>
+      </div>
+
+    </div>
+
+    <!-- Inserto educativo integrado -->
+    <div class="edu-insert">
+      <p class="edu-insert__title">¿Qué significa la diferencia entre 2.5 y 3.2?</p>
+      <p class="edu-insert__text">
+        Dos equipos de <strong>800W</strong> con eficiencias distintas entregan cantidades de luz muy diferentes al mismo costo eléctrico.
+        Más fotones por watt = más fotosíntesis = más producción por la misma factura de luz.
+      </p>
+
+      <div class="edu-compare">
+        <div class="edu-col">
+          <p class="edu-col__label">Core · 800W</p>
+          <p class="edu-col__num">2.000<small style="font-size:0.4em;font-weight:300;color:#9a9a7a;">µmol/s</small></p>
+          <p class="edu-col__desc">Luz útil entregada sobre canopy real</p>
+        </div>
+        <div class="edu-col edu-col--pro">
+          <p class="edu-col__label">PRO · 800W &nbsp;→&nbsp; +28%</p>
+          <p class="edu-col__num">2.560<small style="font-size:0.4em;font-weight:300;color:#9a9a7a;">µmol/s</small></p>
+          <p class="edu-col__desc">Misma factura. 560 µmol/s más para tus plantas.</p>
+        </div>
+      </div>
+
+      <p class="edu-insert__note">
+        Muchas marcas publican eficiencias de 4.0 µmol/J medidas en el pico central del equipo. En la práctica, cualquier LED pierde ~50% de potencia a 15 cm de sus bordes. Omnigro mide el promedio sobre el canopy completo y lo deja por escrito en cada equipo.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       5. ESPECTRO — ¿Qué querés lograr?
+  ══════════════════════════════════════════════════════════ -->
+  <section class="spectrum" id="espectro">
+
+    <div class="section-header">
+      <p class="section-eyebrow">Espectro</p>
+      <h2 class="section-title">¿Qué querés lograr?</h2>
+      <p class="section-subtitle">¿Buscás producir más o un producto de mayor calidad? Tenemos tu espectro ideal</p>
+    </div>
+
+    <div class="scard-grid">
+
+      <!-- EMERSON SERIES -->
+      <div class="scard">
+        <p class="scard__tag">Emerson Series</p>
+        <h3 class="scard__headline">Máxima eficiencia.<br>Más producción y rendimiento por ciclo.</h3>
+        <p class="scard__body">
+          Chips con refuerzo en rojos y far-reds que activan el Efecto Emerson, potenciando la fotosíntesis y el desarrollo del cultivo.
+        </p>
+        <img
+          class="scard__spectrum"
+          src="assets/emerson-series-sp.webp"
+          alt="Espectro Emerson Series — refuerzo en rojos y far-reds"
+        >
+        <p class="scard__for">Ideal para: CLUBES Y SALAS - PROFESIONALES</p>
+      </div>
+
+      <!-- GREEN SERIES -->
+      <div class="scard">
+        <p class="scard__tag">Green Series <span class="scard__premium">Premium</span></p>
+        <h3 class="scard__headline">Potencia la expresión genética. Terpenos, colores y aromas.</h3>
+        <p class="scard__body">
+          Incorpora verdes en el espectro afectando directamente terpenos, pigmentos y penetración lumínica del canopy. Lo último en fotobiología aplicada.
+        </p>
+        <img
+          class="scard__spectrum"
+          src="assets/green-series-spd.webp"
+          alt="Espectro Green Series — refuerzo en verdes para expresión genética"
+        >
+        <p class="scard__for">Ideal para: pheno-hunters - competidores - breeders</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       6. CONFIGURADOR
+  ══════════════════════════════════════════════════════════ -->
+  <section class="configurador" id="configurador">
+    <div class="cfg__inner">
+
+      <header class="cfg__header">
+        <p class="section-eyebrow">Tenemos el LED que se adapta a tus objetivos</p>
+        <h2 class="section-title">Encontra tu LED ideal</h2>
+        <div class="cfg__header-row">
+          <p class="section-subtitle">Ajustá los parámetros según tus necesidades u objetivos para recibir una recomendación optimizada. Sino, lo resolvemos con 3 preguntas.</p>
+          <div class="cfg__trigger-group">
+            <button class="cfg__wizard-trigger" onclick="openWizard()">
+              ¿No sabés cuál elegir? <span class="cfg__wizard-arrow">→</span>
+            </button>
+            <button class="cfg__wizard-trigger cfg__wizard-trigger--sala" onclick="openSalaWizard()">
+              ¿Necesitás equipar una sala? <span class="cfg__wizard-arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="cfg__grid">
+
+        <!-- FILTROS -->
+        <div class="cfg__filters">
+          <div class="cfg__filters-grid">
+
+            <!-- Potencia -->
+            <div class="cfg__filter-group cfg__filter-group--full">
+              <span class="cfg__filter-label">Potencia</span>
+              <div class="cfg__btn-group">
+                <button class="cfg__btn" data-fkey="potencia" data-fval="200">200W<br><small>1×1 m</small></button>
+                <button class="cfg__btn" data-fkey="potencia" data-fval="300">300W<br><small>1×1.5 m</small></button>
+                <button class="cfg__btn cfg__btn--active" data-fkey="potencia" data-fval="400">400W<br><small>1×2 m</small></button>
+                <button class="cfg__btn" data-fkey="potencia" data-fval="600">600W<br><small>2×2 m</small></button>
+                <button class="cfg__btn" data-fkey="potencia" data-fval="800">800W<br><small>2×4 m</small></button>
+              </div>
+            </div>
+
+            <!-- Espectro -->
+            <div class="cfg__filter-group">
+              <span class="cfg__filter-label">Espectro</span>
+              <div class="cfg__spectrum-opts">
+                <button class="cfg__spectrum-opt cfg__spectrum-opt--active" data-fkey="serie" data-fval="emerson">
+                  <span class="cfg__spec-icon">⬤</span>
+                  <span>
+                    <strong>Emerson Series</strong><br>
+                    <small>Máxima producción</small>
+                  </span>
+                </button>
+                <button class="cfg__spectrum-opt" data-fkey="serie" data-fval="green">
+                  <span class="cfg__spec-icon cfg__spec-icon--green">⬤</span>
+                  <span>
+                    <strong>Green Series</strong><br>
+                    <small>Terpenos y expresión genética</small>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Área de cobertura -->
+            <div class="cfg__filter-group">
+              <span class="cfg__filter-label">Área de cobertura</span>
+              <div class="cfg__coverage-grid">
+                <button class="cfg__coverage-btn" data-fkey="area" data-fval="1x1" data-suggest="200">1×1 m</button>
+                <button class="cfg__coverage-btn" data-fkey="area" data-fval="1x2" data-suggest="400">1×2 m</button>
+                <button class="cfg__coverage-btn cfg__coverage-btn--active" data-fkey="area" data-fval="2x2" data-suggest="400">2×2 m</button>
+                <button class="cfg__coverage-btn" data-fkey="area" data-fval="2x4" data-suggest="800">2×4 m</button>
+                <button class="cfg__coverage-btn" data-fkey="area" data-fval="sala" data-suggest="800">Sala</button>
+                <button class="cfg__coverage-btn" data-fkey="area" data-fval="0.8x0.8" data-suggest="200">0.8×0.8</button>
+              </div>
+            </div>
+
+            <!-- Slider eficiencia -->
+            <div class="cfg__filter-group cfg__filter-group--full">
+              <div class="cfg__slider-header">
+                <span class="cfg__filter-label" style="margin-bottom:0;">Nivel de eficiencia mínima</span>
+                <span class="cfg__slider-value" id="cfgEffLabel">&gt;3.2 µmol/J · PRO</span>
+              </div>
+              <input class="cfg__slider" type="range" min="0" max="2" step="1" value="2" id="cfgEff">
+              <div class="cfg__slider-labels">
+                <span>Core</span>
+                <span>Std</span>
+                <span>PRO</span>
+              </div>
+            </div>
+
+            <!-- Presupuesto -->
+            <div class="cfg__filter-group cfg__filter-group--full">
+              <span class="cfg__filter-label">Presupuesto máximo</span>
+              <div class="cfg__budget-pills">
+                <button class="cfg__budget-pill" data-fkey="budget" data-fval="530000">Hasta $530k</button>
+                <button class="cfg__budget-pill cfg__budget-pill--active" data-fkey="budget" data-fval="1000000">Hasta $1M</button>
+                <button class="cfg__budget-pill" data-fkey="budget" data-fval="9999999">Sin límite</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TARJETA DE RECOMENDACIÓN -->
+        <aside class="cfg__rec">
+          <p class="cfg__rec-label">Tu recomendación ideal</p>
+          <div class="cfg__rec-card">
+            <div class="cfg__rec-img-wrap">
+              <img id="cfgImg" class="cfg__rec-img"
+                src="assets/producto/CM-400 - 2026/CM-400-ES-png.png"
+                alt="Canopy Master">
+              <span class="cfg__rec-series-tag" id="cfgSeriesTag">PRO · Emerson</span>
+            </div>
+            <div class="cfg__rec-body">
+              <div class="cfg__rec-name-row">
+                <h3 class="cfg__rec-name" id="cfgName">Canopy Master PRO 400W<br>Emerson Series</h3>
+                <span class="cfg__rec-price" id="cfgPrice">$ —</span>
+              </div>
+              <div class="cfg__rec-specs">
+                <div class="cfg__rec-spec">
+                  <span class="cfg__spec-dot"></span>
+                  <span id="cfgUmols">1.280 µmol/s</span>
+                </div>
+                <div class="cfg__rec-spec">
+                  <span class="cfg__spec-dot"></span>
+                  <span id="cfgEff2">3.2 µmol/J</span>
+                </div>
+              </div>
+              <a id="cfgCTAWA" href="#" target="_blank" class="cfg__rec-cta">
+                Consultar por WhatsApp
+              </a>
+              <a id="cfgCTAMP" href="#" class="cfg__rec-cta cfg__rec-cta--secondary">
+                Comprar con MercadoPago
+              </a>
+            </div>
+          </div>
+          <p class="cfg__rec-note">Pre-venta activa · Precios sujetos a stock y promociones vigentes.</p>
+        </aside>
+
+      </div><!-- /cfg__grid -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       JS — Slideshow auto-rotate cada 2s
+  ══════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════
+       WIZARD MODAL
+  ══════════════════════════════════════════════════════════ -->
+  <div class="wz-overlay" id="wzOverlay" onclick="onOverlayClick(event)">
+    <div class="wz-modal">
+
+      <div class="wz-modal__header">
+        <span class="wz-modal__title">Asistente de selección</span>
+        <button class="wz-modal__close" onclick="closeWizard()">✕</button>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="wz-progress">
+        <div class="wz-dot is-active" id="wzDot0"></div>
+        <div class="wz-dot" id="wzDot1"></div>
+        <div class="wz-dot" id="wzDot2"></div>
+      </div>
+
+      <!-- PASO 1 — Espacio -->
+      <div class="wz-step is-active" id="wzStep0">
+        <p class="wz-step__num">Pregunta 1 de 3</p>
+        <h3 class="wz-step__q">¿Dónde vas a instalar el equipo?</h3>
+        <div class="wz-opts wz-opts--3col" id="wzAreaOpts">
+          <button class="wz-opt" data-area="1x1" data-potencia="200" onclick="wzSelect(this,'area')">
+            <span class="wz-opt__label">1×1 m</span>
+            <span class="wz-opt__sub">Espacio pequeño</span>
+          </button>
+          <button class="wz-opt" data-area="1x2" data-potencia="400" onclick="wzSelect(this,'area')">
+            <span class="wz-opt__label">1×2 m</span>
+            <span class="wz-opt__sub">Espacio mediano</span>
+          </button>
+          <button class="wz-opt" data-area="2x2" data-potencia="400" onclick="wzSelect(this,'area')">
+            <span class="wz-opt__label">2×2 m</span>
+            <span class="wz-opt__sub">Espacio amplio</span>
+          </button>
+          <button class="wz-opt" data-area="2x4" data-potencia="800" onclick="wzSelect(this,'area')">
+            <span class="wz-opt__label">2×4 m</span>
+            <span class="wz-opt__sub">Sala mediana</span>
+          </button>
+          <button class="wz-opt" data-area="0.8x0.8" data-potencia="200" onclick="wzSelect(this,'area')">
+            <span class="wz-opt__label">0.8×0.8 m</span>
+            <span class="wz-opt__sub">Mini espacio</span>
+          </button>
+          <button class="wz-opt wz-opt--sala" data-area="sala" data-potencia="800" onclick="wzGoSala()">
+            <span>
+              <span class="wz-opt__label">Sala profesional</span>
+              <span class="wz-opt__sub">+6 equipos en serie</span>
+            </span>
+            <span style="font-size:18px;color:var(--olive);">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PASO 2 — Objetivo -->
+      <div class="wz-step" id="wzStep1">
+        <p class="wz-step__num">Pregunta 2 de 3</p>
+        <h3 class="wz-step__q">¿Qué querés lograr?</h3>
+        <div class="wz-opts wz-opts--2col" id="wzSerieOpts">
+          <button class="wz-opt" data-serie="emerson" onclick="wzSelect(this,'serie')">
+            <span class="wz-opt__label">Más rendimiento</span>
+            <span class="wz-opt__sub">Emerson Series</span>
+            <span class="wz-opt__desc">Máxima producción por ciclo. Refuerzo en rojos y far-reds.</span>
+          </button>
+          <button class="wz-opt" data-serie="green" onclick="wzSelect(this,'serie')">
+            <span class="wz-opt__label">Más calidad</span>
+            <span class="wz-opt__sub">Green Series</span>
+            <span class="wz-opt__desc">Terpenos, pigmentos y expresión genética. Para pheno-hunters.</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PASO 3 — Versión -->
+      <div class="wz-step" id="wzStep2">
+        <p class="wz-step__num">Pregunta 3 de 3</p>
+        <h3 class="wz-step__q">¿Qué versión preferís?</h3>
+        <div class="wz-opts" id="wzVersionOpts">
+          <button class="wz-opt" data-version="core" onclick="wzSelect(this,'version')">
+            <span class="wz-opt__label">Core — Mejor precio absoluto</span>
+            <span class="wz-opt__sub">Hasta 2.5 µmol/J</span>
+            <span class="wz-opt__desc">Acceso a Omnigro al precio más bajo. Ideal si el presupuesto es la prioridad.</span>
+          </button>
+          <button class="wz-opt" data-version="std" onclick="wzSelect(this,'version')">
+            <span class="wz-opt__label">Std — Equilibrio precio-eficiencia</span>
+            <span class="wz-opt__sub">Hasta 2.8 µmol/J · +12% luz vs Core</span>
+            <span class="wz-opt__desc">La mejor relación precio-rendimiento de la línea.</span>
+          </button>
+          <button class="wz-opt" data-version="pro" onclick="wzSelect(this,'version')">
+            <span class="wz-opt__label">PRO — Máxima eficiencia</span>
+            <span class="wz-opt__sub">Hasta 3.2 µmol/J · +28% luz vs Core</span>
+            <span class="wz-opt__desc">Mejor ROI a largo plazo. La mayor eficiencia disponible en Argentina.</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULTADO -->
+      <div class="wz-result" id="wzResult">
+        <p class="wz-result__label">Tu recomendación</p>
+        <p class="wz-result__rec" id="wzResultName">Canopy Master PRO 400W</p>
+        <p class="wz-result__sub" id="wzResultSub">Emerson Series — Máxima eficiencia para tu espacio</p>
+        <button class="wz-result__apply" onclick="applyWizard()">
+          Ver en el configurador →
+        </button>
+        <a id="wzResultWA" href="#" target="_blank" class="wz-result__wa">
+          O consultá por WhatsApp directamente
+        </a>
+      </div>
+
+      <!-- Navegación -->
+      <div class="wz-nav" id="wzNav">
+        <button class="wz-btn-back" id="wzBack" onclick="wzPrev()">← Anterior</button>
+        <button class="wz-btn-next" id="wzNext" onclick="wzNext()">Siguiente →</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       7. BENEFICIOS TÉCNICOS
+  ══════════════════════════════════════════════════════════ -->
+  <section class="benefits" id="beneficios">
+
+    <!-- Franja fotográfica -->
+    <div class="benefits__photo">
+      <div class="benefits__photo-overlay"></div>
+      <div class="benefits__photo-caption">
+        <p class="benefits__photo-tag">Salas activas en Argentina</p>
+        <p class="benefits__photo-quote">"+15 salas que eligen trabajar con Omnigro"</p>
+      </div>
+    </div>
+
+    <!-- Grid de beneficios -->
+    <div class="benefits__inner">
+
+      <div class="section-header" style="text-align:left; margin-bottom:48px;">
+        <p class="section-eyebrow">Por qué Canopy Master</p>
+        <h2 class="section-title">Cada detalle<br>tiene un por qué</h2>
+      </div>
+
+      <div class="benefits__grid">
+
+        <!-- 1. Eficiencia verificada -->
+        <div class="bcard">
+          <div class="bcard__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="7" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="20" y1="3"  x2="20" y2="7"  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="20" y1="33" x2="20" y2="37" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="3"  y1="20" x2="7"  y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="33" y1="20" x2="37" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="7.5"  y1="7.5"  x2="10.3" y2="10.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="29.7" y1="29.7" x2="32.5" y2="32.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="32.5" y1="7.5"  x2="29.7" y2="10.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="10.3" y1="29.7" x2="7.5"  y2="32.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <!-- check -->
+              <polyline points="16,20 18.5,22.5 24,17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="bcard__title">Eficiencia real verificada</h3>
+          <p class="bcard__body">Hasta 3.2 µmol/J en PRO, 2.8 en Std, 2.5 en Core. Todos medidos sobre canopy real, no como pico central. Lo que decimos es lo que recibís.</p>
+        </div>
+
+        <!-- 2. Daisy Chain -->
+        <div class="bcard">
+          <div class="bcard__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8"  cy="20" r="5" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="32" cy="20" r="5" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="20" cy="20" r="5" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="13" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="25" y1="20" x2="27" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <!-- nodo control arriba -->
+              <rect x="17" y="6" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <line x1="20" y1="12" x2="20" y2="15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="2,1.5"/>
+            </svg>
+          </div>
+          <h3 class="bcard__title">Daisy Chain</h3>
+          <p class="bcard__body">Controlá hasta 60 equipos desde un solo punto. Ideal para salas con múltiples luminarias en serie. Sin cableado extra ni controladores adicionales.</p>
+        </div>
+
+        <!-- 3. Ultra-liviano y plegable -->
+        <div class="bcard">
+          <div class="bcard__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- barra plegada izquierda -->
+              <line x1="8"  y1="16" x2="20" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <!-- barra plegada derecha -->
+              <line x1="32" y1="16" x2="20" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <!-- barra central -->
+              <line x1="8"  y1="20" x2="32" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <!-- soporte colgado -->
+              <line x1="20" y1="8" x2="20" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="20" cy="8" r="2" fill="currentColor" opacity="0.5"/>
+              <!-- línea ground -->
+              <line x1="10" y1="28" x2="30" y2="28" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+              <!-- flecha indicando ligereza -->
+              <path d="M24 30 L26 33 M28 30 L30 33" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="bcard__title">Ultra-liviano y plegable</h3>
+          <p class="bcard__body">Instalación simple sin estructura adicional. El diseño plegable facilita el transporte y el ajuste de altura dentro de la sala.</p>
+        </div>
+
+        <!-- 4. Encendido progresivo -->
+        <div class="bcard">
+          <div class="bcard__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- horizonte -->
+              <line x1="6" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.35"/>
+              <!-- sol subiendo -->
+              <path d="M20 28 A8 8 0 0 1 12 28" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.35"/>
+              <path d="M20 28 A8 8 0 0 0 28 28" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.35"/>
+              <circle cx="20" cy="22" r="4.5" stroke="currentColor" stroke-width="1.6"/>
+              <!-- rayos graduales -->
+              <line x1="20" y1="10"  x2="20" y2="13"  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="28.5" y1="13.5" x2="26.4" y2="15.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.7"/>
+              <line x1="11.5" y1="13.5" x2="13.6" y2="15.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.7"/>
+              <line x1="31"   y1="22"   x2="28"   y2="22"   stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+              <line x1="9"    y1="22"   x2="12"   y2="22"   stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+          <h3 class="bcard__title">Encendido progresivo</h3>
+          <p class="bcard__body">Protege el ciclo de cultivo y prolonga la vida útil del equipo. La luz sube gradualmente, evitando el estrés lumínico en las plantas.</p>
+        </div>
+
+        <!-- 5. Disipación pasiva -->
+        <div class="bcard">
+          <div class="bcard__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- cuerpo del disipador -->
+              <rect x="10" y="18" width="20" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <!-- aletas -->
+              <line x1="14" y1="18" x2="14" y2="10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="18" y1="18" x2="18" y2="8"  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="22" y1="18" x2="22" y2="8"  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="26" y1="18" x2="26" y2="10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <!-- calor disipado (ondas) -->
+              <path d="M14 6 Q15.5 4.5 17 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.45"/>
+              <path d="M19 5 Q20.5 3 22 5"   stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.45"/>
+              <path d="M24 6 Q25.5 4.5 27 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.45"/>
+              <!-- tachado ventilador -->
+              <line x1="28" y1="30" x2="36" y2="38" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
+            </svg>
+          </div>
+          <h3 class="bcard__title">Disipación pasiva</h3>
+          <p class="bcard__body">Sin ventiladores. Sin ruido. Menos calor generado en sala. El sistema de aletas pasivas evacúa el calor de forma silenciosa y sin piezas móviles que fallen.</p>
+        </div>
+
+        <!-- 6. Soporte local real -->
+        <div class="bcard bcard--highlight">
+          <div class="bcard__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4L6 10v8c0 9.5 6 16.5 14 19 8-2.5 14-9.5 14-19v-8L20 4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <polyline points="14,20 17.5,24 26,15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="bcard__title">Soporte local real</h3>
+          <p class="bcard__body">Garantía de 2 años y postventa desde Argentina. No hablás con un call center: la atención es directa y personalizada con quien fabricó el equipo.</p>
+          <span class="bcard__tag">Beccar, Buenos Aires</span>
+        </div>
+
+      </div><!-- /benefits__grid -->
+    </div><!-- /benefits__inner -->
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       8. COMPARATIVA VS COMPETIDORES
+  ══════════════════════════════════════════════════════════ -->
+  <section class="compare" id="comparativa">
+    <div class="compare__inner">
+
+      <div class="section-header" style="text-align:left; margin-bottom:52px;">
+        <p class="section-eyebrow" style="color:var(--olive);">Canopy Master vs el mercado</p>
+        <h2 class="section-title" style="color:var(--white);">No todos los LEDs<br>son iguales</h2>
+        <p class="section-subtitle" style="color:var(--beige); margin-top:12px;">La diferencia no está en el número del catálogo.<br>Está en cómo se midió.</p>
+      </div>
+
+      <!-- Tabla -->
+      <div class="cmp-table-wrap">
+        <table class="cmp-table">
+          <thead>
+            <tr>
+              <th class="cmp-th cmp-th--attr"></th>
+              <th class="cmp-th cmp-th--omnigro">
+                <span class="cmp-th__brand">Canopy Master</span>
+                <span class="cmp-th__sub">Omnigro · Argentina</span>
+              </th>
+              <th class="cmp-th cmp-th--other">
+                <span class="cmp-th__brand">Importados</span>
+                <span class="cmp-th__sub">Bajo costo · China</span>
+              </th>
+              <th class="cmp-th cmp-th--other">
+                <span class="cmp-th__brand">Otras marcas</span>
+                <span class="cmp-th__sub">Nacionales</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="cmp-row">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Eficiencia</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-val cmp-val--strong">2.5 – 3.2 µmol/J</span>
+                <span class="cmp-note">Todas las versiones verificadas</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-val">~2.6 µmol/J</span>
+                <span class="cmp-note cmp-note--warn">Frecuentemente picos declarados</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-val">2.8 – 3.0 µmol/J</span>
+                <span class="cmp-note">Variable</span>
+              </td>
+            </tr>
+
+            <tr class="cmp-row cmp-row--key">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Método de medición</span>
+                <span class="cmp-attr__note">La fila que más importa</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-check">✓</span>
+                <span class="cmp-val cmp-val--strong">Promedio real<br>sobre canopy</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-cross">✗</span>
+                <span class="cmp-val">Pico central<br>declarado</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-dash">–</span>
+                <span class="cmp-val">Variable /<br>no especificado</span>
+              </td>
+            </tr>
+
+            <tr class="cmp-row">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Garantía</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-check">✓</span>
+                <span class="cmp-val cmp-val--strong">2 años</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-cross">✗</span>
+                <span class="cmp-val">Sin garantía<br>local efectiva</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-dash">–</span>
+                <span class="cmp-val">1 – 3 años</span>
+              </td>
+            </tr>
+
+            <tr class="cmp-row">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Soporte</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-check">✓</span>
+                <span class="cmp-val cmp-val--strong">Directo y<br>personalizado</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-cross">✗</span>
+                <span class="cmp-val">Inexistente</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-dash">–</span>
+                <span class="cmp-val">Genérico</span>
+              </td>
+            </tr>
+
+            <tr class="cmp-row">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Espectro avanzado</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-check">✓</span>
+                <span class="cmp-val cmp-val--strong">Emerson +<br>Green Series</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-cross">✗</span>
+                <span class="cmp-val">Espectro<br>genérico</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-dash">–</span>
+                <span class="cmp-val">Espectro<br>estándar</span>
+              </td>
+            </tr>
+
+            <tr class="cmp-row">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Daisy Chain</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-check">✓</span>
+                <span class="cmp-val cmp-val--strong">Hasta 60 equipos</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-cross">✗</span>
+                <span class="cmp-val">No disponible</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-dash">–</span>
+                <span class="cmp-val">Parcial o<br>no disponible</span>
+              </td>
+            </tr>
+
+            <tr class="cmp-row">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Specs verificadas</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-check">✓</span>
+                <span class="cmp-val cmp-val--strong">Medidas en planta,<br>por escrito</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-cross">✗</span>
+                <span class="cmp-val">Declaradas<br>por catálogo</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-dash">–</span>
+                <span class="cmp-val">Variable</span>
+              </td>
+            </tr>
+
+            <tr class="cmp-row">
+              <td class="cmp-attr">
+                <span class="cmp-attr__name">Fabricación</span>
+              </td>
+              <td class="cmp-cell cmp-cell--omnigro">
+                <span class="cmp-check">✓</span>
+                <span class="cmp-val cmp-val--strong">Argentina</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-val" style="opacity:0.5;">China</span>
+              </td>
+              <td class="cmp-cell">
+                <span class="cmp-val" style="opacity:0.5;">Argentina /<br>importado</span>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Cierre -->
+      <div class="compare__close">
+        <p class="compare__close-text">Diseñado por cultivadores que entienden lo que una sala realmente necesita.</p>
+        <div class="compare__close-line"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       9. GARANTÍA PROFESIONAL
+  ══════════════════════════════════════════════════════════ -->
+  <section class="warranty" id="garantia">
+    <div class="warranty__inner">
+
+      <!-- Header dividido -->
+      <div class="warranty__header">
+        <div class="warranty__header-left">
+          <p class="section-eyebrow">Garantía profesional</p>
+          <h2 class="section-title">Comprá<br>con confianza</h2>
+          <!-- Número decorativo grande -->
+          <div class="warranty__years">
+            <span class="warranty__years-num">2</span>
+            <span class="warranty__years-label">años de<br>garantía</span>
+          </div>
+          <p class="warranty__header-note">En todas las versiones: Core, Std y PRO.<br>Sin letra chica.</p>
+        </div>
+
+        <div class="warranty__header-right">
+          <!-- 4 pilares -->
+          <div class="warranty__pillars">
+
+            <div class="wpillar">
+              <div class="wpillar__icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 3L4 8v7c0 7.5 5 13 12 15 7-2 12-7.5 12-15V8L16 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  <polyline points="11,16 14.5,19.5 21,13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="wpillar__content">
+                <h3 class="wpillar__title">2 años de garantía</h3>
+                <p class="wpillar__body">Respaldo local real sobre cada equipo. PRO, Std y Core. Sin importar la versión que elijas.</p>
+              </div>
+            </div>
+
+            <div class="wpillar">
+              <div class="wpillar__icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="11" r="5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M6 27c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="22" y1="20" x2="28" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="28" cy="13" r="2" stroke="currentColor" stroke-width="1.3"/>
+                </svg>
+              </div>
+              <div class="wpillar__content">
+                <h3 class="wpillar__title">Soporte directo</h3>
+                <p class="wpillar__body">No hablás con un call center. Atención personalizada de quien fabricó el equipo, sin intermediarios.</p>
+              </div>
+            </div>
+
+            <div class="wpillar">
+              <div class="wpillar__icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- mapa arg simplificado como pin -->
+                  <path d="M16 3C11 3 7 7 7 12c0 7 9 17 9 17s9-10 9-17c0-5-4-9-9-9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  <circle cx="16" cy="12" r="3" stroke="currentColor" stroke-width="1.4"/>
+                </svg>
+              </div>
+              <div class="wpillar__content">
+                <h3 class="wpillar__title">Fabricado en Argentina</h3>
+                <p class="wpillar__body">Si algo falla, el soporte es local. Sin envíos al exterior ni tiempos de importación. Reparación en Beccar, Buenos Aires.</p>
+              </div>
+            </div>
+
+            <div class="wpillar wpillar--highlight">
+              <div class="wpillar__icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- medidor / gauge -->
+                  <path d="M6 22 A10 10 0 0 1 26 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M8 25 A8 8 0 0 1 24 25" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+                  <!-- aguja -->
+                  <line x1="16" y1="22" x2="22" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="16" cy="22" r="2" fill="currentColor" opacity="0.6"/>
+                  <!-- ticks -->
+                  <line x1="6"  y1="22" x2="8"  y2="22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+                  <line x1="26" y1="22" x2="24" y2="22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+                  <line x1="16" y1="12" x2="16" y2="14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+                </svg>
+              </div>
+              <div class="wpillar__content">
+                <h3 class="wpillar__title">Specs verificadas o reemplazamos</h3>
+                <p class="wpillar__body">Cada equipo sale con sus métricas medidas sobre canopy real. Si no entrega la eficiencia declarada, lo reemplazamos.</p>
+              </div>
+              <span class="wpillar__badge">Compromiso escrito</span>
+            </div>
+
+          </div><!-- /warranty__pillars -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       10. CASOS DE ÉXITO
+  ══════════════════════════════════════════════════════════ -->
+  <section class="cases" id="casos">
+    <div class="cases__inner">
+
+      <p class="section-eyebrow" style="color:var(--olive);">Cultivadores reales</p>
+      <h2 class="section-title" style="color:var(--dark); max-width:560px;">Lo que dicen los que ya lo tienen</h2>
+
+      <div class="cases__grid">
+
+        <article class="tcard">
+          <div class="tcard__stars">★★★★★</div>
+          <blockquote class="tcard__quote">
+            "Pasé de Gavita a Canopy Master PRO y la diferencia en temperatura de hoja es notoria. La sala bajó 2°C y los cogollos están más compactos. El rendimiento final fue un 18% superior."
+          </blockquote>
+          <div class="tcard__author">
+            <div class="tcard__avatar">MR</div>
+            <div>
+              <strong class="tcard__name">Marcos R.</strong>
+              <span class="tcard__meta">Sala 6×6 · Mendoza · Emerson Series PRO 600W</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard">
+          <div class="tcard__stars">★★★★★</div>
+          <blockquote class="tcard__quote">
+            "Arranqué con Core porque el presupuesto no alcanzaba para PRO. A los 8 meses pude agregarle la versión Std a otra sala. El equipo es sólido, sin problemas. Soporte respondió en 2 horas cuando tuve una duda."
+          </blockquote>
+          <div class="tcard__author">
+            <div class="tcard__avatar">LF</div>
+            <div>
+              <strong class="tcard__name">Lucía F.</strong>
+              <span class="tcard__meta">2 salas · CABA · Core 400W + Std 400W</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard tcard--dark">
+          <div class="tcard__stars" style="color:var(--olive);">★★★★★</div>
+          <blockquote class="tcard__quote">
+            "Equipé 3 salas de vegetación con Green Series. La diferencia de internodios con espectro completo es muy visible. Lo que más valoro: los números que declararon son los números que midieron."
+          </blockquote>
+          <div class="tcard__author">
+            <div class="tcard__avatar tcard__avatar--olive">PA</div>
+            <div>
+              <strong class="tcard__name" style="color:var(--white);">Pablo A.</strong>
+              <span class="tcard__meta" style="color:rgba(212,211,189,0.5);">Producción comercial · Santa Fe · Green Series Std 600W ×12</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard">
+          <div class="tcard__stars">★★★★★</div>
+          <blockquote class="tcard__quote">
+            "La adaptabilidad es real. Empecé con una carpa 120×120 y el Core 200W. Hoy tengo 3 carpas distintas con distintas versiones. No tuve que cambiar de marca, solo de modelo."
+          </blockquote>
+          <div class="tcard__author">
+            <div class="tcard__avatar">GV</div>
+            <div>
+              <strong class="tcard__name">Gonzalo V.</strong>
+              <span class="tcard__meta">Cultivo personal · Córdoba · Core → Std → PRO</span>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /cases__grid -->
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       11. URGENCIA — PRE-VENTA
+  ══════════════════════════════════════════════════════════ -->
+  <section class="urgency" id="preventa">
+    <div class="urgency__inner">
+
+      <!-- Encabezado -->
+      <div class="urgency__head">
+        <div>
+          <p class="section-eyebrow" style="color:var(--beige); opacity:0.6;">Stock limitado · Pre-venta 2026</p>
+          <h2 class="urgency__title">Precio de lanzamiento.<br><em>Por tiempo limitado.</em></h2>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown" id="countdown">
+          <div class="countdown__block">
+            <span class="countdown__n" id="cd-days">07</span>
+            <span class="countdown__l">días</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__block">
+            <span class="countdown__n" id="cd-hours">18</span>
+            <span class="countdown__l">hs</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__block">
+            <span class="countdown__n" id="cd-mins">34</span>
+            <span class="countdown__l">min</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__block">
+            <span class="countdown__n" id="cd-secs">00</span>
+            <span class="countdown__l">seg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla descuentos -->
+      <div class="disc-table-wrap">
+        <table class="disc-table">
+          <thead>
+            <tr>
+              <th class="disc-th">Versión</th>
+              <th class="disc-th">Precio lista</th>
+              <th class="disc-th disc-th--highlight">Descuento<br>pre-venta</th>
+              <th class="disc-th">Precio final</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="disc-row">
+              <td class="disc-td"><span class="disc-badge">Core</span></td>
+              <td class="disc-td disc-td--list">$ 210.000</td>
+              <td class="disc-td disc-td--pct disc-td--pct--15">15% OFF</td>
+              <td class="disc-td disc-td--final">$ 178.500</td>
+            </tr>
+            <tr class="disc-row">
+              <td class="disc-td"><span class="disc-badge disc-badge--std">Std</span></td>
+              <td class="disc-td disc-td--list">$ 280.000</td>
+              <td class="disc-td disc-td--pct disc-td--pct--20">20% OFF</td>
+              <td class="disc-td disc-td--final">$ 224.000</td>
+            </tr>
+            <tr class="disc-row disc-row--pro">
+              <td class="disc-td"><span class="disc-badge disc-badge--pro">PRO</span></td>
+              <td class="disc-td disc-td--list">$ 420.000</td>
+              <td class="disc-td disc-td--pct disc-td--pct--25">25% OFF</td>
+              <td class="disc-td disc-td--final disc-td--final--pro">$ 315.000</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="disc-note">Precios de referencia para Emerson Series 400W. Usá el configurador para ver tu combinación exacta.</p>
+      </div>
+
+      <!-- Métodos de pago -->
+      <div class="pay-row">
+        <span class="pay-label">Medios de pago</span>
+        <div class="pay-chips">
+          <span class="pay-chip">Mercado Pago</span>
+          <span class="pay-chip">Transferencia</span>
+          <span class="pay-chip">Efectivo</span>
+          <span class="pay-chip pay-chip--alt">Cuotas sin interés · hasta 12</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       12. CTA FINAL
+  ══════════════════════════════════════════════════════════ -->
+  <section class="cta-final" id="contacto">
+    <div class="cta-final__inner">
+
+      <p class="section-eyebrow" style="color:var(--olive); opacity:0.7;">Próximo paso</p>
+      <h2 class="cta-final__title">¿Listo para mejorar<br>tu próxima cosecha?</h2>
+      <p class="cta-final__sub">Hablá con nosotros. Sin presión, sin vendedores. Solo cultivadores que entienden tu sala.</p>
+
+      <div class="cta-final__buttons">
+        <a class="btn-wa-primary" href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Canopy%20Master" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Consultar por WhatsApp
+        </a>
+        <a class="btn-mp-secondary" href="#" target="_blank">
+          Comprar en Mercado Pago
+        </a>
+      </div>
+
+      <!-- Micro-trust -->
+      <div class="cta-final__trust">
+        <span class="trust-item">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L2 4v4c0 4 3 6.5 6 7.5 3-1 6-3.5 6-7.5V4L8 1.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><polyline points="5.5,8.2 7.2,9.9 10.5,6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          2 años de garantía
+        </span>
+        <span class="trust-sep">·</span>
+        <span class="trust-item">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.5" y="4.5" width="13" height="9" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 4.5V3a3 3 0 016 0v1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Pago 100% seguro
+        </span>
+        <span class="trust-sep">·</span>
+        <span class="trust-item">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><polyline points="5,8 7,10 11,6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Specs verificadas por escrito
+        </span>
+        <span class="trust-sep">·</span>
+        <span class="trust-item">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13z" stroke="currentColor" stroke-width="1.2"/><path d="M8 4.5v4l2.5 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Envío en 72hs hábiles
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+
+      <div class="footer__col footer__col--brand">
+        <img src="assets/logo-blanco-transparente.png" alt="Omnigro" class="footer__logo">
+        <p class="footer__tagline">Iluminación LED profesional<br>fabricada en Argentina.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__heading">Canopy Master</h4>
+        <nav class="footer__nav">
+          <a href="#eficiencia" class="footer__link">Eficiencia</a>
+          <a href="#espectro"   class="footer__link">Espectro</a>
+          <a href="#configurador" class="footer__link">Configurador</a>
+          <a href="#garantia"   class="footer__link">Garantía</a>
+          <a href="#preventa"   class="footer__link">Pre-venta</a>
+        </nav>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__heading">Contacto</h4>
+        <address class="footer__address">
+          <p>Beccar, Buenos Aires</p>
+          <p>Argentina</p>
+          <a href="https://wa.me/5491100000000" class="footer__link" style="margin-top:8px; display:block;">WhatsApp</a>
+          <a href="mailto:info@omnigro.com.ar" class="footer__link">info@omnigro.com.ar</a>
+        </address>
+      </div>
+
+    </div>
+    <div class="footer__bar">
+      <p>© 2026 Omnigro. Todos los derechos reservados.</p>
+      <p class="footer__bar-right">Canopy Master es una línea de Omnigro Grow Solutions SRL</p>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       JS — Configurador
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    const WA_NUMBER = '5491100000000'; // ← reemplazar con número real
+    const MP_URL    = '#';             // ← reemplazar con link de pago MP
+
+    const PRICES = {
+      pro:  { emerson: { 200:250000, 300:330000, 400:420000, 600:590000, 800:760000 },
+              green:   { 200:288000, 300:380000, 400:483000, 600:679000, 800:874000 } },
+      std:  { emerson: { 200:160000, 300:210000, 400:280000, 600:400000, 800:520000 },
+              green:   { 200:184000, 300:242000, 400:322000, 600:460000, 800:598000 } },
+      core: { emerson: { 200:120000, 300:155000, 400:210000, 600:300000, 800:390000 },
+              green:   { 200:138000, 300:178000, 400:242000, 600:345000, 800:449000 } }
+    };
+
+    const UMOLS = {
+      pro:  { 200:640,  300:960,  400:1280, 600:1920, 800:2560 },
+      std:  { 200:560,  300:840,  400:1120, 600:1680, 800:2240 },
+      core: { 200:500,  300:750,  400:1000, 600:1500, 800:2000 }
+    };
+
+    const DISCOUNT    = { pro:0.75, std:0.80, core:0.85 };
+    const EFF_MAP     = { 0:'core', 1:'std', 2:'pro' };
+    const EFF_LABELS  = { core:'>2.5 µmol/J · Core', std:'>2.8 µmol/J · Std', pro:'>3.2 µmol/J · PRO' };
+    const VER_LABEL   = { pro:'PRO', std:'Std', core:'Core' };
+    const SERIE_LBL   = { emerson:'Emerson Series', green:'Green Series' };
+    const SERIE_SFX   = { emerson:'ES', green:'GS' };
+
+    function fmt(n) { return '$ ' + n.toLocaleString('es-AR'); }
+
+    const cfg = { potencia:'400', serie:'emerson', area:'2x2', eff:2, budget:1000000 };
+
+    function getRecommendation() {
+      const version  = EFF_MAP[cfg.eff];
+      const serie    = cfg.serie;
+      const potencia = parseInt(cfg.potencia);
+      const versions = ['pro','std','core'];
+      let finalVersion = version;
+      for (const v of versions.slice(versions.indexOf(version))) {
+        const lp = PRICES[v]?.[serie]?.[potencia];
+        if (lp && Math.round(lp * DISCOUNT[v]) <= cfg.budget) { finalVersion = v; break; }
+      }
+      return { version: finalVersion, serie, potencia };
+    }
+
+    function updateCfgRec() {
+      const { version, serie, potencia } = getRecommendation();
+      const listPrice = PRICES[version]?.[serie]?.[potencia];
+      if (!listPrice) return;
+      const salePrice = Math.round(listPrice * DISCOUNT[version]);
+      const imgPath   = `assets/producto/CM-${potencia} - 2026/CM-${potencia}-${SERIE_SFX[serie]}-png.png`;
+      const fullLabel = `Canopy Master ${VER_LABEL[version]} ${potencia}W`;
+      const waMsg     = encodeURIComponent(`Hola, me interesa el ${fullLabel} ${SERIE_LBL[serie]} (pre-venta). Quiero más información.`);
+
+      const img = document.getElementById('cfgImg');
+      img.classList.add('swapping');
+      setTimeout(() => { img.src = imgPath; img.classList.remove('swapping'); }, 220);
+
+      document.getElementById('cfgSeriesTag').textContent = `${VER_LABEL[version]} · ${SERIE_LBL[serie]}`;
+      document.getElementById('cfgName').innerHTML        = `${fullLabel}<br>${SERIE_LBL[serie]}`;
+      document.getElementById('cfgPrice').textContent     = fmt(salePrice);
+      document.getElementById('cfgUmols').textContent     = `${(UMOLS[version][potencia]||'—').toLocaleString('es-AR')} µmol/s`;
+      document.getElementById('cfgEff2').textContent      = EFF_LABELS[version].split(' · ')[0];
+      document.getElementById('cfgCTAWA').href            = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+      document.getElementById('cfgCTAMP').href            = MP_URL;
+    }
+
+    // Potencia
+    document.querySelectorAll('[data-fkey="potencia"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('cfg__btn--active'));
+        btn.classList.add('cfg__btn--active');
+        cfg.potencia = btn.dataset.fval;
+        updateCfgRec();
+      });
+    });
+
+    // Serie (espectro)
+    document.querySelectorAll('[data-fkey="serie"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="serie"]').forEach(b => b.classList.remove('cfg__spectrum-opt--active'));
+        btn.classList.add('cfg__spectrum-opt--active');
+        cfg.serie = btn.dataset.fval;
+        updateCfgRec();
+      });
+    });
+
+    // Área — sugiere potencia
+    document.querySelectorAll('[data-fkey="area"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="area"]').forEach(b => b.classList.remove('cfg__coverage-btn--active'));
+        btn.classList.add('cfg__coverage-btn--active');
+        cfg.area = btn.dataset.fval;
+        const suggested = btn.dataset.suggest;
+        if (suggested) {
+          document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('cfg__btn--active'));
+          const pw = document.querySelector(`[data-fkey="potencia"][data-fval="${suggested}"]`);
+          if (pw) { pw.classList.add('cfg__btn--active'); cfg.potencia = suggested; }
+        }
+        updateCfgRec();
+      });
+    });
+
+    // Slider eficiencia
+    document.getElementById('cfgEff').addEventListener('input', e => {
+      cfg.eff = parseInt(e.target.value);
+      document.getElementById('cfgEffLabel').textContent = EFF_LABELS[EFF_MAP[cfg.eff]];
+      updateCfgRec();
+    });
+
+    // Budget
+    document.querySelectorAll('[data-fkey="budget"]').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('[data-fkey="budget"]').forEach(p => p.classList.remove('cfg__budget-pill--active'));
+        pill.classList.add('cfg__budget-pill--active');
+        cfg.budget = parseInt(pill.dataset.fval);
+        updateCfgRec();
+      });
+    });
+
+    updateCfgRec();
+  </script>
+
+  <!-- ══════════════════════════════════════════════════════════
+       WIZARD SALA — MODAL
+  ══════════════════════════════════════════════════════════ -->
+  <div class="wz-overlay" id="wzSalaOverlay" onclick="onSalaOverlayClick(event)">
+    <div class="wz-modal">
+
+      <div class="wz-modal__header" style="background: var(--dark);">
+        <span class="wz-modal__title">Cotización para salas profesionales</span>
+        <button class="wz-modal__close" onclick="closeSalaWizard()">✕</button>
+      </div>
+
+      <!-- Progress -->
+      <div class="wz-progress">
+        <div class="wz-dot is-active" id="slDot0"></div>
+        <div class="wz-dot"           id="slDot1"></div>
+        <div class="wz-dot"           id="slDot2"></div>
+      </div>
+
+      <!-- PASO 1 — Escala -->
+      <div class="wz-step is-active" id="slStep0">
+        <p class="wz-step__num">Pregunta 1 de 3</p>
+        <h3 class="wz-step__q">¿Cuánto espacio o cuántos equipos necesitás?</h3>
+
+        <div class="wz-opts" id="slScaleOpts">
+          <button class="wz-opt" data-scale="6-12" data-label="6 a 12 equipos" onclick="slSelect(this,'scale')">
+            <span class="wz-opt__label">6 a 12 equipos</span>
+            <span class="wz-opt__sub">Sala pequeña · hasta ~100 m²</span>
+          </button>
+          <button class="wz-opt" data-scale="12-24" data-label="12 a 24 equipos" onclick="slSelect(this,'scale')">
+            <span class="wz-opt__label">12 a 24 equipos</span>
+            <span class="wz-opt__sub">Sala mediana · 100 a 250 m²</span>
+          </button>
+          <button class="wz-opt" data-scale="+24" data-label="+24 equipos" onclick="slSelect(this,'scale')">
+            <span class="wz-opt__label">+24 equipos</span>
+            <span class="wz-opt__sub">Sala grande o múltiples sectores</span>
+          </button>
+        </div>
+
+        <p style="font-family:var(--font-body);font-size:11px;font-weight:300;color:var(--olive);margin-top:16px;line-height:1.6;padding:12px 16px;border-left:2px solid var(--beige);">
+          Trabajamos con <strong>precios diferenciales por cantidad</strong>. Cuantos más equipos, mejor el precio por unidad. El precio de lista no aplica a proyectos de sala.
+        </p>
+      </div>
+
+      <!-- PASO 2 — Espectro de sala -->
+      <div class="wz-step" id="slStep1">
+        <p class="wz-step__num">Pregunta 2 de 3</p>
+        <h3 class="wz-step__q">¿Cómo está organizada tu sala?</h3>
+
+        <div class="wz-opts" id="slSpectrumOpts">
+          <button class="wz-opt" data-spectrum="emerson-only" data-label="Solo Emerson Series" onclick="slSelect(this,'spectrum')">
+            <span class="wz-opt__label">Un solo espectro — Emerson</span>
+            <span class="wz-opt__sub">Ciclo completo o floración</span>
+            <span class="wz-opt__desc">Todos los equipos con el mismo espectro. Máximo rendimiento por ciclo.</span>
+          </button>
+          <button class="wz-opt" data-spectrum="green-only" data-label="Solo Green Series" onclick="slSelect(this,'spectrum')">
+            <span class="wz-opt__label">Un solo espectro — Green</span>
+            <span class="wz-opt__sub">Énfasis en calidad y genética</span>
+            <span class="wz-opt__desc">Todos los equipos con Green Series. Ideal para pheno hunting o breeding a escala.</span>
+          </button>
+          <button class="wz-opt" data-spectrum="mixed" data-label="Emerson (veg) + Green (flora)" onclick="slSelect(this,'spectrum')">
+            <span class="wz-opt__label">Sala dividida — Veg + Flora</span>
+            <span class="wz-opt__sub">Emerson para vegetación · Green para floración</span>
+            <span class="wz-opt__desc">La configuración más habitual en salas profesionales con sectores separados. Podemos cotizar ambos espectros en el mismo pedido.</span>
+          </button>
+          <button class="wz-opt" data-spectrum="unsure" data-label="No estoy seguro" onclick="slSelect(this,'spectrum')">
+            <span class="wz-opt__label">Todavía no lo definí</span>
+            <span class="wz-opt__sub">Quiero asesoramiento</span>
+            <span class="wz-opt__desc">Nuestro equipo puede ayudarte a definir la mejor configuración según el diseño de tu sala.</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PASO 3 — Contacto -->
+      <div class="wz-step" id="slStep2">
+        <p class="wz-step__num">Pregunta 3 de 3</p>
+        <h3 class="wz-step__q">¿Cómo querés recibir la cotización?</h3>
+
+        <!-- Opción A: Email -->
+        <div class="sl-contact-block" id="slEmailBlock">
+          <p class="sl-contact-label">Dejá tu email y te enviamos la propuesta</p>
+          <div class="sl-input-wrap">
+            <input
+              type="email"
+              id="slEmailInput"
+              class="sl-input"
+              placeholder="tucorreo@ejemplo.com"
+              oninput="slCheckEmail()"
+            >
+            <button class="sl-input-btn" id="slEmailBtn" onclick="slSubmitEmail()" disabled>
+              Enviar →
+            </button>
+          </div>
+          <p class="sl-input-note">Te contactamos dentro de las 24 hs hábiles con una propuesta a medida.</p>
+        </div>
+
+        <!-- Divisor -->
+        <div class="sl-or">
+          <span class="sl-or__line"></span>
+          <span class="sl-or__text">o</span>
+          <span class="sl-or__line"></span>
+        </div>
+
+        <!-- Opción B: WhatsApp directo -->
+        <div class="sl-contact-block">
+          <p class="sl-contact-label">Hablá ahora con un representante</p>
+          <a id="slWABtn" href="#" target="_blank" class="sl-wa-btn" onclick="slGoWA()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.859L.057 23.428a.5.5 0 00.611.637l5.763-1.511A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.003-1.371l-.36-.213-3.716.975.992-3.617-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+            </svg>
+            Ir a WhatsApp ahora
+          </a>
+          <p class="sl-input-note">Receptamos mensajes 9 a 18 hs. · Beccar, Buenos Aires</p>
+        </div>
+      </div>
+
+      <!-- CONFIRMACIÓN EMAIL -->
+      <div class="wz-result" id="slEmailConfirm">
+        <div style="font-size:32px;margin-bottom:16px;">✓</div>
+        <p class="wz-result__label">Recibimos tu consulta</p>
+        <p class="wz-result__rec" id="slConfirmTitle">¡Listo!</p>
+        <p class="wz-result__sub" id="slConfirmSub">Te enviamos una propuesta a medida dentro de las 24 hs hábiles.</p>
+        <button class="wz-result__apply" onclick="closeSalaWizard()">Cerrar</button>
+      </div>
+
+      <!-- Navegación -->
+      <div class="wz-nav" id="slNav">
+        <button class="wz-btn-back" id="slBack" onclick="slPrev()">← Anterior</button>
+        <button class="wz-btn-next" id="slNext" onclick="slNext()">Siguiente →</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       JS — Wizard
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    const WZ_STEPS = 3;
+    let wzCurrentStep = 0;
+    const wzSelections = { area: null, potencia: null, serie: null, version: null };
+
+    function openWizard() {
+      wzReset();
+      document.getElementById('wzOverlay').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeWizard() {
+      document.getElementById('wzOverlay').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    function onOverlayClick(e) {
+      if (e.target === document.getElementById('wzOverlay')) closeWizard();
+    }
+
+    function wzReset() {
+      wzCurrentStep = 0;
+      wzSelections.area = wzSelections.potencia = wzSelections.serie = wzSelections.version = null;
+      document.querySelectorAll('.wz-opt').forEach(o => o.classList.remove('is-sel'));
+      document.querySelectorAll('.wz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById('wzResult').classList.remove('is-active');
+      document.getElementById('wzNav').style.display = 'flex';
+      wzShowStep(0);
+    }
+
+    function wzShowStep(idx) {
+      document.querySelectorAll('.wz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById(`wzStep${idx}`)?.classList.add('is-active');
+      wzCurrentStep = idx;
+      wzUpdateProgress();
+      wzUpdateNav();
+    }
+
+    function wzUpdateProgress() {
+      for (let i = 0; i < WZ_STEPS; i++) {
+        const dot = document.getElementById(`wzDot${i}`);
+        dot.classList.remove('is-done','is-active');
+        if (i < wzCurrentStep)        dot.classList.add('is-done');
+        else if (i === wzCurrentStep) dot.classList.add('is-active');
+      }
+    }
+
+    function wzUpdateNav() {
+      const back = document.getElementById('wzBack');
+      const next = document.getElementById('wzNext');
+      back.classList.toggle('visible', wzCurrentStep > 0);
+      const keys = ['area','serie','version'];
+      const hasSelection = wzSelections[keys[wzCurrentStep]] !== null;
+      next.classList.toggle('ready', hasSelection);
+      next.textContent = wzCurrentStep < WZ_STEPS - 1 ? 'Siguiente →' : 'Ver recomendación →';
+    }
+
+    function wzSelect(el, key) {
+      el.closest('.wz-opts').querySelectorAll('.wz-opt').forEach(o => o.classList.remove('is-sel'));
+      el.classList.add('is-sel');
+      wzSelections[key] = el.dataset[key];
+      if (key === 'area') wzSelections.potencia = el.dataset.potencia;
+      wzUpdateNav();
+    }
+
+    function wzNext() {
+      if (wzCurrentStep < WZ_STEPS - 1) wzShowStep(wzCurrentStep + 1);
+      else wzShowResult();
+    }
+
+    function wzPrev() {
+      if (wzCurrentStep > 0) wzShowStep(wzCurrentStep - 1);
+    }
+
+    function wzGoSala() {
+      closeWizard();
+      const msg = encodeURIComponent('Hola, necesito cotización para una sala profesional con múltiples equipos Canopy Master.');
+      window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+    }
+
+    function wzShowResult() {
+      document.querySelectorAll('.wz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById('wzResult').classList.add('is-active');
+      document.getElementById('wzNav').style.display = 'none';
+      document.querySelectorAll('.wz-dot').forEach(d => { d.classList.remove('is-active'); d.classList.add('is-done'); });
+
+      const VER   = { pro:'PRO', std:'Std', core:'Core' };
+      const SERIE = { emerson:'Emerson Series', green:'Green Series' };
+      const POT   = wzSelections.potencia || '400';
+      const VER_KEY   = wzSelections.version || 'std';
+      const SERIE_KEY = wzSelections.serie   || 'emerson';
+      const recName = `Canopy Master ${VER[VER_KEY]} ${POT}W`;
+      const recSub  = `${SERIE[SERIE_KEY]} — ${VER_KEY === 'core' ? 'Acceso profesional' : VER_KEY === 'std' ? 'Equilibrio precio-eficiencia' : 'Máxima eficiencia'} para tu espacio`;
+      const waMsg   = encodeURIComponent(`Hola, el asistente me recomendó el ${recName} ${SERIE[SERIE_KEY]} (pre-venta). Quiero más información.`);
+
+      document.getElementById('wzResultName').textContent = recName;
+      document.getElementById('wzResultSub').textContent  = recSub;
+      document.getElementById('wzResultWA').href = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+    }
+
+    // ── WIZARD SALA ──────────────────────────────────────────
+    const SL_STEPS = 3;
+    let slCurrentStep = 0;
+    const slSel = { scale: null, spectrum: null };
+
+    function openSalaWizard() {
+      slReset();
+      document.getElementById('wzSalaOverlay').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSalaWizard() {
+      document.getElementById('wzSalaOverlay').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    function onSalaOverlayClick(e) {
+      if (e.target === document.getElementById('wzSalaOverlay')) closeSalaWizard();
+    }
+
+    function slReset() {
+      slCurrentStep = 0;
+      slSel.scale = slSel.spectrum = null;
+      document.querySelectorAll('#wzSalaOverlay .wz-opt').forEach(o => o.classList.remove('is-sel'));
+      document.querySelectorAll('#wzSalaOverlay .wz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById('slEmailConfirm').classList.remove('is-active');
+      document.getElementById('slEmailInput').value = '';
+      document.getElementById('slEmailBtn').disabled = true;
+      document.getElementById('slNav').style.display = 'flex';
+      slShowStep(0);
+    }
+
+    function slShowStep(idx) {
+      document.querySelectorAll('#wzSalaOverlay .wz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById(`slStep${idx}`)?.classList.add('is-active');
+      slCurrentStep = idx;
+      slUpdateProgress();
+      slUpdateNav();
+    }
+
+    function slUpdateProgress() {
+      for (let i = 0; i < SL_STEPS; i++) {
+        const dot = document.getElementById(`slDot${i}`);
+        dot.classList.remove('is-done','is-active');
+        if (i < slCurrentStep)        dot.classList.add('is-done');
+        else if (i === slCurrentStep) dot.classList.add('is-active');
+      }
+    }
+
+    function slUpdateNav() {
+      const back = document.getElementById('slBack');
+      const next = document.getElementById('slNext');
+      back.classList.toggle('visible', slCurrentStep > 0);
+
+      const keys = ['scale','spectrum', null]; // paso 3 no usa slSel
+      const key = keys[slCurrentStep];
+      const ready = key ? slSel[key] !== null : true; // paso 3 siempre habilitado
+      next.classList.toggle('ready', ready);
+
+      if (slCurrentStep === SL_STEPS - 1) {
+        next.style.display = 'none'; // paso 3: el nav se oculta, el usuario elige contacto
+      } else {
+        next.style.display = '';
+        next.textContent = 'Siguiente →';
+      }
+    }
+
+    function slSelect(el, key) {
+      el.closest('.wz-opts').querySelectorAll('.wz-opt').forEach(o => o.classList.remove('is-sel'));
+      el.classList.add('is-sel');
+      slSel[key] = el.dataset[key];
+      slUpdateNav();
+    }
+
+    function slNext() {
+      if (slCurrentStep < SL_STEPS - 1) slShowStep(slCurrentStep + 1);
+    }
+
+    function slPrev() {
+      if (slCurrentStep > 0) slShowStep(slCurrentStep - 1);
+    }
+
+    function slBuildWAMsg() {
+      const SCALE_LABEL    = { '6-12':'6 a 12 equipos', '12-24':'12 a 24 equipos', '+24':'más de 24 equipos' };
+      const SPECTRUM_LABEL = { 'emerson-only':'Emerson Series (ciclo completo)', 'green-only':'Green Series', 'mixed':'sala dividida Veg (Emerson) + Flora (Green)', 'unsure':'por definir, necesito asesoramiento' };
+      const scale    = slSel.scale    ? SCALE_LABEL[slSel.scale]       : 'sin especificar';
+      const spectrum = slSel.spectrum ? SPECTRUM_LABEL[slSel.spectrum] : 'sin especificar';
+      return encodeURIComponent(
+        `Hola, necesito cotización para una sala profesional Canopy Master.\n` +
+        `· Equipos estimados: ${scale}\n` +
+        `· Espectro: ${spectrum}\n` +
+        `¿Pueden enviarme una propuesta?`
+      );
+    }
+
+    function slGoWA() {
+      const url = `https://wa.me/${WA_NUMBER}?text=${slBuildWAMsg()}`;
+      document.getElementById('slWABtn').href = url;
+      // El link se abre por el href, no hace falta más
+    }
+
+    function slCheckEmail() {
+      const val = document.getElementById('slEmailInput').value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      document.getElementById('slEmailBtn').disabled = !valid;
+    }
+
+    function slSubmitEmail() {
+      const email = document.getElementById('slEmailInput').value.trim();
+      const SCALE_LABEL    = { '6-12':'6-12 equipos', '12-24':'12-24 equipos', '+24':'+24 equipos' };
+      const SPECTRUM_LABEL = { 'emerson-only':'Emerson', 'green-only':'Green', 'mixed':'Veg+Flora', 'unsure':'por definir' };
+
+      // En producción, acá iría el submit al Google Form oculto
+      // Por ahora simula el envío
+      console.log('Lead sala:', {
+        email,
+        scale:    slSel.scale,
+        spectrum: slSel.spectrum
+      });
+
+      // Mostrar confirmación
+      document.querySelectorAll('#wzSalaOverlay .wz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById('slNav').style.display = 'none';
+      document.querySelectorAll('#wzSalaOverlay .wz-dot').forEach(d => { d.classList.remove('is-active'); d.classList.add('is-done'); });
+      document.getElementById('slEmailConfirm').classList.add('is-active');
+      document.getElementById('slConfirmSub').textContent =
+        `Te enviamos una propuesta a ${email} dentro de las 24 hs hábiles. ` +
+        `Escala: ${SCALE_LABEL[slSel.scale] || '—'} · Espectro: ${SPECTRUM_LABEL[slSel.spectrum] || '—'}.`;
+    }
+
+    function applyWizard() {
+      const EFF_IDX   = { core:0, std:1, pro:2 };
+      const POT       = wzSelections.potencia || '400';
+      const SERIE_KEY = wzSelections.serie    || 'emerson';
+      const VER_KEY   = wzSelections.version  || 'std';
+
+      document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('cfg__btn--active'));
+      const potBtn = document.querySelector(`[data-fkey="potencia"][data-fval="${POT}"]`);
+      if (potBtn) { potBtn.classList.add('cfg__btn--active'); cfg.potencia = POT; }
+
+      document.querySelectorAll('[data-fkey="serie"]').forEach(b => b.classList.remove('cfg__spectrum-opt--active'));
+      const serieBtn = document.querySelector(`[data-fkey="serie"][data-fval="${SERIE_KEY}"]`);
+      if (serieBtn) { serieBtn.classList.add('cfg__spectrum-opt--active'); cfg.serie = SERIE_KEY; }
+
+      const effIdx = EFF_IDX[VER_KEY] ?? 2;
+      const slider = document.getElementById('cfgEff');
+      if (slider) { slider.value = effIdx; cfg.eff = effIdx; document.getElementById('cfgEffLabel').textContent = EFF_LABELS[EFF_MAP[effIdx]]; }
+
+      updateCfgRec();
+      closeWizard();
+      setTimeout(() => document.getElementById('configurador').scrollIntoView({ behavior:'smooth', block:'start' }), 300);
+    }
+  </script>
+
+  <!-- ══════════════════════════════════════════════════════════
+       JS — Slideshow auto-rotate cada 2s
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      const slides = document.querySelectorAll('.slideshow__slide');
+      const dots   = document.querySelectorAll('.slideshow__dot');
+      let current  = 0;
+      let timer;
+
+      function goTo(index) {
+        slides[current].classList.remove('is-active');
+        dots[current].classList.remove('is-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        dots[current].classList.add('is-active');
+      }
+
+      function start() {
+        timer = setInterval(() => goTo(current + 1), 2000);
+      }
+
+      function stop() {
+        clearInterval(timer);
+      }
+
+      // Dots clickeables
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          stop();
+          goTo(parseInt(dot.dataset.index));
+          start();
+        });
+      });
+
+      // Pausa al hover
+      const sw = document.getElementById('slideshow');
+      sw.addEventListener('mouseenter', stop);
+      sw.addEventListener('mouseleave', start);
+
+      start();
+    })();
+  </script>
+
+  <!-- ══════════════════════════════════════════════════════════
+       JS — Countdown pre-venta
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      // Fecha límite: 7 días desde que el usuario carga la página (placeholder)
+      // Producción: reemplazar con fecha real, ej. new Date('2026-06-01T23:59:59')
+      const deadline = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const diff = Math.max(0, deadline - Date.now());
+        const days  = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins  = Math.floor((diff % 3600000)  / 60000);
+        const secs  = Math.floor((diff % 60000)    / 1000);
+
+        const el = id => document.getElementById(id);
+        if (el('cd-days'))  el('cd-days').textContent  = pad(days);
+        if (el('cd-hours')) el('cd-hours').textContent = pad(hours);
+        if (el('cd-mins'))  el('cd-mins').textContent  = pad(mins);
+        if (el('cd-secs'))  el('cd-secs').textContent  = pad(secs);
+
+        if (diff > 0) requestAnimationFrame(tick);
+      }
+
+      tick();
+    })();
+  </script>
+
+</body>
+</html>
