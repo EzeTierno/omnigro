@@ -124,18 +124,18 @@
     /* Logo */
     .hero__logo {
       width: 130px;
-      margin-bottom: 32px;
+      margin-bottom: 6em;
     }
 
     /* Pre-label */
     .hero__pre-label {
       font-family: var(--font-body);
-      font-size: 10px;
+      font-size: 18px;
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--olive);
-      margin-bottom: 16px;
+      margin-bottom: 50px;
     }
 
     /* Headline */
@@ -1994,7 +1994,7 @@
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--olive);
+      color: var(--beige);
       margin-bottom: 6px;
     }
 
@@ -2557,6 +2557,7 @@
     @media (min-width: 860px) {
       /* Hero 2 columnas desktop — texto izq, imagen der */
       .hero {
+        position: relative;
         flex-direction: row;
         align-items: stretch;
         padding: 56px 48px;
@@ -2564,13 +2565,14 @@
         min-height: 620px;
       }
 
+
       /* Columna izquierda = texto (orden 1) */
       .hero__col-left {
         order: 1;
         flex: 0 0 42%;
         max-width: 560px;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
       }
 
       /* Columna derecha = imagen (orden 2) */
@@ -2652,7 +2654,7 @@
 
       /* Slider al 85% del ancho de la col derecha, alineado a la derecha */
       .hero__col-right .hero__slideshow-wrap {
-        width: 85%;
+        width: 95%;
         margin-left: auto;
         margin-right: 0;
       }
