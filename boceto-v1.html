@@ -787,6 +787,7 @@
       margin-top: 8px;
       opacity: 0.9;
       filter: brightness(0.95);
+      border-radius: 10px;
     }
 
     .scard__for {
@@ -2749,13 +2750,97 @@
     .cfg__wiz-result-sub {
       font-family: var(--font-body);
       font-size: 12px; font-weight: 300;
-      color: rgba(212,211,189,0.45); margin-bottom: 14px;
+      color: rgba(212,211,189,0.45); margin-bottom: 25px;
+    }
+    .cfg__wiz-result-stats {
+      display: flex; gap: 16px; margin-bottom: 14px;
+      font-family: var(--font-body); font-size: 12px;
+      color: rgba(212,211,189,0.55);
+    }
+    .cfg__wiz-result-features {
+      list-style: none; padding: 0; margin: 0 0 20px;
+      display: flex; flex-direction: column; gap: 7px;
+    }
+    .cfg__wiz-result-features li {
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 300;
+      color: rgba(212,211,189,0.65);
+      display: flex; gap: 9px; align-items: baseline;
+      line-height: 1.45;
+    }
+    .cfg__wiz-result-features li::before {
+      content: '✓';
+      color: var(--olive);
+      font-size: 10px; font-weight: 700;
+      flex-shrink: 0;
     }
     .cfg__wiz-result-specs {
       display: flex; gap: 16px; margin-bottom: 12px;
       font-family: var(--font-body); font-size: 12px;
       color: rgba(212,211,189,0.55);
     }
+    .cfg__wiz-result-pricing { margin-bottom: 30px; }
+
+    .cfg__wiz-result-price-row {
+      display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;
+    }
+
+    .cfg__wiz-price-list {
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 400;
+      color: rgba(212,211,189,0.35);
+      text-decoration: line-through;
+    }
+
+    .cfg__wiz-price-sale {
+      font-family: var(--font-title);
+      font-size: clamp(22px, 4vw, 30px);
+      color: var(--cream);
+    }
+
+    .cfg__wiz-preventa-row {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+
+    .cfg__wiz-preventa-badge {
+      font-family: var(--font-body);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--olive);
+      background: rgba(116,118,74,0.12);
+      border: 1px solid rgba(116,118,74,0.35);
+      border-radius: 100px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    .cfg__wiz-mini-countdown {
+      display: flex; align-items: center; gap: 3px;
+      font-family: var(--font-body);
+    }
+
+    .cfg__wiz-mini-cd-label {
+      font-size: 10px; font-weight: 300;
+      color: rgba(212,211,189,0.35);
+      margin-right: 2px;
+    }
+
+    .cfg__wiz-mini-cd-val {
+      font-size: 12px; font-weight: 700;
+      color: rgba(212,211,189,0.7);
+      min-width: 1.6ch; text-align: right;
+    }
+
+    .cfg__wiz-mini-cd-unit {
+      font-size: 9px; font-weight: 400;
+      color: rgba(212,211,189,0.3);
+      margin-right: 1px;
+    }
+
+    .cfg__wiz-mini-cd-sep {
+      font-size: 11px;
+      color: rgba(212,211,189,0.2);
+    }
+
     .cfg__wiz-result-price {
       font-family: var(--font-title);
       font-size: clamp(22px, 4vw, 30px);
@@ -2768,6 +2853,96 @@
       background: none; border: none; cursor: pointer; padding: 0; text-align: left;
     }
     .cfg__wiz-restart:hover { color: var(--beige); }
+
+    /* ── Acordeón de resultados ── */
+    .cfg__accordion {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .cfg__acc-item {
+      border-radius: 14px; overflow: hidden;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .cfg__acc-item--main {
+      border: 1px solid rgba(116,118,74,0.45);
+      background: rgba(116,118,74,0.05);
+    }
+
+    .cfg__acc-item--alt {
+      border: 1px solid rgba(212,211,189,0.1);
+      background: rgba(212,211,189,0.02);
+    }
+
+    .cfg__acc-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; cursor: pointer; gap: 12px;
+      user-select: none;
+    }
+
+    .cfg__acc-hd-meta {
+      display: flex; align-items: center; gap: 9px;
+      flex: 1; min-width: 0;
+    }
+
+    .cfg__acc-badge {
+      font-family: var(--font-body);
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      border-radius: 100px; padding: 3px 9px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    .cfg__acc-badge--main {
+      color: var(--olive);
+      background: rgba(116,118,74,0.15);
+      border: 1px solid rgba(116,118,74,0.3);
+    }
+
+    .cfg__acc-badge--alt {
+      color: rgba(212,211,189,0.45);
+      background: rgba(212,211,189,0.05);
+      border: 1px solid rgba(212,211,189,0.12);
+    }
+
+    .cfg__acc-hd-name {
+      font-family: var(--font-body);
+      font-size: 13px; font-weight: 400;
+      color: rgba(212,211,189,0.5);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .cfg__acc-item--main .cfg__acc-hd-name {
+      color: var(--cream); font-weight: 500;
+    }
+
+    .cfg__acc-toggle {
+      background: none; border: none;
+      color: rgba(212,211,189,0.3);
+      font-size: 14px; padding: 0; flex-shrink: 0;
+      transition: transform 0.22s ease, color 0.22s;
+      line-height: 1; pointer-events: none;
+    }
+
+    .cfg__acc-item.is-open .cfg__acc-toggle {
+      transform: rotate(180deg);
+      color: var(--olive);
+    }
+
+    .cfg__acc-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.38s ease;
+    }
+
+    .cfg__acc-item.is-open .cfg__acc-body {
+      max-height: 1400px;
+    }
+
+    .cfg__acc-body-inner {
+      padding: 20px 18px 22px;
+      border-top: 1px solid rgba(212,211,189,0.07);
+    }
 
     /* Nav */
     .cfg__wiz-nav {
@@ -3401,7 +3576,7 @@
     <div class="section-header">
       <p class="section-eyebrow">Eficiencia REAL</p>
       <h2 class="section-title">¿Cuán lejos querés llegar?</h2>
-      <p class="section-subtitle">Elegí entre tres niveles de eficiencia para complementar tus necesidades de producción y costos.</p>
+      <p class="section-subtitle">Elegí entre dos niveles de eficiencia para complementar tus necesidades de producción y costos.</p>
     </div>
 
     <div class="ecard-grid">
@@ -3480,11 +3655,11 @@
         <p class="scard__tag">Emerson Series</p>
         <h3 class="scard__headline">Máxima eficiencia.<br>Más producción y rendimiento por ciclo.</h3>
         <p class="scard__body">
-          Chips con refuerzo en rojos y far-reds que activan el Efecto Emerson, potenciando la fotosíntesis y el desarrollo del cultivo.
+          Chips con refuerzo en rojos y far-reds que activan el Efecto Emerson, potenciando la fotosíntesis y el desarrollo del cultivo logrando incrementar niveles de producción.
         </p>
         <img
           class="scard__spectrum"
-          src="assets/emerson-series-sp.webp"
+          src="assets/spd-es.jpg"
           alt="Espectro Emerson Series — refuerzo en rojos y far-reds"
         >
         <p class="scard__for">Ideal para: CLUBES Y SALAS - PROFESIONALES</p>
@@ -3499,7 +3674,7 @@
         </p>
         <img
           class="scard__spectrum"
-          src="assets/green-series-spd.webp"
+          src="assets/spd-gs.jpg"
           alt="Espectro Green Series — refuerzo en verdes para expresión genética"
         >
         <p class="scard__for">Ideal para: pheno-hunters - competidores - breeders</p>
@@ -3684,12 +3859,12 @@
           <h3 class="cfg__wiz-q">¿Qué querés lograr?</h3>
           <div class="cfg__wiz-opts cfg__wiz-opts--2col" id="cfgObjetivoOpts">
             <button class="cfg__wiz-opt" data-serie="emerson" onclick="cfgWzSelect(this,'serie')">
-              <span class="cfg__wiz-label">Rendimiento</span>
+              <span class="cfg__wiz-label">Máxima eficiencia</span>
               <span class="cfg__wiz-sub">Emerson Series</span>
               <span class="cfg__wiz-desc">Máxima eficiencia para mayor producción por el mismo consumo eléctrico. Refuerzo en rojos y far-reds.</span>
             </button>
             <button class="cfg__wiz-opt" data-serie="green" onclick="cfgWzSelect(this,'serie')">
-              <span class="cfg__wiz-label">Calidad</span>
+              <span class="cfg__wiz-label">Expresión genética</span>
               <span class="cfg__wiz-sub">Green Series</span>
               <span class="cfg__wiz-desc">Impulsa la expresión genética para potenciar terpenos, pigmentos y otros rasgos genéticos. Agrega gama de verdes generando un espectro realmente completo.</span>
             </button>
@@ -3712,31 +3887,137 @@
           </div>
         </div>
 
-        <!-- RESULTADO -->
+        <!-- RESULTADO — acordeón 3 slots -->
         <div class="cfg__wiz-result" id="cfgResult">
-          <div class="cfg__wiz-result-inner">
-            <div class="cfg__wiz-result-img-wrap">
-              <img id="cfgResultImg" class="cfg__wiz-result-img"
-                src="assets/producto/CM-400 - 2026/CM-400-ES-png.png"
-                alt="Canopy Master">
-              <span class="cfg__wiz-result-tag" id="cfgResultTag">PRO · Emerson</span>
-            </div>
-            <div class="cfg__wiz-result-body">
-              <p class="cfg__wiz-result-label">Tu recomendación</p>
-              <h3 class="cfg__wiz-result-name" id="cfgResultName">—</h3>
-              <p class="cfg__wiz-result-sub" id="cfgResultSub">—</p>
-              <div class="cfg__wiz-result-specs">
-                <span id="cfgResultUmols">—</span>
-                <span id="cfgResultEff">—</span>
+          <div class="cfg__accordion">
+
+            <!-- ─ Recomendación principal ─ -->
+            <div class="cfg__acc-item cfg__acc-item--main is-open" id="cfgAccMain">
+              <div class="cfg__acc-hd" onclick="cfgAccToggle('main')">
+                <div class="cfg__acc-hd-meta">
+                  <span class="cfg__acc-badge cfg__acc-badge--main">Recomendación</span>
+                  <span class="cfg__acc-hd-name" id="cfgAccMainName">—</span>
+                </div>
+                <button class="cfg__acc-toggle" tabindex="-1">▾</button>
               </div>
-              <p class="cfg__wiz-result-price" id="cfgResultPrice">$ —</p>
-              <a id="cfgResultWA" href="#" target="_blank" class="cfg__rec-cta">
-                Consultar por WhatsApp
-              </a>
-              <p class="cfg__rec-note" style="margin-top:10px;">Pre-venta activa · Precios sujetos a stock y promociones vigentes.</p>
-              <button class="cfg__wiz-restart" onclick="cfgWzRestart()">← Volver a empezar</button>
+              <div class="cfg__acc-body">
+                <div class="cfg__acc-body-inner">
+                  <div class="cfg__wiz-result-inner">
+                    <div class="cfg__wiz-result-img-wrap">
+                      <img id="cfgMainImg" class="cfg__wiz-result-img"
+                        src="assets/producto/CM-400 - 2026/CM-400-ES-png.png" alt="Canopy Master">
+                      <span class="cfg__wiz-result-tag" id="cfgMainTag">—</span>
+                    </div>
+                    <div class="cfg__wiz-result-body">
+                      <p class="cfg__wiz-result-label">Tu recomendación</p>
+                      <h3 class="cfg__wiz-result-name" id="cfgMainName">—</h3>
+                      <p class="cfg__wiz-result-sub" id="cfgMainSub">—</p>
+                      <ul class="cfg__wiz-result-features" id="cfgMainFeatures"></ul>
+                      <div class="cfg__wiz-result-pricing">
+                        <div class="cfg__wiz-result-price-row">
+                          <span class="cfg__wiz-price-list" id="cfgMainPriceList">$ —</span>
+                          <span class="cfg__wiz-price-sale" id="cfgMainPrice">$ —</span>
+                        </div>
+                        <div class="cfg__wiz-preventa-row">
+                          <span class="cfg__wiz-preventa-badge">PRE-VENTA · 25% OFF</span>
+                          <div class="cfg__wiz-mini-countdown">
+                            <span class="cfg__wiz-mini-cd-label">Quedan</span>
+                            <span class="cfg__wiz-mini-cd-val" id="cfgCdDias">30</span><span class="cfg__wiz-mini-cd-unit">d</span>
+                            <span class="cfg__wiz-mini-cd-sep">:</span>
+                            <span class="cfg__wiz-mini-cd-val" id="cfgCdHoras">12</span><span class="cfg__wiz-mini-cd-unit">h</span>
+                            <span class="cfg__wiz-mini-cd-sep">:</span>
+                            <span class="cfg__wiz-mini-cd-val" id="cfgCdMins">00</span><span class="cfg__wiz-mini-cd-unit">m</span>
+                            <span class="cfg__wiz-mini-cd-sep">:</span>
+                            <span class="cfg__wiz-mini-cd-val" id="cfgCdSegs">00</span><span class="cfg__wiz-mini-cd-unit">s</span>
+                          </div>
+                        </div>
+                      </div>
+                      <a id="cfgMainWA" href="#" target="_blank" class="cfg__rec-cta">Consultar por WhatsApp</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+
+            <!-- ─ Más económica (Core, misma serie y watt) ─ -->
+            <div class="cfg__acc-item cfg__acc-item--alt" id="cfgAccEco">
+              <div class="cfg__acc-hd" onclick="cfgAccToggle('eco')">
+                <div class="cfg__acc-hd-meta">
+                  <span class="cfg__acc-badge cfg__acc-badge--alt">Más económica</span>
+                  <span class="cfg__acc-hd-name" id="cfgAccEcoName">—</span>
+                </div>
+                <button class="cfg__acc-toggle" tabindex="-1">▾</button>
+              </div>
+              <div class="cfg__acc-body">
+                <div class="cfg__acc-body-inner">
+                  <div class="cfg__wiz-result-inner">
+                    <div class="cfg__wiz-result-img-wrap">
+                      <img id="cfgEcoImg" class="cfg__wiz-result-img"
+                        src="assets/producto/CM-400 - 2026/CM-400-ES-png.png" alt="Canopy Master">
+                      <span class="cfg__wiz-result-tag" id="cfgEcoTag">—</span>
+                    </div>
+                    <div class="cfg__wiz-result-body">
+                      <p class="cfg__wiz-result-label">Opción más económica</p>
+                      <h3 class="cfg__wiz-result-name" id="cfgEcoName">—</h3>
+                      <p class="cfg__wiz-result-sub" id="cfgEcoSub">—</p>
+                      <ul class="cfg__wiz-result-features" id="cfgEcoFeatures"></ul>
+                      <div class="cfg__wiz-result-pricing">
+                        <div class="cfg__wiz-result-price-row">
+                          <span class="cfg__wiz-price-list" id="cfgEcoPriceList">$ —</span>
+                          <span class="cfg__wiz-price-sale" id="cfgEcoPrice">$ —</span>
+                        </div>
+                        <div class="cfg__wiz-preventa-row">
+                          <span class="cfg__wiz-preventa-badge">PRE-VENTA · 25% OFF</span>
+                        </div>
+                      </div>
+                      <a id="cfgEcoWA" href="#" target="_blank" class="cfg__rec-cta">Consultar por WhatsApp</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ─ Objetivo alternativo (misma versión y watt, serie opuesta) ─ -->
+            <div class="cfg__acc-item cfg__acc-item--alt" id="cfgAccSerie">
+              <div class="cfg__acc-hd" onclick="cfgAccToggle('serie')">
+                <div class="cfg__acc-hd-meta">
+                  <span class="cfg__acc-badge cfg__acc-badge--alt">Objetivo alternativo</span>
+                  <span class="cfg__acc-hd-name" id="cfgAccSerieName">—</span>
+                </div>
+                <button class="cfg__acc-toggle" tabindex="-1">▾</button>
+              </div>
+              <div class="cfg__acc-body">
+                <div class="cfg__acc-body-inner">
+                  <div class="cfg__wiz-result-inner">
+                    <div class="cfg__wiz-result-img-wrap">
+                      <img id="cfgSerieImg" class="cfg__wiz-result-img"
+                        src="assets/producto/CM-400 - 2026/CM-400-GS-png.png" alt="Canopy Master">
+                      <span class="cfg__wiz-result-tag" id="cfgSerieTag">—</span>
+                    </div>
+                    <div class="cfg__wiz-result-body">
+                      <p class="cfg__wiz-result-label">Objetivo alternativo</p>
+                      <h3 class="cfg__wiz-result-name" id="cfgSerieName">—</h3>
+                      <p class="cfg__wiz-result-sub" id="cfgSerieSub">—</p>
+                      <ul class="cfg__wiz-result-features" id="cfgSerieFeatures"></ul>
+                      <div class="cfg__wiz-result-pricing">
+                        <div class="cfg__wiz-result-price-row">
+                          <span class="cfg__wiz-price-list" id="cfgSeriePriceList">$ —</span>
+                          <span class="cfg__wiz-price-sale" id="cfgSeriePrice">$ —</span>
+                        </div>
+                        <div class="cfg__wiz-preventa-row">
+                          <span class="cfg__wiz-preventa-badge">PRE-VENTA · 25% OFF</span>
+                        </div>
+                      </div>
+                      <a id="cfgSerieWA" href="#" target="_blank" class="cfg__rec-cta">Consultar por WhatsApp</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /cfg__accordion -->
+
+          <button class="cfg__wiz-restart" onclick="cfgWzRestart()">← Volver a empezar</button>
         </div>
 
         <!-- Navegación -->
@@ -4673,6 +4954,30 @@
       { label:'Hasta $1.500.000', prefVersion:'pro',  maxPrice:1500000 }
     ];
 
+    /* Features por producto: clave = "{linea}-{serie}-{potencia}" */
+    const FEATURES = {
+      'pro-gs-200':  ['Driver Meanwell con 5 años de garantía','Diodos Samsung LM301H EVO de última generación','Eficiencia 2.8 μmol/J — ahorro energético comprobado','Ideal para banco de madres y experimentación genética','Disipación pasiva — sin ventiladores, silencioso'],
+      'pro-gs-300':  ['Driver Meanwell con 5 años de garantía','Diodos Samsung LM301H EVO + LEDs rojos Osram','Eficiencia 2.8 μmol/J','Espectro Full Cycle de uso continuo','Construcción aluminio aeronáutico'],
+      'pro-gs-400':  ['Driver externo Meanwell desmontable','Eficiencia 2.8 μmol/J','PPFD homogéneo en cobertura 1×1 a 1.2×1.2 m','Espectro Full Cycle para vegetativo y floración','Garantía extendida 3 años'],
+      'pro-gs-600':  ['Alta densidad lumínica para genéticas exigentes','Driver Meanwell HLG de alta eficiencia','Eficiencia 2.8 μmol/J','Espectro Full Cycle full-spectrum + UV/IR','Compatible con red Wi-Fi y app móvil'],
+      'pro-gs-800':  ['Top de gama para experimentación a gran escala','8 barras independientes con disipación optimizada','Eficiencia 2.8 μmol/J','Driver Meanwell de servicio pesado','5 años de garantía total'],
+      'pro-es-200':  ['Eficiencia récord 3.2 μmol/J — máximo rendimiento','Espectro conmutable Vegetativo / Floración / Full Cycle','Diodos Samsung LM301H EVO premium','Driver Meanwell con dimmer integrado','Garantía extendida 5 años'],
+      'pro-es-300':  ['Eficiencia 3.2 μmol/J — la mejor de su categoría','Espectro conmutable VEGE / FLORA / FULL','Cobertura 0.8×0.8 a 1×1 m','Construcción robusta para uso continuo 24/7','Compatible con controladores externos 0-10V'],
+      'pro-es-400':  ['3.2 μmol/J — máxima eficiencia energética','Espectro conmutable para todo el ciclo','PPFD intenso en cobertura 1×1 a 1.2×1.2 m','Driver desmontable para mantenimiento sencillo','Garantía 5 años'],
+      'pro-es-600':  ['Eficiencia 3.2 μmol/J en escala industrial','Cobertura óptima 1.2×1.2 m','Espectro VEGE / FLORA / FULL conmutable','8 barras de aluminio con disipación pasiva','Compatible con red multi-luminaria'],
+      'pro-es-800':  ['Buque insignia: 800W con eficiencia 3.2 μmol/J','Cobertura 1.2×1.2 a 1.5×1.5 m','Espectro conmutable VEGE / FLORA / FULL CYCLE','Diseño profesional para grow rooms comerciales','Garantía total 5 años + soporte premium'],
+      'core-gs-200': ['Línea Core: la opción accesible de Canopy Master','Eficiencia 2.5 μmol/J — relación costo/rendimiento óptima','Espectro Full Cycle para selección genética','Driver integrado de bajo consumo','Ideal para hobbyistas y bancos de madres pequeños'],
+      'core-gs-300': ['Línea Core — costo accesible, calidad Canopy Master','Eficiencia 2.5 μmol/J','Espectro Full Cycle','Diseño compacto y liviano','Garantía 2 años'],
+      'core-gs-400': ['Línea Core: 400W para selección genética intermedia','Eficiencia 2.5 μmol/J','Cobertura 1×1 a 1.2×1.2 m','Driver Meanwell de gama estándar','Garantía 2 años'],
+      'core-gs-600': ['Potencia media-alta a precio competitivo','Eficiencia 2.5 μmol/J','Cobertura 1.2×1.2 m','Construcción aluminio + driver desmontable','Garantía 2 años'],
+      'core-gs-800': ['Top de la línea Core a precio accesible','Eficiencia 2.5 μmol/J','Cobertura 1.2×1.2 hasta 1.5×1.5 m','8 barras con disipación pasiva','Garantía 2 años'],
+      'core-es-200': ['Línea Core ES: producción a costo accesible','Espectro conmutable VEGE / FLORA / FULL','Eficiencia 2.5 μmol/J','Pensado para cultivadores que arrancan','Garantía 2 años'],
+      'core-es-300': ['Espectro conmutable para producción entry-level','Eficiencia 2.5 μmol/J','Cobertura 0.8×0.8 a 1×1 m','Costo accesible para cultivos pequeños','Garantía 2 años'],
+      'core-es-400': ['400W para producción a precio competitivo','Espectro VEGE / FLORA / FULL','Eficiencia 2.5 μmol/J','Cobertura 1×1 a 1.2×1.2 m','Garantía 2 años'],
+      'core-es-600': ['Producción comercial mediana a costo accesible','Espectro conmutable','Eficiencia 2.5 μmol/J','Cobertura 1.2×1.2 m','Garantía 2 años'],
+      'core-es-800': ['800W de producción a precio Core','Espectro VEGE / FLORA / FULL','Eficiencia 2.5 μmol/J','Cobertura 1.2×1.2 a 1.5×1.5 m','Garantía 2 años']
+    };
+
     function fmtPrice(n) { return '$ ' + n.toLocaleString('es-AR'); }
 
     /* ─── Estado del wizard ─────────────────────────────── */
@@ -4734,6 +5039,49 @@
       openSalaWizard();
     }
 
+    /* ─── Acordeón de resultados ───────────────────────────── */
+    function cfgAccToggle(which) {
+      const map = { main: 'cfgAccMain', eco: 'cfgAccEco', serie: 'cfgAccSerie' };
+      Object.entries(map).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (!el || el.style.display === 'none') return;
+        if (key === which) el.classList.toggle('is-open');
+        else               el.classList.remove('is-open');
+      });
+    }
+
+    /* Rellena un slot del acordeón dado su prefijo (Main / Eco / Serie) */
+    function cfgRenderSlot(prefix, ver, serie, watt) {
+      const listPrice = PRICES[ver]?.[serie]?.[watt];
+      if (!listPrice) return;
+      const salePrice = Math.round(listPrice * DISCOUNT[ver]);
+      const sfx       = SERIE_SFX[serie];
+      const fullName  = `Canopy Master ${VER_LBL[ver]} ${watt}W ${sfx}`;
+      const subText   = `${SERIE_LBL[serie]} · ${serie === 'emerson' ? 'Máxima eficiencia' : 'Expresión genética'}`;
+      const waMsg     = encodeURIComponent(`Hola, me recomendaron el ${fullName} ${SERIE_LBL[serie]} (pre-venta). Quiero más información.`);
+      const featKey   = `${ver}-${sfx.toLowerCase()}-${watt}`;
+      const features  = FEATURES[featKey] || [];
+      const imgPath   = `assets/producto/CM-${watt} - 2026/CM-${watt}-${sfx}-png.png`;
+
+      const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+
+      const img = document.getElementById(`cfg${prefix}Img`);
+      if (img) img.src = imgPath;
+
+      set(`cfgAcc${prefix}Name`,  fullName);
+      set(`cfg${prefix}Tag`,      `${VER_LBL[ver]} · ${SERIE_LBL[serie]}`);
+      set(`cfg${prefix}Name`,     fullName);
+      set(`cfg${prefix}Sub`,      subText);
+      set(`cfg${prefix}PriceList`, fmtPrice(listPrice));
+      set(`cfg${prefix}Price`,    fmtPrice(salePrice));
+
+      const wa = document.getElementById(`cfg${prefix}WA`);
+      if (wa) wa.href = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+
+      const featList = document.getElementById(`cfg${prefix}Features`);
+      if (featList) featList.innerHTML = features.map(f => `<li>${f}</li>`).join('');
+    }
+
     function cfgWzShowResult() {
       document.querySelectorAll('.cfg__wiz-step').forEach(s => s.classList.remove('is-active'));
       document.getElementById('cfgWzNav').style.display = 'none';
@@ -4742,7 +5090,7 @@
       });
       document.getElementById('cfgResult').classList.add('is-active');
 
-      /* ─ Lógica de recomendación ─ */
+      /* ─ Lógica de recomendación principal ─ */
       const coverage  = cfgSel.coverage || 'sala-chica';
       const serie     = cfgSel.serie    || 'emerson';
       const budgetCfg = BUDGET_MAP[cfgSel.budget];
@@ -4751,9 +5099,6 @@
       const eligible  = COVERAGE_WATTS[coverage] || [400, 600];
 
       let recVer = null, recWatt = null;
-
-      // 1. Intentar con la versión preferida (mayor wattage primero)
-      // 2. Si no cabe en budget, intentar con la otra versión
       for (const ver of [prefVer, prefVer === 'pro' ? 'core' : 'pro']) {
         for (const w of [...eligible].reverse()) {
           const listP = PRICES[ver]?.[serie]?.[w];
@@ -4763,29 +5108,35 @@
         }
         if (recVer) break;
       }
-
-      // Fallback absoluto
       if (!recVer) { recVer = 'core'; recWatt = eligible[0]; }
 
-      /* ─ Render resultado ─ */
-      const listPrice = PRICES[recVer][serie][recWatt];
-      const salePrice = Math.round(listPrice * DISCOUNT[recVer]);
-      const imgPath   = `assets/producto/CM-${recWatt} - 2026/CM-${recWatt}-${SERIE_SFX[serie]}-png.png`;
-      const fullName  = `Canopy Master ${VER_LBL[recVer]} ${recWatt}W`;
-      const subText   = `${SERIE_LBL[serie]} · ${recVer === 'core' ? 'Acceso profesional' : 'Máxima eficiencia'}`;
-      const waMsg     = encodeURIComponent(`Hola, el asistente me recomendó el ${fullName} ${SERIE_LBL[serie]} (pre-venta). Quiero más información.`);
+      /* ─ Animación imagen principal ─ */
+      const mainImg = document.getElementById('cfgMainImg');
+      if (mainImg) { mainImg.classList.add('swapping'); setTimeout(() => mainImg.classList.remove('swapping'), 220); }
 
-      const img = document.getElementById('cfgResultImg');
-      img.classList.add('swapping');
-      setTimeout(() => { img.src = imgPath; img.classList.remove('swapping'); }, 220);
+      /* ─ Render slot principal ─ */
+      cfgRenderSlot('Main', recVer, serie, recWatt);
 
-      document.getElementById('cfgResultTag').textContent   = `${VER_LBL[recVer]} · ${SERIE_LBL[serie]}`;
-      document.getElementById('cfgResultName').textContent  = fullName;
-      document.getElementById('cfgResultSub').textContent   = subText;
-      document.getElementById('cfgResultUmols').textContent = `${(UMOLS[recVer][recWatt]||'—').toLocaleString('es-AR')} µmol/s`;
-      document.getElementById('cfgResultEff').textContent   = EFF_LBL[recVer];
-      document.getElementById('cfgResultPrice').textContent = fmtPrice(salePrice);
-      document.getElementById('cfgResultWA').href           = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+      /* ─ Slot Eco: Core, misma serie y watt. Ocultar si ya es Core ─ */
+      const ecoEl = document.getElementById('cfgAccEco');
+      if (recVer === 'core') {
+        if (ecoEl) ecoEl.style.display = 'none';
+      } else {
+        if (ecoEl) { ecoEl.style.display = ''; ecoEl.classList.remove('is-open'); }
+        cfgRenderSlot('Eco', 'core', serie, recWatt);
+      }
+
+      /* ─ Slot Serie alt: misma versión y watt, serie opuesta ─ */
+      const altSerie = serie === 'emerson' ? 'green' : 'emerson';
+      const serieEl  = document.getElementById('cfgAccSerie');
+      if (serieEl) { serieEl.style.display = ''; serieEl.classList.remove('is-open'); }
+      cfgRenderSlot('Serie', recVer, altSerie, recWatt);
+
+      /* ─ Principal siempre abierto ─ */
+      document.getElementById('cfgAccMain')?.classList.add('is-open');
+
+      /* Countdown */
+      if (typeof DEADLINE !== 'undefined') cfgSyncCountdown();
     }
 
     function cfgWzRestart() {
@@ -4794,9 +5145,33 @@
       document.getElementById('cfgBudgetSlider').value  = 0;
       document.getElementById('cfgBudgetLabel').textContent = BUDGET_MAP[0].label;
       document.getElementById('cfgResult').classList.remove('is-active');
+      /* Reset acordeón */
+      document.getElementById('cfgAccMain')?.classList.add('is-open');
+      document.getElementById('cfgAccEco')?.classList.remove('is-open');
+      document.getElementById('cfgAccSerie')?.classList.remove('is-open');
       document.getElementById('cfgWzNav').style.display = 'flex';
       document.querySelectorAll('.cfg__wiz-dot').forEach(d => d.classList.remove('is-done'));
       cfgWzShowStep(0);
+    }
+
+    /* Mini countdown del resultado — sincronizado con DEADLINE del hero */
+    function cfgSyncCountdown() {
+      function pad(n) { return String(Math.max(0, n)).padStart(2,'0'); }
+      function cfgTick() {
+        const d = (window.DEADLINE || 0) - Date.now();
+        if (d <= 0) { ['cfgCdDias','cfgCdHoras','cfgCdMins','cfgCdSegs'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent='00'; }); return; }
+        const days  = Math.floor(d / 86400000);
+        const hours = Math.floor((d % 86400000) / 3600000);
+        const mins  = Math.floor((d % 3600000)  / 60000);
+        const secs  = Math.floor((d % 60000)    / 1000);
+        const set   = (id, v) => { const e = document.getElementById(id); if(e) e.textContent = v; };
+        set('cfgCdDias', days);
+        set('cfgCdHoras', pad(hours));
+        set('cfgCdMins',  pad(mins));
+        set('cfgCdSegs',  pad(secs));
+      }
+      cfgTick();
+      setInterval(cfgTick, 1000);
     }
 
     // Init
@@ -5095,7 +5470,7 @@
       // Fecha de cierre: 30 días y 12 horas desde ahora (se fija al cargar la página)
       // Para producción: reemplazar DEADLINE con una fecha fija, ej:
       // const DEADLINE = new Date('2026-06-14T23:59:00-03:00').getTime();
-      const DEADLINE = Date.now() + (30 * 24 + 12) * 60 * 60 * 1000;
+      window.DEADLINE = Date.now() + (30 * 24 + 12) * 60 * 60 * 1000;
 
       function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
 
