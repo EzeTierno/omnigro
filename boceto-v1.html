@@ -1042,6 +1042,176 @@
       font-style: italic;
     }
 
+    /* ─── TABLA RESUMEN DE LÍNEA ─────────────────────────────── */
+    .linea-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 52px;
+      border-radius: 20px;
+      border: 1px solid rgba(37,38,23,0.1);
+      background: var(--white);
+    }
+
+    .linea-table {
+      width: 100%;
+      min-width: 560px;
+      border-collapse: collapse;
+    }
+
+    /* Fila de grupo (Objetivo / Eficiencia) */
+    .linea-th-group {
+      padding: 10px 20px;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--white);
+      background: var(--dark);
+    }
+
+    .linea-th-group--empty {
+      background: var(--white);
+      border-bottom: 1px solid rgba(37,38,23,0.08);
+    }
+
+    /* Fila de encabezados de columna */
+    .linea-th {
+      padding: 12px 20px;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-align: center;
+      color: rgba(37,38,23,0.4);
+      background: var(--white);
+      border-bottom: 1px solid rgba(37,38,23,0.08);
+    }
+
+    .linea-th--label {
+      text-align: left;
+      color: rgba(37,38,23,0.35);
+    }
+
+    /* Filas de producto */
+    .linea-row {
+      border-bottom: 1px solid rgba(37,38,23,0.06);
+      transition: background 0.15s;
+    }
+
+    .linea-row:last-child { border-bottom: none; }
+    .linea-row:hover { background: rgba(37,38,23,0.02); }
+
+    .linea-td {
+      padding: 18px 20px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .linea-td--label {
+      text-align: left;
+      font-family: var(--font-title);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+
+    .linea-td--label span {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--olive);
+      margin-top: 2px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Iconos ✓ / ✗ */
+    .linea-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(116,118,74,0.12);
+      color: var(--olive);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .linea-cross {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(37,38,23,0.05);
+      color: rgba(37,38,23,0.2);
+      font-size: 12px;
+    }
+
+    /* Tabla transpuesta mobile */
+    .linea-table-mobile { display: none; }
+
+    @media (max-width: 639px) {
+      .linea-table-wrap { display: none; }
+      .linea-table-mobile { display: block; overflow-x: hidden; margin-bottom: 52px; border-radius: 20px; border: 1px solid rgba(37,38,23,0.1); background: var(--white); }
+    }
+
+    .linea-trans {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .linea-trans th {
+      padding: 10px 10px;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      color: rgba(37,38,23,0.45);
+      background: var(--white);
+      border-bottom: 1px solid rgba(37,38,23,0.08);
+    }
+
+    .linea-trans th:first-child { text-align: left; }
+
+    .linea-trans .linea-trans__group {
+      padding: 7px 10px;
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--dark);
+      text-align: left;
+    }
+
+    .linea-trans td {
+      padding: 12px 10px;
+      text-align: center;
+      border-bottom: 1px solid rgba(37,38,23,0.06);
+      vertical-align: middle;
+    }
+
+    .linea-trans td:first-child {
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      
+      white-space: nowrap;
+    }
+
+    .linea-trans tr:last-child td { border-bottom: none; }
+
     /* ─── 8. COMPARATIVA ────────────────────────────────────── */
     .compare {
       background: var(--dark);
@@ -1077,17 +1247,17 @@
     }
 
     .cmp-th--attr {
-      width: 24%;
+      width: 26%;
     }
 
     .cmp-th--omnigro {
       background: rgba(116,118,74,0.08);
       border-left: 2px solid var(--olive);
-      width: 28%;
+      width: 37%;
     }
 
     .cmp-th--other {
-      width: 24%;
+      width: 37%;
     }
 
     .cmp-th__brand {
@@ -1235,6 +1405,73 @@
       background: var(--olive);
       flex-shrink: 0;
     }
+
+    /* ─── COMPARE MOBILE (opción B) ────────────────────────── */
+    .cmp-mobile { display: none; }
+
+    @media (max-width: 639px) {
+      .cmp-table-wrap { display: none; }
+      .cmp-mobile { display: block; }
+    }
+
+    .cmp-list { display: flex; flex-direction: column; }
+
+    .cmp-list__item {
+      border-bottom: 1px solid rgba(212,211,189,0.07);
+      padding: 14px 0;
+    }
+
+    .cmp-list__item:last-child { border-bottom: none; }
+
+    .cmp-list__item--key { background: rgba(116,118,74,0.04); margin: 0 -24px; padding: 14px 24px; }
+
+    .cmp-list__attr {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(212,211,189,0.4);
+      margin-bottom: 10px;
+    }
+
+    .cmp-list__attr-note {
+      display: block;
+      font-size: 8px;
+      font-weight: 400;
+      color: var(--olive);
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    .cmp-list__brands {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .cmp-list__brand-name {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .cmp-list__brand-name--cm { color: var(--olive); }
+    .cmp-list__brand-name--other { color: rgba(212,211,189,0.25); }
+
+    .cmp-list__val {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(212,211,189,0.5);
+      line-height: 1.5;
+    }
+
+    .cmp-list__val--strong { font-weight: 600; color: var(--white); }
+    .cmp-list__val--warn { color: rgba(200,120,80,0.7); }
 
     /* ─── 9. GARANTÍA PROFESIONAL ──────────────────────────── */
     .warranty {
@@ -1658,7 +1895,6 @@
       padding: 3px 10px;
     }
 
-    .disc-badge--std { color: rgba(212,211,189,0.75); background: rgba(212,211,189,0.09); }
     .disc-badge--pro { color: var(--olive); background: rgba(116,118,74,0.12); border-color: rgba(116,118,74,0.3); }
 
     .disc-td--list {
@@ -2543,7 +2779,7 @@
     @media (min-width: 640px) {
       .hero { padding: 56px 40px 0; }
       .slideshow { border-radius: 2px; }
-      .ecard-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .ecard-grid { grid-template-columns: 1fr 1fr; }
       .scard-grid { grid-template-columns: 1fr 1fr; }
       .cfg__filters-grid { grid-template-columns: 1fr 1fr; }
       .benefits__grid { grid-template-columns: 1fr 1fr; }
@@ -2832,18 +3068,6 @@
         <p class="ecard__micro">Para espacios 1×1 a 1×2, o quienes priorizan precio absoluto sin ceder en calidad verificada.</p>
       </div>
 
-      <!-- STD -->
-      <div class="ecard">
-        <p class="ecard__tag">Equilibrio precio-eficiencia</p>
-        <p class="ecard__name">Canopy Master Std</p>
-        <div class="ecard__number">2.8<span class="ecard__unit">µmol/J</span></div>
-        <div class="ecard__divider"></div>
-        <p class="ecard__benefit">
-          Un 12% más de luz útil que el Core al mismo consumo eléctrico. La mejor relación precio-rendimiento de la línea.
-        </p>
-        <p class="ecard__micro">Para cultivadores hogareños intermedios y salas medianas que buscan maximizar producción.</p>
-      </div>
-
       <!-- PRO -->
       <div class="ecard ecard--pro">
         <div class="ecard__badge">Mayor eficiencia del país</div>
@@ -2958,6 +3182,117 @@
         </div>
       </header>
 
+      <!-- Tabla transpuesta mobile -->
+      <div class="linea-table-mobile">
+        <table class="linea-trans">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Core ES</th>
+              <th>Core GS</th>
+              <th>PRO ES</th>
+              <th>PRO GS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="linea-trans__group" colspan="5">Objetivo</td></tr>
+            <tr>
+              <td>Producción</td>
+              <td><span class="linea-check">✓</span></td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-check">✓</span></td>
+              <td><span class="linea-cross">✗</span></td>
+            </tr>
+            <tr>
+              <td>Exp. genética</td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-check">✓</span></td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-check">✓</span></td>
+            </tr>
+            <tr><td class="linea-trans__group" colspan="5">Eficiencia</td></tr>
+            <tr>
+              <td>2.5 µmol/J</td>
+              <td><span class="linea-check">✓</span></td>
+              <td><span class="linea-check">✓</span></td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-cross">✗</span></td>
+            </tr>
+            <tr>
+              <td>2.8 µmol/J</td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-check">✓</span></td>
+            </tr>
+            <tr>
+              <td>3.2 µmol/J</td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-cross">✗</span></td>
+              <td><span class="linea-check">✓</span></td>
+              <td><span class="linea-cross">✗</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tabla resumen de línea -->
+      <div class="linea-table-wrap">
+        <table class="linea-table">
+          <thead>
+            <!-- Fila de grupos -->
+            <tr>
+              <th class="linea-th-group linea-th-group--empty"></th>
+              <th class="linea-th-group" colspan="2">Objetivo</th>
+              <th class="linea-th-group" colspan="3">Eficiencia</th>
+            </tr>
+            <!-- Fila de columnas -->
+            <tr>
+              <th class="linea-th linea-th--label">Línea y Espectro</th>
+              <th class="linea-th">Producción</th>
+              <th class="linea-th">Exp. Genética</th>
+              <th class="linea-th">2.5 µmol/J</th>
+              <th class="linea-th">2.8 µmol/J</th>
+              <th class="linea-th">3.2 µmol/J</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="linea-row">
+              <td class="linea-td linea-td--label">Canopy Master Core ES<span>Emerson Series · Core</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+            </tr>
+            <tr class="linea-row">
+              <td class="linea-td linea-td--label">Canopy Master Core GS<span>Green Series · Core</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+            </tr>
+            <tr class="linea-row">
+              <td class="linea-td linea-td--label">Canopy Master PRO ES<span>Emerson Series · PRO</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+            </tr>
+            <tr class="linea-row">
+              <td class="linea-td linea-td--label">Canopy Master PRO GS<span>Green Series · PRO</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+              <td class="linea-td"><span class="linea-check">✓</span></td>
+              <td class="linea-td"><span class="linea-cross">✗</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="cfg__grid">
 
         <!-- FILTROS -->
@@ -3016,10 +3351,9 @@
                 <span class="cfg__filter-label" style="margin-bottom:0;">Nivel de eficiencia mínima</span>
                 <span class="cfg__slider-value" id="cfgEffLabel">&gt;3.2 µmol/J · PRO</span>
               </div>
-              <input class="cfg__slider" type="range" min="0" max="2" step="1" value="2" id="cfgEff">
+              <input class="cfg__slider" type="range" min="0" max="1" step="1" value="1" id="cfgEff">
               <div class="cfg__slider-labels">
                 <span>Core</span>
-                <span>Std</span>
                 <span>PRO</span>
               </div>
             </div>
@@ -3162,11 +3496,6 @@
             <span class="wz-opt__sub">Hasta 2.5 µmol/J</span>
             <span class="wz-opt__desc">Acceso a Omnigro al precio más bajo. Ideal si el presupuesto es la prioridad.</span>
           </button>
-          <button class="wz-opt" data-version="std" onclick="wzSelect(this,'version')">
-            <span class="wz-opt__label">Std — Equilibrio precio-eficiencia</span>
-            <span class="wz-opt__sub">Hasta 2.8 µmol/J · +12% luz vs Core</span>
-            <span class="wz-opt__desc">La mejor relación precio-rendimiento de la línea.</span>
-          </button>
           <button class="wz-opt" data-version="pro" onclick="wzSelect(this,'version')">
             <span class="wz-opt__label">PRO — Máxima eficiencia</span>
             <span class="wz-opt__sub">Hasta 3.2 µmol/J · +28% luz vs Core</span>
@@ -3240,7 +3569,7 @@
             </svg>
           </div>
           <h3 class="bcard__title">Eficiencia real verificada</h3>
-          <p class="bcard__body">Hasta 3.2 µmol/J en PRO, 2.8 en Std, 2.5 en Core. Todos medidos sobre canopy real, no como pico central. Lo que decimos es lo que recibís.</p>
+          <p class="bcard__body">Hasta 3.2 µmol/J en PRO y 2.5 en Core. Todos medidos sobre canopy real, no como pico central. Lo que decimos es lo que recibís.</p>
         </div>
 
         <!-- 2. Daisy Chain -->
@@ -3371,12 +3700,8 @@
                 <span class="cmp-th__sub">Omnigro · Argentina</span>
               </th>
               <th class="cmp-th cmp-th--other">
-                <span class="cmp-th__brand">Importados</span>
-                <span class="cmp-th__sub">Bajo costo · China</span>
-              </th>
-              <th class="cmp-th cmp-th--other">
-                <span class="cmp-th__brand">Otras marcas</span>
-                <span class="cmp-th__sub">Nacionales</span>
+                <span class="cmp-th__brand">La competencia</span>
+                <span class="cmp-th__sub">Importados y otras marcas</span>
               </th>
             </tr>
           </thead>
@@ -3391,12 +3716,8 @@
                 <span class="cmp-note">Todas las versiones verificadas</span>
               </td>
               <td class="cmp-cell">
-                <span class="cmp-val">~2.6 µmol/J</span>
+                <span class="cmp-val">~2.6 – 3.0 µmol/J</span>
                 <span class="cmp-note cmp-note--warn">Frecuentemente picos declarados</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-val">2.8 – 3.0 µmol/J</span>
-                <span class="cmp-note">Variable</span>
               </td>
             </tr>
 
@@ -3411,11 +3732,7 @@
               </td>
               <td class="cmp-cell">
                 <span class="cmp-cross">✗</span>
-                <span class="cmp-val">Pico central<br>declarado</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-dash">–</span>
-                <span class="cmp-val">Variable /<br>no especificado</span>
+                <span class="cmp-val">Pico declarado<br>o no especificado</span>
               </td>
             </tr>
 
@@ -3429,11 +3746,7 @@
               </td>
               <td class="cmp-cell">
                 <span class="cmp-cross">✗</span>
-                <span class="cmp-val">Sin garantía<br>local efectiva</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-dash">–</span>
-                <span class="cmp-val">1 – 3 años</span>
+                <span class="cmp-val">Sin garantía local<br>o limitada a 1 año</span>
               </td>
             </tr>
 
@@ -3447,11 +3760,7 @@
               </td>
               <td class="cmp-cell">
                 <span class="cmp-cross">✗</span>
-                <span class="cmp-val">Inexistente</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-dash">–</span>
-                <span class="cmp-val">Genérico</span>
+                <span class="cmp-val">Inexistente<br>o genérico</span>
               </td>
             </tr>
 
@@ -3465,11 +3774,7 @@
               </td>
               <td class="cmp-cell">
                 <span class="cmp-cross">✗</span>
-                <span class="cmp-val">Espectro<br>genérico</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-dash">–</span>
-                <span class="cmp-val">Espectro<br>estándar</span>
+                <span class="cmp-val">Espectro genérico<br>o estándar</span>
               </td>
             </tr>
 
@@ -3483,11 +3788,7 @@
               </td>
               <td class="cmp-cell">
                 <span class="cmp-cross">✗</span>
-                <span class="cmp-val">No disponible</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-dash">–</span>
-                <span class="cmp-val">Parcial o<br>no disponible</span>
+                <span class="cmp-val">No disponible<br>o parcial</span>
               </td>
             </tr>
 
@@ -3501,11 +3802,7 @@
               </td>
               <td class="cmp-cell">
                 <span class="cmp-cross">✗</span>
-                <span class="cmp-val">Declaradas<br>por catálogo</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-dash">–</span>
-                <span class="cmp-val">Variable</span>
+                <span class="cmp-val">Declaradas por catálogo<br>o variable</span>
               </td>
             </tr>
 
@@ -3518,10 +3815,7 @@
                 <span class="cmp-val cmp-val--strong">Argentina</span>
               </td>
               <td class="cmp-cell">
-                <span class="cmp-val" style="opacity:0.5;">China</span>
-              </td>
-              <td class="cmp-cell">
-                <span class="cmp-val" style="opacity:0.5;">Argentina /<br>importado</span>
+                <span class="cmp-val" style="opacity:0.5;">China o importado</span>
               </td>
             </tr>
 
@@ -3555,7 +3849,7 @@
             <span class="warranty__years-num">2</span>
             <span class="warranty__years-label">años de<br>garantía</span>
           </div>
-          <p class="warranty__header-note">En todas las versiones: Core, Std y PRO.<br>Sin letra chica.</p>
+          <p class="warranty__header-note">En ambas versiones: Core y PRO.<br>Sin letra chica.</p>
         </div>
 
         <div class="warranty__header-right">
@@ -3571,7 +3865,7 @@
               </div>
               <div class="wpillar__content">
                 <h3 class="wpillar__title">2 años de garantía</h3>
-                <p class="wpillar__body">Respaldo local real sobre cada equipo. PRO, Std y Core. Sin importar la versión que elijas.</p>
+                <p class="wpillar__body">Respaldo local real sobre cada equipo. PRO y Core. Sin importar la versión que elijas.</p>
               </div>
             </div>
 
@@ -3662,13 +3956,13 @@
         <article class="tcard">
           <div class="tcard__stars">★★★★★</div>
           <blockquote class="tcard__quote">
-            "Arranqué con Core porque el presupuesto no alcanzaba para PRO. A los 8 meses pude agregarle la versión Std a otra sala. El equipo es sólido, sin problemas. Soporte respondió en 2 horas cuando tuve una duda."
+            "Arranqué con Core porque el presupuesto no alcanzaba para PRO. A los 8 meses pude armar una segunda sala con PRO. El equipo es sólido, sin problemas. Soporte respondió en 2 horas cuando tuve una duda."
           </blockquote>
           <div class="tcard__author">
             <div class="tcard__avatar">LF</div>
             <div>
               <strong class="tcard__name">Lucía F.</strong>
-              <span class="tcard__meta">2 salas · CABA · Core 400W + Std 400W</span>
+              <span class="tcard__meta">2 salas · CABA · Core 400W + PRO 400W</span>
             </div>
           </div>
         </article>
@@ -3682,7 +3976,7 @@
             <div class="tcard__avatar tcard__avatar--olive">PA</div>
             <div>
               <strong class="tcard__name" style="color:var(--white);">Pablo A.</strong>
-              <span class="tcard__meta" style="color:rgba(212,211,189,0.5);">Producción comercial · Santa Fe · Green Series Std 600W ×12</span>
+              <span class="tcard__meta" style="color:rgba(212,211,189,0.5);">Producción comercial · Santa Fe · Green Series PRO 600W ×12</span>
             </div>
           </div>
         </article>
@@ -3696,7 +3990,7 @@
             <div class="tcard__avatar">GV</div>
             <div>
               <strong class="tcard__name">Gonzalo V.</strong>
-              <span class="tcard__meta">Cultivo personal · Córdoba · Core → Std → PRO</span>
+              <span class="tcard__meta">Cultivo personal · Córdoba · Core → PRO</span>
             </div>
           </div>
         </article>
@@ -3761,12 +4055,6 @@
               <td class="disc-td disc-td--list">$ 210.000</td>
               <td class="disc-td disc-td--pct disc-td--pct--15">15% OFF</td>
               <td class="disc-td disc-td--final">$ 178.500</td>
-            </tr>
-            <tr class="disc-row">
-              <td class="disc-td"><span class="disc-badge disc-badge--std">Std</span></td>
-              <td class="disc-td disc-td--list">$ 280.000</td>
-              <td class="disc-td disc-td--pct disc-td--pct--20">20% OFF</td>
-              <td class="disc-td disc-td--final">$ 224.000</td>
             </tr>
             <tr class="disc-row disc-row--pro">
               <td class="disc-td"><span class="disc-badge disc-badge--pro">PRO</span></td>
@@ -3901,22 +4189,19 @@
     const PRICES = {
       pro:  { emerson: { 200:250000, 300:330000, 400:420000, 600:590000, 800:760000 },
               green:   { 200:288000, 300:380000, 400:483000, 600:679000, 800:874000 } },
-      std:  { emerson: { 200:160000, 300:210000, 400:280000, 600:400000, 800:520000 },
-              green:   { 200:184000, 300:242000, 400:322000, 600:460000, 800:598000 } },
       core: { emerson: { 200:120000, 300:155000, 400:210000, 600:300000, 800:390000 },
               green:   { 200:138000, 300:178000, 400:242000, 600:345000, 800:449000 } }
     };
 
     const UMOLS = {
       pro:  { 200:640,  300:960,  400:1280, 600:1920, 800:2560 },
-      std:  { 200:560,  300:840,  400:1120, 600:1680, 800:2240 },
       core: { 200:500,  300:750,  400:1000, 600:1500, 800:2000 }
     };
 
-    const DISCOUNT    = { pro:0.75, std:0.80, core:0.85 };
-    const EFF_MAP     = { 0:'core', 1:'std', 2:'pro' };
-    const EFF_LABELS  = { core:'>2.5 µmol/J · Core', std:'>2.8 µmol/J · Std', pro:'>3.2 µmol/J · PRO' };
-    const VER_LABEL   = { pro:'PRO', std:'Std', core:'Core' };
+    const DISCOUNT    = { pro:0.75, core:0.85 };
+    const EFF_MAP     = { 0:'core', 1:'pro' };
+    const EFF_LABELS  = { core:'>2.5 µmol/J · Core', pro:'>3.2 µmol/J · PRO' };
+    const VER_LABEL   = { pro:'PRO', core:'Core' };
     const SERIE_LBL   = { emerson:'Emerson Series', green:'Green Series' };
     const SERIE_SFX   = { emerson:'ES', green:'GS' };
 
@@ -3928,7 +4213,7 @@
       const version  = EFF_MAP[cfg.eff];
       const serie    = cfg.serie;
       const potencia = parseInt(cfg.potencia);
-      const versions = ['pro','std','core'];
+      const versions = ['pro','core'];
       let finalVersion = version;
       for (const v of versions.slice(versions.indexOf(version))) {
         const lp = PRICES[v]?.[serie]?.[potencia];
@@ -4238,13 +4523,13 @@
       document.getElementById('wzNav').style.display = 'none';
       document.querySelectorAll('.wz-dot').forEach(d => { d.classList.remove('is-active'); d.classList.add('is-done'); });
 
-      const VER   = { pro:'PRO', std:'Std', core:'Core' };
+      const VER   = { pro:'PRO', core:'Core' };
       const SERIE = { emerson:'Emerson Series', green:'Green Series' };
       const POT   = wzSelections.potencia || '400';
-      const VER_KEY   = wzSelections.version || 'std';
+      const VER_KEY   = wzSelections.version || 'core';
       const SERIE_KEY = wzSelections.serie   || 'emerson';
       const recName = `Canopy Master ${VER[VER_KEY]} ${POT}W`;
-      const recSub  = `${SERIE[SERIE_KEY]} — ${VER_KEY === 'core' ? 'Acceso profesional' : VER_KEY === 'std' ? 'Equilibrio precio-eficiencia' : 'Máxima eficiencia'} para tu espacio`;
+      const recSub  = `${SERIE[SERIE_KEY]} — ${VER_KEY === 'core' ? 'Acceso profesional' : 'Máxima eficiencia'} para tu espacio`;
       const waMsg   = encodeURIComponent(`Hola, el asistente me recomendó el ${recName} ${SERIE[SERIE_KEY]} (pre-venta). Quiero más información.`);
 
       document.getElementById('wzResultName').textContent = recName;
@@ -4383,10 +4668,10 @@
     }
 
     function applyWizard() {
-      const EFF_IDX   = { core:0, std:1, pro:2 };
+      const EFF_IDX   = { core:0, pro:1 };
       const POT       = wzSelections.potencia || '400';
       const SERIE_KEY = wzSelections.serie    || 'emerson';
-      const VER_KEY   = wzSelections.version  || 'std';
+      const VER_KEY   = wzSelections.version  || 'core';
 
       document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('cfg__btn--active'));
       const potBtn = document.querySelector(`[data-fkey="potencia"][data-fval="${POT}"]`);
