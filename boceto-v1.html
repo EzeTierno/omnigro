@@ -221,13 +221,108 @@
       margin-bottom: 8px;
     }
 
+    /* Pre-venta badge + countdown */
+    .hero__preventa-block {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+    }
+
+    .hero__preventa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(116,118,74,0.12);
+      border: 1px solid rgba(116,118,74,0.4);
+      border-radius: 100px;
+      padding: 6px 14px 6px 8px;
+    }
+
+    .hero__preventa-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--olive);
+      flex-shrink: 0;
+      animation: blink-dot 1.6s ease-in-out infinite;
+    }
+
+    @keyframes blink-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    .hero__preventa-text {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .hero__countdown {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero__countdown-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(37,38,23,0.45);
+      white-space: nowrap;
+    }
+
+    .hero__countdown-timer {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero__countdown-seg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero__countdown-num {
+      font-family: var(--font-title);
+      font-size: clamp(17px, 3.5vw, 22px);
+      color: var(--dark);
+      line-height: 1;
+      min-width: 2ch;
+      text-align: center;
+    }
+
+    .hero__countdown-unit {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(37,38,23,0.4);
+      margin-top: 2px;
+    }
+
+    .hero__countdown-sep {
+      font-family: var(--font-title);
+      font-size: 18px;
+      color: rgba(37,38,23,0.2);
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
     /* CTA hero */
     .hero__cta-wrap {
       padding: 20px 0 40px;
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 30px;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      
     }
 
     .hero__cta {
@@ -2482,6 +2577,230 @@
 
     .cfg__wizard-arrow { margin-left: 4px; }
 
+    /* ─── CONFIGURADOR WIZARD INLINE ────────────────────────── */
+    .cfg__wizard {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 40px 36px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 639px) {
+      .cfg__wizard { padding: 28px 20px; }
+    }
+
+    /* Progress */
+    .cfg__wiz-progress { display: flex; gap: 8px; margin-bottom: 36px; }
+
+    .cfg__wiz-dot {
+      flex: 1; height: 3px; border-radius: 2px;
+      background: rgba(212,211,189,0.1);
+      transition: background 0.3s;
+    }
+    .cfg__wiz-dot.is-done   { background: var(--olive); }
+    .cfg__wiz-dot.is-active { background: rgba(212,211,189,0.55); }
+
+    /* Steps */
+    .cfg__wiz-step { display: none; }
+    .cfg__wiz-step.is-active { display: block; }
+
+    .cfg__wiz-num {
+      font-family: var(--font-body);
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--olive); margin-bottom: 8px;
+    }
+
+    .cfg__wiz-q {
+      font-family: var(--font-title);
+      font-size: clamp(20px, 4vw, 28px);
+      color: var(--cream); margin-bottom: 24px; line-height: 1.2;
+    }
+
+    /* Options */
+    .cfg__wiz-opts { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+    .cfg__wiz-opts--3col { grid-template-columns: repeat(3, 1fr); }
+
+    @media (max-width: 639px) {
+      .cfg__wiz-opts--3col { grid-template-columns: repeat(2, 1fr); }
+      .cfg__wiz-opts--2col { grid-template-columns: 1fr; }
+    }
+
+    .cfg__wiz-opt {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 14px 16px;
+      background: rgba(212,211,189,0.04);
+      border: 1px solid rgba(212,211,189,0.1);
+      border-radius: 14px; cursor: pointer; text-align: left;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .cfg__wiz-opt:hover  { border-color: rgba(212,211,189,0.3); }
+    .cfg__wiz-opt.is-sel { border-color: var(--olive); background: rgba(116,118,74,0.1); }
+
+    .cfg__wiz-opt--sala {
+      border-color: rgba(116,118,74,0.25);
+      background: rgba(116,118,74,0.04);
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cfg__wiz-opt--sala:hover { background: rgba(116,118,74,0.1); border-color: var(--olive); }
+
+    .cfg__wiz-label {
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 600; color: var(--cream);
+    }
+    .cfg__wiz-sub {
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 300; color: rgba(212,211,189,0.45);
+    }
+    .cfg__wiz-desc {
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 300;
+      color: rgba(212,211,189,0.38);
+      line-height: 1.55; margin-top: 8px;
+    }
+
+    /* Budget slider */
+    .cfg__wiz-budget-wrap { padding: 4px 0 0; }
+
+    .cfg__wiz-budget-cur {
+      font-family: var(--font-title);
+      font-size: clamp(24px, 5vw, 36px);
+      color: var(--cream);
+      display: block; margin-bottom: 24px;
+    }
+
+    .cfg__wiz-budget-slider {
+      width: 100%; -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 2px;
+      background: rgba(212,211,189,0.12);
+      outline: none; cursor: pointer;
+    }
+    .cfg__wiz-budget-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--olive); cursor: pointer;
+      border: 2px solid var(--dark);
+      box-shadow: 0 0 0 3px rgba(116,118,74,0.25);
+    }
+    .cfg__wiz-budget-slider::-moz-range-thumb {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--olive); border: 2px solid var(--dark); cursor: pointer;
+    }
+
+    .cfg__wiz-budget-marks {
+      display: flex; justify-content: space-between;
+      margin-top: 12px;
+      font-family: var(--font-body);
+      font-size: 10px; font-weight: 300;
+      color: rgba(212,211,189,0.3);
+    }
+
+    /* Result */
+    .cfg__wiz-result { display: none; }
+    .cfg__wiz-result.is-active { display: block; }
+
+    .cfg__wiz-result-inner {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 32px; align-items: start;
+    }
+
+    @media (max-width: 639px) {
+      .cfg__wiz-result-inner { grid-template-columns: 1fr; }
+    }
+
+    .cfg__wiz-result-img-wrap {
+      position: relative; aspect-ratio: 1;
+      background: rgba(212,211,189,0.04);
+      border: 1px solid rgba(212,211,189,0.08);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .cfg__wiz-result-img {
+      width: 80%; height: 80%; object-fit: contain;
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .cfg__wiz-result-img.swapping { opacity: 0; transform: scale(0.96); }
+
+    .cfg__wiz-result-tag {
+      position: absolute; top: 12px; right: 12px;
+      font-family: var(--font-body);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--olive);
+      background: rgba(116,118,74,0.12);
+      border: 1px solid rgba(116,118,74,0.28);
+      border-radius: 100px; padding: 4px 10px;
+    }
+
+    .cfg__wiz-result-label {
+      font-family: var(--font-body);
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--olive); margin-bottom: 8px;
+    }
+    .cfg__wiz-result-name {
+      font-family: var(--font-title);
+      font-size: clamp(18px, 3vw, 24px);
+      color: var(--cream); line-height: 1.2; margin-bottom: 4px;
+    }
+    .cfg__wiz-result-sub {
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 300;
+      color: rgba(212,211,189,0.45); margin-bottom: 14px;
+    }
+    .cfg__wiz-result-specs {
+      display: flex; gap: 16px; margin-bottom: 12px;
+      font-family: var(--font-body); font-size: 12px;
+      color: rgba(212,211,189,0.55);
+    }
+    .cfg__wiz-result-price {
+      font-family: var(--font-title);
+      font-size: clamp(22px, 4vw, 30px);
+      color: var(--cream); margin-bottom: 18px;
+    }
+    .cfg__wiz-restart {
+      display: block; margin-top: 12px;
+      font-family: var(--font-body); font-size: 11px; font-weight: 400;
+      color: rgba(212,211,189,0.35);
+      background: none; border: none; cursor: pointer; padding: 0; text-align: left;
+    }
+    .cfg__wiz-restart:hover { color: var(--beige); }
+
+    /* Nav */
+    .cfg__wiz-nav {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-top: 28px; gap: 12px;
+    }
+    .cfg__wiz-btn-back {
+      font-family: var(--font-body); font-size: 12px; font-weight: 400;
+      color: rgba(212,211,189,0.35);
+      background: none; border: none; cursor: pointer; padding: 0;
+      visibility: hidden;
+    }
+    .cfg__wiz-btn-back.visible { visibility: visible; }
+
+    .cfg__wiz-btn-next {
+      font-family: var(--font-body); font-size: 13px; font-weight: 600;
+      color: rgba(212,211,189,0.25);
+      background: none;
+      border: 1px solid rgba(212,211,189,0.12);
+      border-radius: 100px; padding: 11px 28px;
+      cursor: pointer; transition: all 0.2s; margin-left: auto;
+      pointer-events: none;
+    }
+    .cfg__wiz-btn-next.ready {
+      color: var(--cream);
+      border-color: var(--olive);
+      background: rgba(116,118,74,0.1);
+      pointer-events: all;
+    }
+    .cfg__wiz-btn-next.ready:hover {
+      background: var(--olive); color: var(--white);
+    }
+
     /* ─── WIZARD MODAL ───────────────────────────────────────── */
     .wz-overlay {
       position: fixed;
@@ -2869,7 +3188,7 @@
       .hero {
         padding: 64px 56px;
         gap: 56px;
-        min-height: 730px;
+        min-height: 772px;
       }
 
       /* Columna izquierda: mínimo 760px */
@@ -2988,12 +3307,43 @@
         Más de una década iluminando la industria argentina. Diseñada para cada etapa de cultivo, la nueva línea Canopy Master entrega el espectro exacto que tus plantas necesitan.
       </p>
 
-      <!-- CTA -->
+      <!-- CTA + preventa -->
       <div class="hero__cta-wrap">
         <a href="#configurador" class="hero__cta">
           Encontrá tu LED ideal <strong>ahora</strong>
           <span class="hero__cta-arrow">→</span>
         </a>
+
+        <div class="hero__preventa-block">
+          <div class="hero__preventa">
+            <span class="hero__preventa-dot"></span>
+            <span class="hero__preventa-text">Pre-venta · Hasta 25% OFF</span>
+          </div>
+          <div class="hero__countdown">
+            <span class="hero__countdown-label">Quedan</span>
+            <div class="hero__countdown-timer">
+              <div class="hero__countdown-seg">
+                <span class="hero__countdown-num" id="cdDias">30</span>
+                <span class="hero__countdown-unit">días</span>
+              </div>
+              <span class="hero__countdown-sep">:</span>
+              <div class="hero__countdown-seg">
+                <span class="hero__countdown-num" id="cdHoras">12</span>
+                <span class="hero__countdown-unit">horas</span>
+              </div>
+              <span class="hero__countdown-sep">:</span>
+              <div class="hero__countdown-seg">
+                <span class="hero__countdown-num" id="cdMins">00</span>
+                <span class="hero__countdown-unit">min</span>
+              </div>
+              <span class="hero__countdown-sep">:</span>
+              <div class="hero__countdown-seg">
+                <span class="hero__countdown-num" id="cdSegs">00</span>
+                <span class="hero__countdown-unit">seg</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -3168,18 +3518,8 @@
 
       <header class="cfg__header">
         <p class="section-eyebrow">Tenemos el LED que se adapta a tus objetivos</p>
-        <h2 class="section-title">Encontra tu LED ideal</h2>
-        <div class="cfg__header-row">
-          <p class="section-subtitle">Ajustá los parámetros según tus necesidades u objetivos para recibir una recomendación optimizada. Sino, lo resolvemos con 3 preguntas.</p>
-          <div class="cfg__trigger-group">
-            <button class="cfg__wizard-trigger" onclick="openWizard()">
-              ¿No sabés cuál elegir? <span class="cfg__wizard-arrow">→</span>
-            </button>
-            <button class="cfg__wizard-trigger cfg__wizard-trigger--sala" onclick="openSalaWizard()">
-              ¿Necesitás equipar una sala? <span class="cfg__wizard-arrow">→</span>
-            </button>
-          </div>
-        </div>
+        <h2 class="section-title">Encontrá tu LED ideal</h2>
+        <p class="section-subtitle">Respondé 3 preguntas y te recomendamos el equipo ideal para tu espacio y objetivos.</p>
       </header>
 
       <!-- Tabla transpuesta mobile -->
@@ -3293,132 +3633,127 @@
         </table>
       </div>
 
-      <div class="cfg__grid">
+      <!-- WIZARD INLINE -->
+      <div class="cfg__wizard" id="cfgWizard">
 
-        <!-- FILTROS -->
-        <div class="cfg__filters">
-          <div class="cfg__filters-grid">
+        <!-- Barra de progreso -->
+        <div class="cfg__wiz-progress">
+          <div class="cfg__wiz-dot is-active" id="cfgDot0"></div>
+          <div class="cfg__wiz-dot" id="cfgDot1"></div>
+          <div class="cfg__wiz-dot" id="cfgDot2"></div>
+        </div>
 
-            <!-- Potencia -->
-            <div class="cfg__filter-group cfg__filter-group--full">
-              <span class="cfg__filter-label">Potencia</span>
-              <div class="cfg__btn-group">
-                <button class="cfg__btn" data-fkey="potencia" data-fval="200">200W<br><small>1×1 m</small></button>
-                <button class="cfg__btn" data-fkey="potencia" data-fval="300">300W<br><small>1×1.5 m</small></button>
-                <button class="cfg__btn cfg__btn--active" data-fkey="potencia" data-fval="400">400W<br><small>1×2 m</small></button>
-                <button class="cfg__btn" data-fkey="potencia" data-fval="600">600W<br><small>2×2 m</small></button>
-                <button class="cfg__btn" data-fkey="potencia" data-fval="800">800W<br><small>2×4 m</small></button>
-              </div>
-            </div>
-
-            <!-- Espectro -->
-            <div class="cfg__filter-group">
-              <span class="cfg__filter-label">Espectro</span>
-              <div class="cfg__spectrum-opts">
-                <button class="cfg__spectrum-opt cfg__spectrum-opt--active" data-fkey="serie" data-fval="emerson">
-                  <span class="cfg__spec-icon">⬤</span>
-                  <span>
-                    <strong>Emerson Series</strong><br>
-                    <small>Máxima producción</small>
-                  </span>
-                </button>
-                <button class="cfg__spectrum-opt" data-fkey="serie" data-fval="green">
-                  <span class="cfg__spec-icon cfg__spec-icon--green">⬤</span>
-                  <span>
-                    <strong>Green Series</strong><br>
-                    <small>Terpenos y expresión genética</small>
-                  </span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Área de cobertura -->
-            <div class="cfg__filter-group">
-              <span class="cfg__filter-label">Área de cobertura</span>
-              <div class="cfg__coverage-grid">
-                <button class="cfg__coverage-btn" data-fkey="area" data-fval="1x1" data-suggest="200">1×1 m</button>
-                <button class="cfg__coverage-btn" data-fkey="area" data-fval="1x2" data-suggest="400">1×2 m</button>
-                <button class="cfg__coverage-btn cfg__coverage-btn--active" data-fkey="area" data-fval="2x2" data-suggest="400">2×2 m</button>
-                <button class="cfg__coverage-btn" data-fkey="area" data-fval="2x4" data-suggest="800">2×4 m</button>
-                <button class="cfg__coverage-btn" data-fkey="area" data-fval="sala" data-suggest="800">Sala</button>
-                <button class="cfg__coverage-btn" data-fkey="area" data-fval="0.8x0.8" data-suggest="200">0.8×0.8</button>
-              </div>
-            </div>
-
-            <!-- Slider eficiencia -->
-            <div class="cfg__filter-group cfg__filter-group--full">
-              <div class="cfg__slider-header">
-                <span class="cfg__filter-label" style="margin-bottom:0;">Nivel de eficiencia mínima</span>
-                <span class="cfg__slider-value" id="cfgEffLabel">&gt;3.2 µmol/J · PRO</span>
-              </div>
-              <input class="cfg__slider" type="range" min="0" max="1" step="1" value="1" id="cfgEff">
-              <div class="cfg__slider-labels">
-                <span>Core</span>
-                <span>PRO</span>
-              </div>
-            </div>
-
-            <!-- Presupuesto -->
-            <div class="cfg__filter-group cfg__filter-group--full">
-              <span class="cfg__filter-label">Presupuesto máximo</span>
-              <div class="cfg__budget-pills">
-                <button class="cfg__budget-pill" data-fkey="budget" data-fval="530000">Hasta $530k</button>
-                <button class="cfg__budget-pill cfg__budget-pill--active" data-fkey="budget" data-fval="1000000">Hasta $1M</button>
-                <button class="cfg__budget-pill" data-fkey="budget" data-fval="9999999">Sin límite</button>
-              </div>
-            </div>
-
+        <!-- PASO 1 — Espacio -->
+        <div class="cfg__wiz-step is-active" id="cfgStep0">
+          <p class="cfg__wiz-num">Pregunta 1 de 3</p>
+          <h3 class="cfg__wiz-q">¿Qué espacio necesitás cubrir?</h3>
+          <div class="cfg__wiz-opts cfg__wiz-opts--3col" id="cfgAreaOpts">
+            <button class="cfg__wiz-opt" data-coverage="0.8x0.8" onclick="cfgWzSelect(this,'coverage')">
+              <span class="cfg__wiz-label">0.8 × 0.8 m</span>
+              <span class="cfg__wiz-sub">Mini espacio · 0.64 m²</span>
+            </button>
+            <button class="cfg__wiz-opt" data-coverage="1x1" onclick="cfgWzSelect(this,'coverage')">
+              <span class="cfg__wiz-label">1 × 1 m</span>
+              <span class="cfg__wiz-sub">Espacio pequeño</span>
+            </button>
+            <button class="cfg__wiz-opt" data-coverage="1.2x1.2" onclick="cfgWzSelect(this,'coverage')">
+              <span class="cfg__wiz-label">1.2 × 1.2 m</span>
+              <span class="cfg__wiz-sub">~1.44 m²</span>
+            </button>
+            <button class="cfg__wiz-opt" data-coverage="1.5x1.5" onclick="cfgWzSelect(this,'coverage')">
+              <span class="cfg__wiz-label">1.5 × 1.5 m</span>
+              <span class="cfg__wiz-sub">~2.25 m²</span>
+            </button>
+            <button class="cfg__wiz-opt" data-coverage="sala-chica" onclick="cfgWzSelect(this,'coverage')">
+              <span class="cfg__wiz-label">2 – 4 m²</span>
+              <span class="cfg__wiz-sub">Sala chica</span>
+            </button>
+            <button class="cfg__wiz-opt cfg__wiz-opt--sala" onclick="cfgWzGoSala()">
+              <span>
+                <span class="cfg__wiz-label">Sala profesional</span>
+                <span class="cfg__wiz-sub">+6 equipos en serie</span>
+              </span>
+              <span style="font-size:18px;color:var(--olive);">→</span>
+            </button>
           </div>
         </div>
 
-        <!-- TARJETA DE RECOMENDACIÓN -->
-        <aside class="cfg__rec">
-          <p class="cfg__rec-label">Tu recomendación ideal</p>
-          <div class="cfg__rec-card">
-            <div class="cfg__rec-img-wrap">
-              <img id="cfgImg" class="cfg__rec-img"
-                src="assets/producto/CM-400 - 2026/CM-400-ES-png.png"
-                alt="Canopy Master">
-              <span class="cfg__rec-series-tag" id="cfgSeriesTag">PRO · Emerson</span>
-            </div>
-            <div class="cfg__rec-body">
-              <div class="cfg__rec-name-row">
-                <h3 class="cfg__rec-name" id="cfgName">Canopy Master PRO 400W<br>Emerson Series</h3>
-                <span class="cfg__rec-price" id="cfgPrice">$ —</span>
-              </div>
-              <div class="cfg__rec-specs">
-                <div class="cfg__rec-spec">
-                  <span class="cfg__spec-dot"></span>
-                  <span id="cfgUmols">1.280 µmol/s</span>
-                </div>
-                <div class="cfg__rec-spec">
-                  <span class="cfg__spec-dot"></span>
-                  <span id="cfgEff2">3.2 µmol/J</span>
-                </div>
-              </div>
-              <a id="cfgCTAWA" href="#" target="_blank" class="cfg__rec-cta">
-                Consultar por WhatsApp
-              </a>
-              <a id="cfgCTAMP" href="#" class="cfg__rec-cta cfg__rec-cta--secondary">
-                Comprar con MercadoPago
-              </a>
+        <!-- PASO 2 — Objetivo -->
+        <div class="cfg__wiz-step" id="cfgStep1">
+          <p class="cfg__wiz-num">Pregunta 2 de 3</p>
+          <h3 class="cfg__wiz-q">¿Qué querés lograr?</h3>
+          <div class="cfg__wiz-opts cfg__wiz-opts--2col" id="cfgObjetivoOpts">
+            <button class="cfg__wiz-opt" data-serie="emerson" onclick="cfgWzSelect(this,'serie')">
+              <span class="cfg__wiz-label">Rendimiento</span>
+              <span class="cfg__wiz-sub">Emerson Series</span>
+              <span class="cfg__wiz-desc">Máxima eficiencia para mayor producción por el mismo consumo eléctrico. Refuerzo en rojos y far-reds.</span>
+            </button>
+            <button class="cfg__wiz-opt" data-serie="green" onclick="cfgWzSelect(this,'serie')">
+              <span class="cfg__wiz-label">Calidad</span>
+              <span class="cfg__wiz-sub">Green Series</span>
+              <span class="cfg__wiz-desc">Impulsa la expresión genética para potenciar terpenos, pigmentos y otros rasgos genéticos. Agrega gama de verdes generando un espectro realmente completo.</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- PASO 3 — Presupuesto -->
+        <div class="cfg__wiz-step" id="cfgStep2">
+          <p class="cfg__wiz-num">Pregunta 3 de 3</p>
+          <h3 class="cfg__wiz-q">¿Cuánto podés invertir por equipo?</h3>
+          <div class="cfg__wiz-budget-wrap">
+            <span class="cfg__wiz-budget-cur" id="cfgBudgetLabel">Hasta $500.000</span>
+            <input class="cfg__wiz-budget-slider" type="range" min="0" max="2" step="1" value="0"
+                   id="cfgBudgetSlider" oninput="cfgWzBudgetChange(this.value)">
+            <div class="cfg__wiz-budget-marks">
+              <span>$500.000</span>
+              <span>$1.000.000</span>
+              <span>$1.500.000</span>
             </div>
           </div>
-          <p class="cfg__rec-note">Pre-venta activa · Precios sujetos a stock y promociones vigentes.</p>
-        </aside>
+        </div>
 
-      </div><!-- /cfg__grid -->
+        <!-- RESULTADO -->
+        <div class="cfg__wiz-result" id="cfgResult">
+          <div class="cfg__wiz-result-inner">
+            <div class="cfg__wiz-result-img-wrap">
+              <img id="cfgResultImg" class="cfg__wiz-result-img"
+                src="assets/producto/CM-400 - 2026/CM-400-ES-png.png"
+                alt="Canopy Master">
+              <span class="cfg__wiz-result-tag" id="cfgResultTag">PRO · Emerson</span>
+            </div>
+            <div class="cfg__wiz-result-body">
+              <p class="cfg__wiz-result-label">Tu recomendación</p>
+              <h3 class="cfg__wiz-result-name" id="cfgResultName">—</h3>
+              <p class="cfg__wiz-result-sub" id="cfgResultSub">—</p>
+              <div class="cfg__wiz-result-specs">
+                <span id="cfgResultUmols">—</span>
+                <span id="cfgResultEff">—</span>
+              </div>
+              <p class="cfg__wiz-result-price" id="cfgResultPrice">$ —</p>
+              <a id="cfgResultWA" href="#" target="_blank" class="cfg__rec-cta">
+                Consultar por WhatsApp
+              </a>
+              <p class="cfg__rec-note" style="margin-top:10px;">Pre-venta activa · Precios sujetos a stock y promociones vigentes.</p>
+              <button class="cfg__wiz-restart" onclick="cfgWzRestart()">← Volver a empezar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación -->
+        <div class="cfg__wiz-nav" id="cfgWzNav">
+          <button class="cfg__wiz-btn-back" id="cfgWzBack" onclick="cfgWzPrev()">← Anterior</button>
+          <button class="cfg__wiz-btn-next" id="cfgWzNext" onclick="cfgWzNext()">Siguiente →</button>
+        </div>
+
+      </div><!-- /cfg__wizard -->
     </div>
   </section>
 
 
   <!-- ══════════════════════════════════════════════════════════
-       JS — Slideshow auto-rotate cada 2s
+       [WIZARD MODAL REMOVIDO — contenido movido al inline Sección 6]
   ══════════════════════════════════════════════════════════ -->
-  <!-- ══════════════════════════════════════════════════════════
-       WIZARD MODAL
-  ══════════════════════════════════════════════════════════ -->
-  <div class="wz-overlay" id="wzOverlay" onclick="onOverlayClick(event)">
+  <div style="display:none" id="wzOverlay">
     <div class="wz-modal">
 
       <div class="wz-modal__header">
@@ -3687,6 +4022,127 @@
         <p class="section-eyebrow" style="color:var(--olive);">Canopy Master vs el mercado</p>
         <h2 class="section-title" style="color:var(--white);">No todos los LEDs<br>son iguales</h2>
         <p class="section-subtitle" style="color:var(--beige); margin-top:12px;">La diferencia no está en el número del catálogo.<br>Está en cómo se midió.</p>
+      </div>
+
+      <!-- Tabla mobile (opción B) -->
+      <div class="cmp-mobile">
+        <div class="cmp-list">
+
+          <div class="cmp-list__item">
+            <p class="cmp-list__attr">Eficiencia</p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">2.5 – 3.2 µmol/J</p>
+                <p class="cmp-list__val">Todas las versiones verificadas</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val">~2.6 – 3.0 µmol/J</p>
+                <p class="cmp-list__val cmp-list__val--warn">Frecuentemente picos declarados</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-list__item cmp-list__item--key">
+            <p class="cmp-list__attr">Método de medición <em>· La fila que más importa</em></p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">✓ Promedio real sobre canopy</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val cmp-list__val--warn">✗ Pico declarado o no especificado</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-list__item">
+            <p class="cmp-list__attr">Garantía</p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">✓ 2 años</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val cmp-list__val--warn">✗ Sin garantía local o limitada a 1 año</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-list__item">
+            <p class="cmp-list__attr">Soporte</p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">✓ Directo y personalizado</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val cmp-list__val--warn">✗ Inexistente o genérico</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-list__item">
+            <p class="cmp-list__attr">Espectro avanzado</p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">✓ Emerson + Green Series</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val cmp-list__val--warn">✗ Espectro genérico o estándar</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-list__item">
+            <p class="cmp-list__attr">Daisy Chain</p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">✓ Hasta 60 equipos</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val cmp-list__val--warn">✗ No disponible o parcial</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-list__item">
+            <p class="cmp-list__attr">Specs verificadas</p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">✓ Medidas en planta, por escrito</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val cmp-list__val--warn">✗ Declaradas por catálogo o variable</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-list__item">
+            <p class="cmp-list__attr">Fabricación</p>
+            <div class="cmp-list__brands">
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--cm">Canopy Master</p>
+                <p class="cmp-list__val cmp-list__val--strong">✓ Argentina</p>
+              </div>
+              <div class="cmp-list__brand">
+                <p class="cmp-list__brand-name cmp-list__brand-name--other">La competencia</p>
+                <p class="cmp-list__val" style="opacity:0.5;">China o importado</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <!-- Tabla -->
@@ -4099,9 +4555,6 @@
           </svg>
           Consultar por WhatsApp
         </a>
-        <a class="btn-mp-secondary" href="#" target="_blank">
-          Comprar en Mercado Pago
-        </a>
       </div>
 
       <!-- Micro-trust -->
@@ -4180,12 +4633,12 @@
 
 
   <!-- ══════════════════════════════════════════════════════════
-       JS — Configurador
+       JS — Configurador (Wizard Inline)
   ══════════════════════════════════════════════════════════ -->
   <script>
     const WA_NUMBER = '5491100000000'; // ← reemplazar con número real
-    const MP_URL    = '#';             // ← reemplazar con link de pago MP
 
+    /* ─── Datos de productos ─────────────────────────────── */
     const PRICES = {
       pro:  { emerson: { 200:250000, 300:330000, 400:420000, 600:590000, 800:760000 },
               green:   { 200:288000, 300:380000, 400:483000, 600:679000, 800:874000 } },
@@ -4198,106 +4651,156 @@
       core: { 200:500,  300:750,  400:1000, 600:1500, 800:2000 }
     };
 
-    const DISCOUNT    = { pro:0.75, core:0.85 };
-    const EFF_MAP     = { 0:'core', 1:'pro' };
-    const EFF_LABELS  = { core:'>2.5 µmol/J · Core', pro:'>3.2 µmol/J · PRO' };
-    const VER_LABEL   = { pro:'PRO', core:'Core' };
-    const SERIE_LBL   = { emerson:'Emerson Series', green:'Green Series' };
-    const SERIE_SFX   = { emerson:'ES', green:'GS' };
+    const DISCOUNT  = { pro:0.75, core:0.85 };
+    const VER_LBL   = { pro:'PRO', core:'Core' };
+    const SERIE_LBL = { emerson:'Emerson Series', green:'Green Series' };
+    const SERIE_SFX = { emerson:'ES', green:'GS' };
+    const EFF_LBL   = { pro:'>3.2 µmol/J', core:'>2.5 µmol/J' };
 
-    function fmt(n) { return '$ ' + n.toLocaleString('es-AR'); }
+    /* Cobertura → wattages candidatos (del menor al mayor) */
+    const COVERAGE_WATTS = {
+      '0.8x0.8':    [200, 300],
+      '1x1':        [300, 400],
+      '1.2x1.2':    [300, 400],
+      '1.5x1.5':    [400, 600],
+      'sala-chica': [600, 800]
+    };
 
-    const cfg = { potencia:'400', serie:'emerson', area:'2x2', eff:2, budget:1000000 };
+    /* Slider de presupuesto: índice → { label, prefVersion, maxPrice } */
+    const BUDGET_MAP = [
+      { label:'Hasta $500.000',   prefVersion:'core', maxPrice:500000  },
+      { label:'Hasta $1.000.000', prefVersion:'pro',  maxPrice:1000000 },
+      { label:'Hasta $1.500.000', prefVersion:'pro',  maxPrice:1500000 }
+    ];
 
-    function getRecommendation() {
-      const version  = EFF_MAP[cfg.eff];
-      const serie    = cfg.serie;
-      const potencia = parseInt(cfg.potencia);
-      const versions = ['pro','core'];
-      let finalVersion = version;
-      for (const v of versions.slice(versions.indexOf(version))) {
-        const lp = PRICES[v]?.[serie]?.[potencia];
-        if (lp && Math.round(lp * DISCOUNT[v]) <= cfg.budget) { finalVersion = v; break; }
-      }
-      return { version: finalVersion, serie, potencia };
+    function fmtPrice(n) { return '$ ' + n.toLocaleString('es-AR'); }
+
+    /* ─── Estado del wizard ─────────────────────────────── */
+    const CFG_STEPS = 3;
+    let   cfgStep   = 0;
+    const cfgSel    = { coverage: null, serie: null, budget: 0 };
+
+    function cfgWzSelect(el, key) {
+      el.closest('.cfg__wiz-opts').querySelectorAll('.cfg__wiz-opt').forEach(o => o.classList.remove('is-sel'));
+      el.classList.add('is-sel');
+      cfgSel[key] = el.dataset[key];
+      cfgWzUpdateNav();
     }
 
-    function updateCfgRec() {
-      const { version, serie, potencia } = getRecommendation();
-      const listPrice = PRICES[version]?.[serie]?.[potencia];
-      if (!listPrice) return;
-      const salePrice = Math.round(listPrice * DISCOUNT[version]);
-      const imgPath   = `assets/producto/CM-${potencia} - 2026/CM-${potencia}-${SERIE_SFX[serie]}-png.png`;
-      const fullLabel = `Canopy Master ${VER_LABEL[version]} ${potencia}W`;
-      const waMsg     = encodeURIComponent(`Hola, me interesa el ${fullLabel} ${SERIE_LBL[serie]} (pre-venta). Quiero más información.`);
+    function cfgWzBudgetChange(val) {
+      cfgSel.budget = parseInt(val);
+      document.getElementById('cfgBudgetLabel').textContent = BUDGET_MAP[cfgSel.budget].label;
+      cfgWzUpdateNav();
+    }
 
-      const img = document.getElementById('cfgImg');
+    function cfgWzUpdateNav() {
+      const back = document.getElementById('cfgWzBack');
+      const next = document.getElementById('cfgWzNext');
+      back.classList.toggle('visible', cfgStep > 0);
+      const ready = cfgStep === 0 ? cfgSel.coverage !== null
+                  : cfgStep === 1 ? cfgSel.serie    !== null
+                  : true; // slider siempre tiene valor
+      next.classList.toggle('ready', ready);
+      next.textContent = cfgStep < CFG_STEPS - 1 ? 'Siguiente →' : 'Ver recomendación →';
+    }
+
+    function cfgWzShowStep(idx) {
+      document.querySelectorAll('.cfg__wiz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById(`cfgStep${idx}`)?.classList.add('is-active');
+      cfgStep = idx;
+      cfgWzUpdateProgress();
+      cfgWzUpdateNav();
+    }
+
+    function cfgWzUpdateProgress() {
+      for (let i = 0; i < CFG_STEPS; i++) {
+        const dot = document.getElementById(`cfgDot${i}`);
+        dot.classList.remove('is-done','is-active');
+        if      (i < cfgStep)  dot.classList.add('is-done');
+        else if (i === cfgStep) dot.classList.add('is-active');
+      }
+    }
+
+    function cfgWzNext() {
+      if (cfgStep < CFG_STEPS - 1) cfgWzShowStep(cfgStep + 1);
+      else cfgWzShowResult();
+    }
+
+    function cfgWzPrev() {
+      if (cfgStep > 0) cfgWzShowStep(cfgStep - 1);
+    }
+
+    function cfgWzGoSala() {
+      openSalaWizard();
+    }
+
+    function cfgWzShowResult() {
+      document.querySelectorAll('.cfg__wiz-step').forEach(s => s.classList.remove('is-active'));
+      document.getElementById('cfgWzNav').style.display = 'none';
+      document.querySelectorAll('.cfg__wiz-dot').forEach(d => {
+        d.classList.remove('is-active'); d.classList.add('is-done');
+      });
+      document.getElementById('cfgResult').classList.add('is-active');
+
+      /* ─ Lógica de recomendación ─ */
+      const coverage  = cfgSel.coverage || 'sala-chica';
+      const serie     = cfgSel.serie    || 'emerson';
+      const budgetCfg = BUDGET_MAP[cfgSel.budget];
+      const prefVer   = budgetCfg.prefVersion;
+      const maxPrice  = budgetCfg.maxPrice;
+      const eligible  = COVERAGE_WATTS[coverage] || [400, 600];
+
+      let recVer = null, recWatt = null;
+
+      // 1. Intentar con la versión preferida (mayor wattage primero)
+      // 2. Si no cabe en budget, intentar con la otra versión
+      for (const ver of [prefVer, prefVer === 'pro' ? 'core' : 'pro']) {
+        for (const w of [...eligible].reverse()) {
+          const listP = PRICES[ver]?.[serie]?.[w];
+          if (listP && Math.round(listP * DISCOUNT[ver]) <= maxPrice) {
+            recVer = ver; recWatt = w; break;
+          }
+        }
+        if (recVer) break;
+      }
+
+      // Fallback absoluto
+      if (!recVer) { recVer = 'core'; recWatt = eligible[0]; }
+
+      /* ─ Render resultado ─ */
+      const listPrice = PRICES[recVer][serie][recWatt];
+      const salePrice = Math.round(listPrice * DISCOUNT[recVer]);
+      const imgPath   = `assets/producto/CM-${recWatt} - 2026/CM-${recWatt}-${SERIE_SFX[serie]}-png.png`;
+      const fullName  = `Canopy Master ${VER_LBL[recVer]} ${recWatt}W`;
+      const subText   = `${SERIE_LBL[serie]} · ${recVer === 'core' ? 'Acceso profesional' : 'Máxima eficiencia'}`;
+      const waMsg     = encodeURIComponent(`Hola, el asistente me recomendó el ${fullName} ${SERIE_LBL[serie]} (pre-venta). Quiero más información.`);
+
+      const img = document.getElementById('cfgResultImg');
       img.classList.add('swapping');
       setTimeout(() => { img.src = imgPath; img.classList.remove('swapping'); }, 220);
 
-      document.getElementById('cfgSeriesTag').textContent = `${VER_LABEL[version]} · ${SERIE_LBL[serie]}`;
-      document.getElementById('cfgName').innerHTML        = `${fullLabel}<br>${SERIE_LBL[serie]}`;
-      document.getElementById('cfgPrice').textContent     = fmt(salePrice);
-      document.getElementById('cfgUmols').textContent     = `${(UMOLS[version][potencia]||'—').toLocaleString('es-AR')} µmol/s`;
-      document.getElementById('cfgEff2').textContent      = EFF_LABELS[version].split(' · ')[0];
-      document.getElementById('cfgCTAWA').href            = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
-      document.getElementById('cfgCTAMP').href            = MP_URL;
+      document.getElementById('cfgResultTag').textContent   = `${VER_LBL[recVer]} · ${SERIE_LBL[serie]}`;
+      document.getElementById('cfgResultName').textContent  = fullName;
+      document.getElementById('cfgResultSub').textContent   = subText;
+      document.getElementById('cfgResultUmols').textContent = `${(UMOLS[recVer][recWatt]||'—').toLocaleString('es-AR')} µmol/s`;
+      document.getElementById('cfgResultEff').textContent   = EFF_LBL[recVer];
+      document.getElementById('cfgResultPrice').textContent = fmtPrice(salePrice);
+      document.getElementById('cfgResultWA').href           = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
     }
 
-    // Potencia
-    document.querySelectorAll('[data-fkey="potencia"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('cfg__btn--active'));
-        btn.classList.add('cfg__btn--active');
-        cfg.potencia = btn.dataset.fval;
-        updateCfgRec();
-      });
-    });
+    function cfgWzRestart() {
+      cfgSel.coverage = null; cfgSel.serie = null; cfgSel.budget = 0;
+      document.querySelectorAll('.cfg__wiz-opt').forEach(o => o.classList.remove('is-sel'));
+      document.getElementById('cfgBudgetSlider').value  = 0;
+      document.getElementById('cfgBudgetLabel').textContent = BUDGET_MAP[0].label;
+      document.getElementById('cfgResult').classList.remove('is-active');
+      document.getElementById('cfgWzNav').style.display = 'flex';
+      document.querySelectorAll('.cfg__wiz-dot').forEach(d => d.classList.remove('is-done'));
+      cfgWzShowStep(0);
+    }
 
-    // Serie (espectro)
-    document.querySelectorAll('[data-fkey="serie"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-fkey="serie"]').forEach(b => b.classList.remove('cfg__spectrum-opt--active'));
-        btn.classList.add('cfg__spectrum-opt--active');
-        cfg.serie = btn.dataset.fval;
-        updateCfgRec();
-      });
-    });
-
-    // Área — sugiere potencia
-    document.querySelectorAll('[data-fkey="area"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-fkey="area"]').forEach(b => b.classList.remove('cfg__coverage-btn--active'));
-        btn.classList.add('cfg__coverage-btn--active');
-        cfg.area = btn.dataset.fval;
-        const suggested = btn.dataset.suggest;
-        if (suggested) {
-          document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('cfg__btn--active'));
-          const pw = document.querySelector(`[data-fkey="potencia"][data-fval="${suggested}"]`);
-          if (pw) { pw.classList.add('cfg__btn--active'); cfg.potencia = suggested; }
-        }
-        updateCfgRec();
-      });
-    });
-
-    // Slider eficiencia
-    document.getElementById('cfgEff').addEventListener('input', e => {
-      cfg.eff = parseInt(e.target.value);
-      document.getElementById('cfgEffLabel').textContent = EFF_LABELS[EFF_MAP[cfg.eff]];
-      updateCfgRec();
-    });
-
-    // Budget
-    document.querySelectorAll('[data-fkey="budget"]').forEach(pill => {
-      pill.addEventListener('click', () => {
-        document.querySelectorAll('[data-fkey="budget"]').forEach(p => p.classList.remove('cfg__budget-pill--active'));
-        pill.classList.add('cfg__budget-pill--active');
-        cfg.budget = parseInt(pill.dataset.fval);
-        updateCfgRec();
-      });
-    });
-
-    updateCfgRec();
+    // Init
+    cfgWzUpdateNav();
   </script>
 
   <!-- ══════════════════════════════════════════════════════════
@@ -4321,20 +4824,20 @@
       <!-- PASO 1 — Escala -->
       <div class="wz-step is-active" id="slStep0">
         <p class="wz-step__num">Pregunta 1 de 3</p>
-        <h3 class="wz-step__q">¿Cuánto espacio o cuántos equipos necesitás?</h3>
+        <h3 class="wz-step__q">¿Cuánto espacio tenés y cuántos equipos necesitás?</h3>
 
         <div class="wz-opts" id="slScaleOpts">
           <button class="wz-opt" data-scale="6-12" data-label="6 a 12 equipos" onclick="slSelect(this,'scale')">
             <span class="wz-opt__label">6 a 12 equipos</span>
-            <span class="wz-opt__sub">Sala pequeña · hasta ~100 m²</span>
+            <span class="wz-opt__sub">Sala pequeña · hasta 15 m²</span>
           </button>
           <button class="wz-opt" data-scale="12-24" data-label="12 a 24 equipos" onclick="slSelect(this,'scale')">
             <span class="wz-opt__label">12 a 24 equipos</span>
-            <span class="wz-opt__sub">Sala mediana · 100 a 250 m²</span>
+            <span class="wz-opt__sub">Sala mediana · hasta 30 m²</span>
           </button>
-          <button class="wz-opt" data-scale="+24" data-label="+24 equipos" onclick="slSelect(this,'scale')">
-            <span class="wz-opt__label">+24 equipos</span>
-            <span class="wz-opt__sub">Sala grande o múltiples sectores</span>
+          <button class="wz-opt" data-scale="+25" data-label="+25 equipos" onclick="slSelect(this,'scale')">
+            <span class="wz-opt__label">+25 equipos</span>
+            <span class="wz-opt__sub">Salas grandes o múltiples sectores</span>
           </button>
         </div>
 
@@ -4343,31 +4846,26 @@
         </p>
       </div>
 
-      <!-- PASO 2 — Espectro de sala -->
+      <!-- PASO 2 — Organización de la sala -->
       <div class="wz-step" id="slStep1">
         <p class="wz-step__num">Pregunta 2 de 3</p>
         <h3 class="wz-step__q">¿Cómo está organizada tu sala?</h3>
 
         <div class="wz-opts" id="slSpectrumOpts">
-          <button class="wz-opt" data-spectrum="emerson-only" data-label="Solo Emerson Series" onclick="slSelect(this,'spectrum')">
-            <span class="wz-opt__label">Un solo espectro — Emerson</span>
-            <span class="wz-opt__sub">Ciclo completo o floración</span>
-            <span class="wz-opt__desc">Todos los equipos con el mismo espectro. Máximo rendimiento por ciclo.</span>
+          <button class="wz-opt" data-spectrum="ciclo-unico" data-label="Ciclo único" onclick="slSelect(this,'spectrum')">
+            <span class="wz-opt__label">Ciclo único</span>
+            <span class="wz-opt__sub">Distintas salas, cada una con su fotoperíodo</span>
+            <span class="wz-opt__desc">Salas separadas para vegetación y floración, cada una con iluminación y fotoperíodo propio.</span>
           </button>
-          <button class="wz-opt" data-spectrum="green-only" data-label="Solo Green Series" onclick="slSelect(this,'spectrum')">
-            <span class="wz-opt__label">Un solo espectro — Green</span>
-            <span class="wz-opt__sub">Énfasis en calidad y genética</span>
-            <span class="wz-opt__desc">Todos los equipos con Green Series. Ideal para pheno hunting o breeding a escala.</span>
+          <button class="wz-opt" data-spectrum="multiciclo" data-label="Múltiples ciclos" onclick="slSelect(this,'spectrum')">
+            <span class="wz-opt__label">Múltiples ciclos</span>
+            <span class="wz-opt__sub">Una única sala donde cambian los fotoperíodos según el ciclo</span>
+            <span class="wz-opt__desc">Una sala que se adapta a distintas etapas del cultivo ajustando el fotoperíodo. Configuración versátil para operaciones más ágiles.</span>
           </button>
-          <button class="wz-opt" data-spectrum="mixed" data-label="Emerson (veg) + Green (flora)" onclick="slSelect(this,'spectrum')">
-            <span class="wz-opt__label">Sala dividida — Veg + Flora</span>
-            <span class="wz-opt__sub">Emerson para vegetación · Green para floración</span>
-            <span class="wz-opt__desc">La configuración más habitual en salas profesionales con sectores separados. Podemos cotizar ambos espectros en el mismo pedido.</span>
-          </button>
-          <button class="wz-opt" data-spectrum="unsure" data-label="No estoy seguro" onclick="slSelect(this,'spectrum')">
-            <span class="wz-opt__label">Todavía no lo definí</span>
+          <button class="wz-opt" data-spectrum="unsure" data-label="Aún no lo definí" onclick="slSelect(this,'spectrum')">
+            <span class="wz-opt__label">Aún no lo definí</span>
             <span class="wz-opt__sub">Quiero asesoramiento</span>
-            <span class="wz-opt__desc">Nuestro equipo puede ayudarte a definir la mejor configuración según el diseño de tu sala.</span>
+            <span class="wz-opt__desc">Nuestro equipo puede ayudarte a definir la mejor configuración según tu proyecto.</span>
           </button>
         </div>
       </div>
@@ -4435,107 +4933,27 @@
 
 
   <!-- ══════════════════════════════════════════════════════════
-       JS — Wizard
+       JS — Wizard Sala (modal activo) + stubs del wizard viejo
   ══════════════════════════════════════════════════════════ -->
   <script>
+    // Stubs del wizard viejo (el overlay está oculto, funciones ya no se llaman)
     const WZ_STEPS = 3;
     let wzCurrentStep = 0;
     const wzSelections = { area: null, potencia: null, serie: null, version: null };
 
-    function openWizard() {
-      wzReset();
-      document.getElementById('wzOverlay').classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeWizard() {
-      document.getElementById('wzOverlay').classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
-
-    function onOverlayClick(e) {
-      if (e.target === document.getElementById('wzOverlay')) closeWizard();
-    }
-
-    function wzReset() {
-      wzCurrentStep = 0;
-      wzSelections.area = wzSelections.potencia = wzSelections.serie = wzSelections.version = null;
-      document.querySelectorAll('.wz-opt').forEach(o => o.classList.remove('is-sel'));
-      document.querySelectorAll('.wz-step').forEach(s => s.classList.remove('is-active'));
-      document.getElementById('wzResult').classList.remove('is-active');
-      document.getElementById('wzNav').style.display = 'flex';
-      wzShowStep(0);
-    }
-
-    function wzShowStep(idx) {
-      document.querySelectorAll('.wz-step').forEach(s => s.classList.remove('is-active'));
-      document.getElementById(`wzStep${idx}`)?.classList.add('is-active');
-      wzCurrentStep = idx;
-      wzUpdateProgress();
-      wzUpdateNav();
-    }
-
-    function wzUpdateProgress() {
-      for (let i = 0; i < WZ_STEPS; i++) {
-        const dot = document.getElementById(`wzDot${i}`);
-        dot.classList.remove('is-done','is-active');
-        if (i < wzCurrentStep)        dot.classList.add('is-done');
-        else if (i === wzCurrentStep) dot.classList.add('is-active');
-      }
-    }
-
-    function wzUpdateNav() {
-      const back = document.getElementById('wzBack');
-      const next = document.getElementById('wzNext');
-      back.classList.toggle('visible', wzCurrentStep > 0);
-      const keys = ['area','serie','version'];
-      const hasSelection = wzSelections[keys[wzCurrentStep]] !== null;
-      next.classList.toggle('ready', hasSelection);
-      next.textContent = wzCurrentStep < WZ_STEPS - 1 ? 'Siguiente →' : 'Ver recomendación →';
-    }
-
-    function wzSelect(el, key) {
-      el.closest('.wz-opts').querySelectorAll('.wz-opt').forEach(o => o.classList.remove('is-sel'));
-      el.classList.add('is-sel');
-      wzSelections[key] = el.dataset[key];
-      if (key === 'area') wzSelections.potencia = el.dataset.potencia;
-      wzUpdateNav();
-    }
-
-    function wzNext() {
-      if (wzCurrentStep < WZ_STEPS - 1) wzShowStep(wzCurrentStep + 1);
-      else wzShowResult();
-    }
-
-    function wzPrev() {
-      if (wzCurrentStep > 0) wzShowStep(wzCurrentStep - 1);
-    }
-
-    function wzGoSala() {
-      closeWizard();
-      const msg = encodeURIComponent('Hola, necesito cotización para una sala profesional con múltiples equipos Canopy Master.');
-      window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
-    }
-
-    function wzShowResult() {
-      document.querySelectorAll('.wz-step').forEach(s => s.classList.remove('is-active'));
-      document.getElementById('wzResult').classList.add('is-active');
-      document.getElementById('wzNav').style.display = 'none';
-      document.querySelectorAll('.wz-dot').forEach(d => { d.classList.remove('is-active'); d.classList.add('is-done'); });
-
-      const VER   = { pro:'PRO', core:'Core' };
-      const SERIE = { emerson:'Emerson Series', green:'Green Series' };
-      const POT   = wzSelections.potencia || '400';
-      const VER_KEY   = wzSelections.version || 'core';
-      const SERIE_KEY = wzSelections.serie   || 'emerson';
-      const recName = `Canopy Master ${VER[VER_KEY]} ${POT}W`;
-      const recSub  = `${SERIE[SERIE_KEY]} — ${VER_KEY === 'core' ? 'Acceso profesional' : 'Máxima eficiencia'} para tu espacio`;
-      const waMsg   = encodeURIComponent(`Hola, el asistente me recomendó el ${recName} ${SERIE[SERIE_KEY]} (pre-venta). Quiero más información.`);
-
-      document.getElementById('wzResultName').textContent = recName;
-      document.getElementById('wzResultSub').textContent  = recSub;
-      document.getElementById('wzResultWA').href = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
-    }
+    function openWizard()   {}
+    function closeWizard()  {}
+    function onOverlayClick(){}
+    function wzReset()      {}
+    function wzShowStep()   {}
+    function wzUpdateProgress(){}
+    function wzUpdateNav()  {}
+    function wzSelect()     {}
+    function wzNext()       {}
+    function wzPrev()       {}
+    function wzGoSala()     {}
+    function wzShowResult() {}
+    function applyWizard()  {}
 
     // ── WIZARD SALA ──────────────────────────────────────────
     const SL_STEPS = 3;
@@ -4620,8 +5038,8 @@
     }
 
     function slBuildWAMsg() {
-      const SCALE_LABEL    = { '6-12':'6 a 12 equipos', '12-24':'12 a 24 equipos', '+24':'más de 24 equipos' };
-      const SPECTRUM_LABEL = { 'emerson-only':'Emerson Series (ciclo completo)', 'green-only':'Green Series', 'mixed':'sala dividida Veg (Emerson) + Flora (Green)', 'unsure':'por definir, necesito asesoramiento' };
+      const SCALE_LABEL    = { '6-12':'6 a 12 equipos (hasta 15 m²)', '12-24':'12 a 24 equipos (hasta 30 m²)', '+25':'más de 25 equipos (sala grande o múltiples sectores)' };
+      const SPECTRUM_LABEL = { 'ciclo-unico':'Ciclo único (salas separadas por fotoperíodo)', 'multiciclo':'Múltiples ciclos (una sala, fotoperíodos variables)', 'unsure':'por definir, necesito asesoramiento' };
       const scale    = slSel.scale    ? SCALE_LABEL[slSel.scale]       : 'sin especificar';
       const spectrum = slSel.spectrum ? SPECTRUM_LABEL[slSel.spectrum] : 'sin especificar';
       return encodeURIComponent(
@@ -4646,8 +5064,8 @@
 
     function slSubmitEmail() {
       const email = document.getElementById('slEmailInput').value.trim();
-      const SCALE_LABEL    = { '6-12':'6-12 equipos', '12-24':'12-24 equipos', '+24':'+24 equipos' };
-      const SPECTRUM_LABEL = { 'emerson-only':'Emerson', 'green-only':'Green', 'mixed':'Veg+Flora', 'unsure':'por definir' };
+      const SCALE_LABEL    = { '6-12':'6-12 equipos', '12-24':'12-24 equipos', '+25':'+25 equipos' };
+      const SPECTRUM_LABEL = { 'ciclo-unico':'Ciclo único', 'multiciclo':'Múltiples ciclos', 'unsure':'por definir' };
 
       // En producción, acá iría el submit al Google Form oculto
       // Por ahora simula el envío
@@ -4667,28 +5085,48 @@
         `Escala: ${SCALE_LABEL[slSel.scale] || '—'} · Espectro: ${SPECTRUM_LABEL[slSel.spectrum] || '—'}.`;
     }
 
-    function applyWizard() {
-      const EFF_IDX   = { core:0, pro:1 };
-      const POT       = wzSelections.potencia || '400';
-      const SERIE_KEY = wzSelections.serie    || 'emerson';
-      const VER_KEY   = wzSelections.version  || 'core';
+  </script>
 
-      document.querySelectorAll('[data-fkey="potencia"]').forEach(b => b.classList.remove('cfg__btn--active'));
-      const potBtn = document.querySelector(`[data-fkey="potencia"][data-fval="${POT}"]`);
-      if (potBtn) { potBtn.classList.add('cfg__btn--active'); cfg.potencia = POT; }
+  <!-- ══════════════════════════════════════════════════════════
+       JS — Countdown preventa
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      // Fecha de cierre: 30 días y 12 horas desde ahora (se fija al cargar la página)
+      // Para producción: reemplazar DEADLINE con una fecha fija, ej:
+      // const DEADLINE = new Date('2026-06-14T23:59:00-03:00').getTime();
+      const DEADLINE = Date.now() + (30 * 24 + 12) * 60 * 60 * 1000;
 
-      document.querySelectorAll('[data-fkey="serie"]').forEach(b => b.classList.remove('cfg__spectrum-opt--active'));
-      const serieBtn = document.querySelector(`[data-fkey="serie"][data-fval="${SERIE_KEY}"]`);
-      if (serieBtn) { serieBtn.classList.add('cfg__spectrum-opt--active'); cfg.serie = SERIE_KEY; }
+      function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
 
-      const effIdx = EFF_IDX[VER_KEY] ?? 2;
-      const slider = document.getElementById('cfgEff');
-      if (slider) { slider.value = effIdx; cfg.eff = effIdx; document.getElementById('cfgEffLabel').textContent = EFF_LABELS[EFF_MAP[effIdx]]; }
+      function tick() {
+        const diff = DEADLINE - Date.now();
+        if (diff <= 0) {
+          ['cdDias','cdHoras','cdMins','cdSegs'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = '00';
+          });
+          return;
+        }
+        const days  = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins  = Math.floor((diff % 3600000)  / 60000);
+        const secs  = Math.floor((diff % 60000)    / 1000);
 
-      updateCfgRec();
-      closeWizard();
-      setTimeout(() => document.getElementById('configurador').scrollIntoView({ behavior:'smooth', block:'start' }), 300);
-    }
+        const dEl = document.getElementById('cdDias');
+        const hEl = document.getElementById('cdHoras');
+        const mEl = document.getElementById('cdMins');
+        const sEl = document.getElementById('cdSegs');
+
+        if (dEl) dEl.textContent = days;
+        if (hEl) hEl.textContent = pad(hours);
+        if (mEl) mEl.textContent = pad(mins);
+        if (sEl) sEl.textContent = pad(secs);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
   </script>
 
   <!-- ══════════════════════════════════════════════════════════
